@@ -10,7 +10,7 @@ assignees: ''
 **What feature needs to be implemented?**
 Give a brief description of the overall goal of the feature.
 
-**Describe the feature's requirement**
+**Describe the feature's requirements**
 A clear and concise description of what this feature needs to do.
 
 **Additional context**
