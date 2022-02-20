@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 /**
  * This class contains data for a single bezier curve. It holds the 4 control points
@@ -11,7 +10,7 @@ public class CurveData : MonoBehaviour
     /**
      * An array of the four control points that make up a bezier curve.
      */
-    public Transform[] control_points;
+    private Transform[] control_points;
 
     /**
      * The four control points that make up the bezier curve.
@@ -25,6 +24,10 @@ public class CurveData : MonoBehaviour
         control_points = new Transform[] { point_0, point_1, point_2, point_3 };
     }
 
+    public Transform[] GetControlPoints()
+    {
+        return control_points;
+    }
 
     /**
      * We calculate each position along the bezier curve using the explicit form cubic formula:
@@ -32,16 +35,10 @@ public class CurveData : MonoBehaviour
      * 
      * t determines how far along the curve this calculation should be.
      * Returns a vector3 representing the position of the next point along the curve.
-     * If t is an invalid value, returns Vector3.zero
+     * Undefined behaviour if t is an invalid value.
      */
     public Vector3 GetNextPoint(float t)
     {
-        if (t < 0 || t > 1)
-        {
-            return Vector3.zero;
-        }
-
-        
         return Mathf.Pow(1 - t, 3) * control_points[0].position 
                + 3 * Mathf.Pow(1 - t, 2) * t * control_points[1].position 
                + 3 * (1 - t) * Mathf.Pow(t, 2) * control_points[2].position 
