@@ -26,5 +26,6 @@ When this script is attached to an object, it will move the object along a given
 
 ## SetRouteHeight
 
-A route is an object with only bezier curves as children. This script moves the entire route along the y-axis to 
-a given point.
+When this script is attached to a route object, it will move the entire route along the y-axis to a given 
+point.
+- A route is an object with only bezier curves as children.
