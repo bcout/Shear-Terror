@@ -34,7 +34,7 @@ public class CurveData : MonoBehaviour
      * Returns a vector3 representing the position of the next point along the curve.
      * If t is an invalid value, returns Vector3.zero
      */
-    public Vector3 GetNextCurvePoint(float t)
+    public Vector3 GetNextPoint(float t)
     {
         if (t < 0 || t > 1)
         {
