@@ -12,7 +12,6 @@ public class EditorDrawCurve : MonoBehaviour
 {
     // A lower draw step will draw more dots, higher will draw less
     private const float MIN_DRAW_STEP = 0.01f, MAX_DRAW_STEP = 0.25f;
-
     public float dots_y_value = 0.0f;
     public float dots_draw_step = 0.05f;
     public float dots_radius = 0.25f;
@@ -23,21 +22,15 @@ public class EditorDrawCurve : MonoBehaviour
     // This only gets called when a public variable gets changed in the editor, as opposed to running all the time
     private void OnValidate()
     {
-        curve_data = GetComponent<CurveData>();
         // Keeps the step value within reasonable bounds, so it's easier to change the value in the inspector
         // We also don't want it to be 0, because that will freeze the editor(!)
         dots_draw_step = Mathf.Clamp(dots_draw_step, MIN_DRAW_STEP, MAX_DRAW_STEP);
     }
 
-    /*
-     * This function draws the curve and control points in the editor view. 
-     */
     private void OnDrawGizmos()
     {
-        // Set each gizmo's height to dots_y_value
+        curve_data = transform.GetComponent<CurveData>();
         transform.position = new Vector3(transform.position.x, dots_y_value, transform.position.z);
-
-        // Draw dots along the curve
         for (float t = 0; t <= 1; t += dots_draw_step)
         {
             gizmos_position = curve_data.GetNextPoint(t);
