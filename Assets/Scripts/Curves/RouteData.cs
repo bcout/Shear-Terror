@@ -39,13 +39,68 @@ public class RouteData : MonoBehaviour
             curves[i] = transform.GetChild(i);
         }
 
-        // If the first curve is not a 4 Point Curve, the curves aren't in the right order, so abandon the linking
-        if (curves[0].name != "4 Point Curve")
+        if (!ValidateCurves())
         {
-            Debug.LogError("First curve in hierarchy must be a 4 point curve!\nAbandoning linking.");
             return;
         }
 
+        CurveData curr_curve;
+        CurveData prev_curve;
+        for (int i = 1; i < num_curves; i++)
+        {
+            curr_curve = curves[i].GetComponent<CurveData>();
+            prev_curve = curves[i - 1].GetComponent<CurveData>();
+            switch (curves[i].name)
+            {
+                case "3 Point Curve":
+                    // 3 point curves share their first control point with the previous curve's last point
+                    curr_curve.control_points[0] = prev_curve.control_points[3];
+                    break;
+                case "2 Point Curve":
+                    curr_curve.control_points[0] = prev_curve.control_points[3];
+                    curr_curve.control_points[3] = curves[0].GetComponent<CurveData>().control_points[0];
+                    break;
+            }
+        }
 
+        Debug.Log("Done linking!");
+    }
+
+    private bool ValidateCurves()
+    {
+        bool valid = true;
+        // If the first curve is not a 4 Point Curve, the curves aren't in the right order, so abandon the linking
+        if (curves[0].name != "4 Point Curve")
+        {
+            Debug.LogError("First curve in hierarchy must be a 4 point curve. Abandoning linking.");
+            valid = false;
+        }
+
+        
+        for (int i = 1; i < num_curves; i++)
+        {
+            // If there is more than one 4 point curve, abandon the linking
+            if (curves[i].name == "4 Point Curve")
+            {
+                Debug.LogError("Only one 4 point curve is allowed. Abandoning linking.");
+                valid = false;
+            }
+
+            // A 2 point curve can only be at the end of the route
+            if (curves[i].name == "2 Point Curve" && i != (num_curves - 1))
+            {
+                Debug.LogError("2 point curves must be at the end of the route. Abandoning linking.");
+                valid = false;
+            }
+
+            // If the curve isn't named correctly, abandon the linking
+            if (curves[i].name != "2 Point Curve" && curves[i].name != "3 Point Curve" && curves[i].name != "4 Point Curve")
+            {
+                Debug.LogError("Invalid curve name: " + curves[i].name + ". Abandoning linking.");
+                valid = false;
+            }
+        }
+
+        return valid;
     }
 }
