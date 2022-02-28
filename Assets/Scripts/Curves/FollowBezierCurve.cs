@@ -9,7 +9,7 @@ public class FollowBezierCurve : MonoBehaviour
 {
     // A route is a game object with multiple bezier curves as children
     public GameObject route;
-    public float speed;
+    public float speed = 0.5f;
 
     // An array of all the curves in the given route
     private Transform[] curves;
