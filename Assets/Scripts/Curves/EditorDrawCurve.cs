@@ -40,6 +40,10 @@ public class EditorDrawCurve : MonoBehaviour
             Gizmos.DrawSphere(gizmos_position, dots_radius);
         }
 
+        // Draw the last dot
+        gizmos_position = curve_data.GetNextPoint(1);
+        Gizmos.DrawSphere(gizmos_position, dots_radius);
+
         // Draw some handle lines to make finding the control points easier
         Gizmos.DrawLine(curve_data.control_points[0].position, curve_data.control_points[1].position);
         Gizmos.DrawLine(curve_data.control_points[2].position, curve_data.control_points[3].position);
