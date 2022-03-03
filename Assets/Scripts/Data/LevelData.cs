@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class contains all the information about a single level.
+ * It has a list of all the blocks used to make the level.
+ */
 public class LevelData : MonoBehaviour { 
     /*
      * This is a list of all the blocks that make up the level, in order
      * blocks[0] is the first block, blocks[n-1] is the last
+     * 
+     * We use a list instead of an array because the level generation process involves adding blocks to this list,
+     * which makes List<T> more efficient
      */
     private List<Transform> blocks;
-    private GameObject[] available_blocks;
-
-    private void Start()
-    {
-        available_blocks = Resources.LoadAll("Level Blocks") as GameObject[];
-    }
 
     /*
-     * This function generates a sequence of blocks to form a level, drawing from available_blocks to do so.
+     * This function generates a sequence of blocks to form a level, drawing from GameData.available_blocks to do so.
      * None of the blocks intersect, and each level is noticeably different from the one before it
      * 
-     * The player uses this list to move through the level
+     * The player uses this list to move through the level.
+     * 
+     * It would be best to pre-compute all the valid permutations of the blocks, then this function just reads one of them from a file
+     * and loads it into the array.
      */
     public List<Transform> GenerateLevel()
     {
