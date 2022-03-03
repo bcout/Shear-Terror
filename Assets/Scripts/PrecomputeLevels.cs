@@ -41,10 +41,8 @@ public class PrecomputeLevels : MonoBehaviour
         {
             curr_block = available_blocks[Random.Range(0, available_blocks.Length)];
             Transform prev_end = prev_block.transform.Find("End");
-            Transform curr_start = curr_block.transform.Find("Start");
-            Vector3 spawn_point = prev_end.position + (curr_block.transform.position - curr_start.position);
 
-            prev_block = Instantiate(curr_block, spawn_point, prev_end.rotation, level_parent);
+            prev_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent);
             index++;
         }
 
