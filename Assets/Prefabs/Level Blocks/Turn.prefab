@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 571683493609231139}
   - component: {fileID: 301760044171274591}
   m_Layer: 0
-  m_Name: Corner
+  m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085161593739932406}
-  m_Mesh: {fileID: 4579454407841743219, guid: a923c91d68e39f344b9dd8bf4315970c, type: 3}
+  m_Mesh: {fileID: 6119595707712946198, guid: ddd845cd954eaad4baf18ada15f07b37, type: 3}
 --- !u!23 &571683493609231139
 MeshRenderer:
   m_ObjectHideFlags: 0
