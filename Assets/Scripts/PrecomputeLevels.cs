@@ -4,10 +4,15 @@ public class PrecomputeLevels : MonoBehaviour
 {
     private GameObject[] available_blocks;
     private GameObject[] level_blocks;
-    private const int NUM_BLOCKS_IN_LEVEL = 8;
 
     [SerializeField]
     private Transform level_parent;
+
+    [SerializeField]
+    private GameObject box_collider_object;
+
+    [SerializeField]
+    private GameObject starting_block;
 
     void Start()
     {
@@ -16,32 +21,27 @@ public class PrecomputeLevels : MonoBehaviour
          * The values are set in the inspector
          */
         available_blocks = GetComponent<GameData>().available_level_blocks;
-        level_blocks = new GameObject[NUM_BLOCKS_IN_LEVEL];
-        
-        
-        foreach (GameObject block in available_blocks)
-        {
-            print(block.name);
-        }
+        level_blocks = new GameObject[Constants.NUM_BLOCKS_IN_LEVEL];
 
         int index = Random.Range(0, available_blocks.Length - 1);
-        GenerateLevel(available_blocks[index]);
+        //GenerateLevel(available_blocks[index]);
+        GenerateLevel();
     }
 
     /*
      * Start with a block, spawn a random block after it. If their box colliders collide, remove that block
      * and spawn a different one. Repeat until there are 8 blocks end to end.
      */
-    private void GenerateLevel(GameObject starting_block)
+    private void GenerateLevel()
     {
         GameObject prev_block = starting_block;
         GameObject curr_block;
         int index = 0;
 
         // Spawn the starting block at the world origin
-        Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent);
+        curr_block = Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent);
 
-        while (index < NUM_BLOCKS_IN_LEVEL)
+        while (index < Constants.NUM_BLOCKS_IN_LEVEL)
         {
             // Grab a random block from GameData's list
             curr_block = available_blocks[Random.Range(0, available_blocks.Length)];
@@ -55,9 +55,34 @@ public class PrecomputeLevels : MonoBehaviour
              */
             prev_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent);
 
-            // Check if the box colliders intersect
-            BoxCollider collider = curr_block.GetComponent<BoxCollider>();
-            
+            // Reset prev_end since we've changed prev_block
+            prev_end = prev_block.transform.Find("End");
+
+            /*
+             * Check if there is space for a block after placing the current one.
+             * We don't want to place a block with the end pressing up against the side of an existing block.
+             * So, check to make sure there is space ahead of where we're placing the block.
+             */
+            Vector3 center = prev_end.position;
+            Quaternion orientation = prev_end.rotation;
+            if (prev_end.forward == Vector3.right)
+            {
+                print("right");
+            }
+            else if (prev_end.forward == Vector3.left)
+            {
+                print("left");
+            }
+            else if (prev_end.forward == Vector3.forward)
+            {
+                print("up");
+            }
+            else if (prev_end.forward == Vector3.back)
+            {
+                print("down");
+            }
+
+            Instantiate(box_collider_object, center, orientation, level_parent);
 
             index++;
         }
