@@ -36,10 +36,11 @@ public class PrecomputeLevels : MonoBehaviour
     {
         GameObject prev_block = starting_block;
         GameObject curr_block;
+        Transform prev_end;
         int index = 0;
 
         // Spawn the starting block at the world origin
-        curr_block = Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent);
+        Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent);
 
         while (index < Constants.NUM_BLOCKS_IN_LEVEL)
         {
@@ -47,45 +48,70 @@ public class PrecomputeLevels : MonoBehaviour
             curr_block = available_blocks[Random.Range(0, available_blocks.Length)];
 
             // Each block has an "end" object, giving us access to the exact position of the far end of the block
-            Transform prev_end = prev_block.transform.Find("End");
+            prev_end = prev_block.transform.Find("End");
 
             /*
              * The pivot point of every block is not at the center of the object, but at the start point.
-             * This means we can just spawn the new block at the last block's location and they line up perfectly.
+             * This means we can just spawn the new block at the last block's end point and they line up perfectly.
              */
-            prev_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent);
-
-            // Reset prev_end since we've changed prev_block
-            prev_end = prev_block.transform.Find("End");
+            curr_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent);
 
             /*
              * Check if there is space for a block after placing the current one.
              * We don't want to place a block with the end pressing up against the side of an existing block.
-             * So, check to make sure there is space ahead of where we're placing the block.
+             * So, check to make sure there is space ahead of where we're about to place the block.
+             * 
+             * We instantiate before checking for space because we need the box collider's values for the calculation,
+             * and those values are only set when the prefab is instantiated.
+             * I'm sure this can be optimized, just not a priority now.
              */
-            Vector3 center = prev_end.position;
-            Quaternion orientation = prev_end.rotation;
-            if (prev_end.forward == Vector3.right)
+            if (CheckNextSpace(curr_block))
             {
-                print("right");
-            }
-            else if (prev_end.forward == Vector3.left)
-            {
-                print("left");
-            }
-            else if (prev_end.forward == Vector3.forward)
-            {
-                print("up");
-            }
-            else if (prev_end.forward == Vector3.back)
-            {
-                print("down");
+                print("Colliding");
+                break;
             }
 
-            Instantiate(box_collider_object, center, orientation, level_parent);
-
+            prev_block = curr_block;
             index++;
         }
 
+    }
+
+    private bool CheckNextSpace(GameObject curr_block)
+    {
+        // Get the center of the current block's box collider
+        BoxCollider collider = curr_block.GetComponent<BoxCollider>();
+        Vector3 curr_center = collider.bounds.center;
+        print(curr_center);
+
+        /*
+         * The next block will be placed along one of the current box collider's 4 sides. The direction of
+         * curr_end.forward tells us which side will be used.
+         */
+        Transform curr_end = curr_block.transform.Find("End");
+        Vector3 next_center;
+        if (curr_end.forward == Vector3.right)
+        {
+            // Next block will be to the right of the current block
+            next_center = new Vector3(curr_center.x + Constants.MAX_BLOCK_SIZE, 0, curr_center.z);
+        }
+        else if (curr_end.forward == Vector3.left)
+        {
+            // Next block will be to the left
+            next_center = new Vector3(curr_center.x - Constants.MAX_BLOCK_SIZE, 0, curr_center.z);
+        }
+        else if (curr_end.forward == Vector3.forward)
+        {
+            // Next block will be above the current block
+            next_center = new Vector3(curr_center.x, 0, curr_center.z + Constants.MAX_BLOCK_SIZE);
+        }
+        else
+        {
+            // Next block will be below
+            next_center = new Vector3(curr_center.x, 0, curr_center.z - Constants.MAX_BLOCK_SIZE);
+        }
+
+        Collider[] intersecting = Physics.OverlapSphere(next_center, 0.01f);
+        return intersecting.Length != 0;
     }
 }
