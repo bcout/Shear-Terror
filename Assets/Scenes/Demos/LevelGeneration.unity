@@ -151,11 +151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b65e4b9cfe50c4fb929babade9e07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  available_level_blocks:
-  - {fileID: 2085161593739932406, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
-  - {fileID: 3775923813037673553, guid: 5389caccad63136458e564e8b1ca93ea, type: 3}
-  - {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa, type: 3}
+  all_level_blocks:
   - {fileID: 8491881614386515202, guid: e2e954da034457445a53a6c6363c25f5, type: 3}
+  - {fileID: 3775923813037673553, guid: 5389caccad63136458e564e8b1ca93ea, type: 3}
+  - {fileID: 2085161593739932406, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
+  - {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa, type: 3}
+  - {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa, type: 3}
 --- !u!4 &623201313
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +184,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level_parent: {fileID: 1371297370}
+  starting_block: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
+    type: 3}
+  ending_block: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
+    type: 3}
 --- !u!1 &1371297369
 GameObject:
   m_ObjectHideFlags: 0
