@@ -39,16 +39,19 @@ public class RecursiveLevelGeneration : MonoBehaviour
         // setup
 
         // Call the recursive function
-        GenerateLevelRecursive(starting_block, 0);
+        GenerateLevelRecursive(starting_block, starting_block, 0);
     }
 
-    private bool GenerateLevelRecursive(GameObject curr_block, int num_blocks_placed)
+    /*
+     * Unfinished, need to figure out the actual recursive call part and instantiating blocks in the right order
+     */
+    private bool GenerateLevelRecursive(GameObject curr_block, GameObject prev_block, int num_blocks_placed)
     {
         /*
          * Base case 1:
          * We have successfully placed all n blocks
          */
-        if (num_blocks_placed == Constants.NUM_BLOCKS_IN_LEVEL)
+        if (num_blocks_placed >= Constants.NUM_BLOCKS_IN_LEVEL)
         {
             return true;
         }
@@ -64,31 +67,13 @@ public class RecursiveLevelGeneration : MonoBehaviour
         }
 
         /*
-         * If we get here it means we haven't placed all the blocks yet, and we are not in a dead end
-         * Use the magic of recursion to check every block
+         * Spawn the block
          */
+        int index = rand.Next(0, valid_blocks.Count);
+        GameObject next_block = valid_blocks[index];
 
-        //
-        // This isn't final, just a random guess that doesn't even work.
-        // Need to figure out exactly what to do here
-        //
-        bool successful = false;
-        int index;
-        GameObject next_block;
-        while (!successful && valid_blocks.Count > 0)
-        {
-            index = rand.Next(0, valid_blocks.Count);
-            next_block = valid_blocks[index];
-            valid_blocks.RemoveAt(index);
-            successful = GenerateLevelRecursive(next_block, num_blocks_placed++);
-
-            if (successful)
-            {
-                blocks_to_spawn.Add(next_block);
-            }
-        }
-
-        return true;
+        num_blocks_placed++;
+        return GenerateLevelRecursive(next_block, curr_block, num_blocks_placed);
     }
 
     /*
