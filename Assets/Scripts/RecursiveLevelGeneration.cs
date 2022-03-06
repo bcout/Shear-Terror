@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class RecursiveLevelGeneration : MonoBehaviour
@@ -7,15 +8,30 @@ public class RecursiveLevelGeneration : MonoBehaviour
     [SerializeField]
     private GameObject starting_block;
 
+    private GameObject[] available_blocks;
+    private GameObject block_pool_parent;
+
+    private List<GameObject> blocks_to_spawn;
+    private System.Random rand;
+
     void Start()
     {
-        //GenerateLevel();
-        
-        List<GameObject> blocks = FindValidBlocks(starting_block);
-        foreach (GameObject block in blocks)
+        CreateObjectPool();
+
+        rand = new System.Random(DateTime.Now.Second);
+        blocks_to_spawn = new List<GameObject>();
+
+        GenerateLevel();
+
+        blocks_to_spawn.Reverse();
+
+        for(int i = 0; i < blocks_to_spawn.Count; i++)
         {
-            print(block.name);
+            print(blocks_to_spawn[i].name);
         }
+
+        EmptyObjectPool();
+        
     }
 
     private void GenerateLevel()
@@ -46,19 +62,32 @@ public class RecursiveLevelGeneration : MonoBehaviour
         {
             return false;
         }
-        
 
         /*
          * If we get here it means we haven't placed all the blocks yet, and we are not in a dead end
          * Use the magic of recursion to check every block
          */
 
-        // TEMP
-        GameObject next_block = null;
-        bool successful = GenerateLevelRecursive(next_block, num_blocks_placed++);
-        
+        //
+        // This isn't final, just a random guess that doesn't even work.
+        // Need to figure out exactly what to do here
+        //
+        bool successful = false;
+        int index;
+        GameObject next_block;
+        while (!successful && valid_blocks.Count > 0)
+        {
+            index = rand.Next(0, valid_blocks.Count);
+            next_block = valid_blocks[index];
+            valid_blocks.RemoveAt(index);
+            successful = GenerateLevelRecursive(next_block, num_blocks_placed++);
 
-        // TEMP
+            if (successful)
+            {
+                blocks_to_spawn.Add(next_block);
+            }
+        }
+
         return true;
     }
 
@@ -71,9 +100,9 @@ public class RecursiveLevelGeneration : MonoBehaviour
      */
     private List<GameObject> FindValidBlocks(GameObject curr_block)
     {
-        GameObject[] available_blocks = GetComponent<GameData>().all_level_blocks;
+        
         List<GameObject> valid_blocks = new List<GameObject>();
-
+        
         for (int i = 0; i < available_blocks.Length; i++)
         {
             if (!CheckForUpcomingCollision(curr_block, available_blocks[i]))
@@ -97,7 +126,8 @@ public class RecursiveLevelGeneration : MonoBehaviour
     {
         // Place the next block after the current block and check its collision
         Transform curr_block_end = curr_block.transform.Find("End");
-        next_block = Instantiate(next_block, curr_block_end.position, curr_block_end.rotation);
+        next_block.transform.position = curr_block_end.position;
+        next_block.transform.rotation = curr_block_end.rotation;
 
         Vector3 next_block_center = next_block.transform.Find("Center").position;
         Transform next_block_end = next_block.transform.Find("End");
@@ -126,8 +156,31 @@ public class RecursiveLevelGeneration : MonoBehaviour
 
         Collider[] intersecting = Physics.OverlapSphere(next_next_center, 0.01f);
 
-        Destroy(next_block);
-
         return intersecting.Length != 0;
+    }
+
+    /*
+     * Instead of having CheckForUpcomingCollision() instantiate a block each time to check its collision,
+     * instantiate all the available ones here and just have CheckForUpcomingCollision() position the instance it needs
+     * into place.
+     */
+    private void CreateObjectPool()
+    {
+        available_blocks = GetComponent<GameData>().all_level_blocks;
+        block_pool_parent = new GameObject("Block Pool");
+        for (int i = 0; i < available_blocks.Length; i++)
+        {
+            available_blocks[i] = Instantiate(available_blocks[i], block_pool_parent.transform);
+            available_blocks[i].SetActive(false);
+        }
+    }
+
+    private void EmptyObjectPool()
+    {
+        foreach (GameObject block in available_blocks)
+        {
+            Destroy(block);
+        }
+        Destroy(block_pool_parent);
     }
 }
