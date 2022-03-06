@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour
 {
     private List<GameObject> all_blocks;
     private List<GameObject> available_blocks;
+    private System.Random rand;
 
     [SerializeField]
     private Transform level_parent;
@@ -17,17 +19,34 @@ public class LevelGeneration : MonoBehaviour
 
     void Start()
     {
+        // Seed random with the current time
+        rand = new System.Random(DateTime.Now.Second);
         /*
         * GameData keeps an array of all the prefabs we want to use to generate levels.
         * The values are set in the inspector
         */
         all_blocks = new List<GameObject>(GetComponent<GameData>().all_level_blocks);
-        GenerateLevel();
+
+        /*
+         * This algorithm might take a long long time, so limit it to 10 iterations.
+         * In practice, we're using small levels, so we'll never need 10 iterations.
+         */
+        bool successful = false;
+        int attempts = 0;
+        while (!successful && attempts < 10)
+        {
+            successful = GenerateLevel();
+            attempts++;
+            if (!successful)
+            {
+                ClearBlocks();
+            }
+        }
     }
 
     /*
-     * Start with a block, spawn a random block after it. If their box colliders collide, remove that block
-     * and spawn a different one. Repeat until there are 8 blocks end to end.
+     * Start with a block, spawn a random block after it. If a future collision is possible, remove that block
+     * and spawn a different one. Repeat until there are n blocks end to end.
      */
     private bool GenerateLevel()
     {
@@ -43,14 +62,15 @@ public class LevelGeneration : MonoBehaviour
         while (index < Constants.NUM_BLOCKS_IN_LEVEL)
         {
             // Grab a random block from GameData's list
-            int block_index = Random.Range(0, all_blocks.Count - 1);
+            // rand uses the .NET random, who's outer bound is exclusive, so we don't need to do Count - 1
+            int block_index = rand.Next(0, all_blocks.Count);
             curr_block = all_blocks[block_index];
 
             // Each block has an "end" object, giving us access to the exact position of the far end of the block
             prev_end = prev_block.transform.Find("End");
 
             // Make sure available_blocks matches all_blocks at the beginning of each iteration
-            available_blocks = all_blocks;
+            available_blocks = new List<GameObject>(all_blocks);
 
             /*
              * This while loop is the smarts in this level generation algorithm
@@ -96,7 +116,7 @@ public class LevelGeneration : MonoBehaviour
                     }
 
                     // Otherwise, pick a new block from the shortened list and try again
-                    block_index = Random.Range(0, available_blocks.Count - 1);
+                    block_index = rand.Next(0, available_blocks.Count);
                     curr_block = available_blocks[block_index];
                 }
             }
@@ -117,7 +137,6 @@ public class LevelGeneration : MonoBehaviour
         // Get the center of the current block's box collider
         BoxCollider collider = curr_block.GetComponent<BoxCollider>();
         Vector3 curr_center = collider.bounds.center;
-        print(curr_center);
 
         /*
          * The next block will be placed along one of the current box collider's 4 sides. The direction of
@@ -146,7 +165,20 @@ public class LevelGeneration : MonoBehaviour
             next_center = new Vector3(curr_center.x, 0, curr_center.z - Constants.MAX_BLOCK_SIZE);
         }
 
+        /*
+         * I use overlap sphere to check if there is a collider at that point.
+         * If there is a better way to check this, I'd be down to change it, but the rest of this code
+         * is so bad it probably won't make a difference :)
+         */
         Collider[] intersecting = Physics.OverlapSphere(next_center, 0.01f);
         return intersecting.Length != 0;
+    }
+
+    private void ClearBlocks()
+    {
+        foreach (Transform child in level_parent.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
