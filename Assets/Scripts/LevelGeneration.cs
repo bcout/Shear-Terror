@@ -17,6 +17,8 @@ public class LevelGeneration : MonoBehaviour
     [SerializeField]
     private GameObject ending_block;
 
+    public GameObject collision_checker;
+
     void Start()
     {
         // Seed random with the current time
@@ -170,6 +172,7 @@ public class LevelGeneration : MonoBehaviour
          * If there is a better way to check this, I'd be down to change it, but the rest of this code
          * is so bad it probably won't make a difference :)
          */
+        Instantiate(collision_checker, next_center, curr_end.rotation, level_parent);
         Collider[] intersecting = Physics.OverlapSphere(next_center, 0.01f);
         return intersecting.Length != 0;
     }

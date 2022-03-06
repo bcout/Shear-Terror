@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 623201313}
   - component: {fileID: 623201312}
   - component: {fileID: 623201314}
+  - component: {fileID: 623201315}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623201311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f69a61811e043ab4dadea1b95c68000c, type: 3}
   m_Name: 
@@ -186,6 +187,22 @@ MonoBehaviour:
   starting_block: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
     type: 3}
   ending_block: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
+    type: 3}
+  collision_checker: {fileID: 1617929792935000767, guid: ef77d72e21c7a154594524ab12044ce3,
+    type: 3}
+--- !u!114 &623201315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623201311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45706a9f342d6604f85ceb2a7dea77b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starting_block: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
     type: 3}
 --- !u!1 &1371297369
 GameObject:
