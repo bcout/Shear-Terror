@@ -58,15 +58,15 @@ public class SheepMovement : MonoBehaviour
     {
         if (current_block.name == "Short Straight(Clone)")
         {
-            movement_speed = 1.5f;
+            movement_speed = 3 * Constants.BASE_MOVEMENT_SPEED;
         }
         else if (current_block.name == "Long Straight(Clone)")
         {
-            movement_speed = 1f;
+            movement_speed = 2 * Constants.BASE_MOVEMENT_SPEED;
         }
         else
         {
-            movement_speed = 0.5f;
+            movement_speed = Constants.BASE_MOVEMENT_SPEED;
         }
 
         if (current_block.CompareTag("Turn"))
