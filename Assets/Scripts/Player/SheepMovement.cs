@@ -25,6 +25,8 @@ public class SheepMovement : MonoBehaviour
         player_input_actions.Player.Jump.performed += Jump;
         player_input_actions.Player.MoveLeft.performed += MoveLeft;
         player_input_actions.Player.MoveRight.performed += MoveRight;
+        player_input_actions.Player.MoveLeft.performed += ChangeLane;
+        player_input_actions.Player.MoveRight.performed += ChangeLane;
     }
 
     private void Start()
@@ -40,19 +42,7 @@ public class SheepMovement : MonoBehaviour
 
     private void Update()
     {
-        current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
-        if (current_block.tag == "Straight")
-        {
-            Transform start_point = current_lane.transform.Find("Start");
-            transform.position = start_point.position;
-            transform.rotation = start_point.rotation;
-        }
-        else if (current_block.tag == "Turn")
-        {
-            Transform start_point = current_lane.GetComponent<CurveData>().control_points[0];
-            transform.position = start_point.position;
-            transform.rotation = start_point.rotation;
-        }
+        
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -92,5 +82,24 @@ public class SheepMovement : MonoBehaviour
                 // Do nothing
                 break;
         }
+    }
+
+    private void ChangeLane(InputAction.CallbackContext context)
+    {
+        // TESTING
+        current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
+        if (current_block.tag == "Straight")
+        {
+            Transform start_point = current_lane.transform.Find("Start");
+            transform.position = start_point.position;
+            transform.rotation = start_point.rotation;
+        }
+        else if (current_block.tag == "Turn")
+        {
+            Transform start_point = current_lane.GetComponent<CurveData>().control_points[0];
+            transform.position = start_point.position;
+            transform.rotation = start_point.rotation;
+        }
+        //
     }
 }

@@ -14,14 +14,12 @@ public class GameController : MonoBehaviour
         level = GetComponent<LevelData>();
         level.GenerateLevel();
 
-        SpawnPlayer(level.GetBlocksInLevel()[0]);
+        SpawnPlayer();
     }
 
-    private void SpawnPlayer(GameObject starting_block)
+    private void SpawnPlayer()
     {
-        Vector3 start_pos = starting_block.transform.Find("Start").position;
-        Quaternion start_orientation = starting_block.transform.Find("Start").rotation;
-        GameObject player = Instantiate(player_object);
+        Instantiate(player_object);
     }
     // Update is called once per frame
     void Update()
