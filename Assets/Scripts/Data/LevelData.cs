@@ -24,18 +24,10 @@ public class LevelData : MonoBehaviour {
     // In certain situations, certain blocks may cause collisions. This list is all_blocks minus those troublesome blocks.
     private List<GameObject> available_blocks;
 
-    // This is a list of all the blocks that were used to generate the level, in order from beginning to end.
-    private List<GameObject> blocks_in_level;
-
     // All the level blocks will be instantiated underneath this object, to keep things organized
     private GameObject level_parent;
 
     private System.Random rand;
-
-    public List<GameObject> GetBlocksInLevel()
-    {
-        return blocks_in_level;
-    }
 
     /*
      * The game controller calls this when it is time to start a level
@@ -46,8 +38,6 @@ public class LevelData : MonoBehaviour {
 
         // Seed random with the current time, so we always get unique levels
         rand = new System.Random(DateTime.Now.Second);
-
-        blocks_in_level = new List<GameObject>();
 
         /*
          * The algorithm being used is sort of naive, and is not guaranteed to finish quickly.
@@ -83,8 +73,7 @@ public class LevelData : MonoBehaviour {
         int index = 0;
 
         // Spawn the starting block at the world origin
-        GameObject first_block = Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent.transform);
-        blocks_in_level.Add(first_block);
+        Instantiate(starting_block, Vector3.zero, Quaternion.identity, level_parent.transform);
 
         // Spawn the middle blocks one after the other
         while (index < Constants.NUM_BLOCKS_IN_LEVEL)
@@ -115,7 +104,6 @@ public class LevelData : MonoBehaviour {
                  * This means we can just spawn the new block at the last block's end point and they line up perfectly.
                  */
                 curr_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent.transform);
-                blocks_in_level.Add(curr_block);
 
                 /*
                  * Check if there is space for a block after placing the current one.
@@ -157,7 +145,6 @@ public class LevelData : MonoBehaviour {
         // Spawn the ending block
         prev_end = prev_block.transform.Find("End");
         GameObject last_block = Instantiate(ending_block, prev_end.position, prev_end.rotation, level_parent.transform);
-        blocks_in_level.Add(last_block);
 
         return true;
     }

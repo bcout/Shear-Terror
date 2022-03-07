@@ -35,7 +35,13 @@ public class SheepMovement : MonoBehaviour
     private void Start()
     {
         game_controller = GameObject.Find("Game Controller");
-        blocks_in_level = game_controller.GetComponent<LevelData>().GetBlocksInLevel();
+        GameObject level_parent = GameObject.Find("Level Parent");
+        blocks_in_level = new List<GameObject>();
+
+        for(int i = 0; i < level_parent.transform.childCount; i++)
+        {
+            blocks_in_level.Add(level_parent.transform.GetChild(i).gameObject);
+        }
 
         // Start the player off on the first block in their current lane
         current_block_index = 0;
@@ -44,14 +50,32 @@ public class SheepMovement : MonoBehaviour
         
         t = 0f;
         coroutine_available = true;
+
     }
 
     private void Update()
     {
-        if (coroutine_available)
+        if (current_block.CompareTag("Turn"))
         {
-            StartCoroutine(FollowCurve());
+            if (coroutine_available)
+            {
+                StartCoroutine(FollowCurve());
+            }
         }
+        else if (current_block.CompareTag("Straight"))
+        {
+            FollowStraight();
+        }
+        
+    }
+
+    private void FollowStraight()
+    {
+        Vector3 end_point = current_lane.transform.Find("End").position;
+        //print(end_point);
+        transform.position = end_point;
+
+        GoToNextBlock();
     }
 
     private IEnumerator FollowCurve()
@@ -60,20 +84,32 @@ public class SheepMovement : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime * movement_speed;
-            print(t);
 
             CurveData curve_data = current_lane.GetComponent<CurveData>();
             Vector3 next_point = curve_data.GetNextPoint(t);
 
-            transform.LookAt(next_point);
+            //transform.LookAt(next_point);
             transform.position = next_point;
+            //transform.position = Vector3.MoveTowards(transform.position, next_point, Time.deltaTime * movement_speed);
 
             yield return new WaitForEndOfFrame();
         }
 
         t = 0f;
 
+        GoToNextBlock();
         coroutine_available = true;
+    }
+
+    private void GoToNextBlock()
+    {
+        current_block_index++;
+        if (current_block_index < blocks_in_level.Count)
+        {
+            current_block = blocks_in_level[current_block_index];
+            current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
+        }
+        
     }
 
     private void Jump(InputAction.CallbackContext context)
