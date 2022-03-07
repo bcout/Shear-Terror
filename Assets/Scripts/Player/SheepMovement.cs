@@ -23,6 +23,7 @@ public class SheepMovement : MonoBehaviour
     private void Update()
     {
         print(PlayerData.curr_lane);
+
     }
 
     private void Jump(InputAction.CallbackContext context)
