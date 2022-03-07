@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     {
         Vector3 start_pos = starting_block.transform.Find("Start").position;
         Quaternion start_orientation = starting_block.transform.Find("Start").rotation;
-        GameObject player = Instantiate(player_object, start_pos, start_orientation);
+        GameObject player = Instantiate(player_object);
     }
     // Update is called once per frame
     void Update()

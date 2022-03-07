@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class SheepMovement : MonoBehaviour
 {
+    public float movement_speed = 0.5f;
 
     private GameObject game_controller;
+    private List<GameObject> blocks_in_level;
+    private GameObject current_block;
+    private GameObject current_lane;
+    private int current_block_index;
 
     private void Awake()
     {
@@ -25,12 +30,23 @@ public class SheepMovement : MonoBehaviour
     private void Start()
     {
         game_controller = GameObject.Find("Game Controller");
-        print(game_controller.name);
+        blocks_in_level = game_controller.GetComponent<LevelData>().GetBlocksInLevel();
+
+        // Start the player off on the first block in their current lane
+        current_block_index = 0;
+        current_block = blocks_in_level[current_block_index];
+        current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
     }
 
     private void Update()
     {
-        
+        current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
+        if (current_block.tag == "Straight")
+        {
+            Transform start_point = current_lane.transform.Find("Start");
+            transform.position = start_point.position;
+            transform.rotation = start_point.rotation;
+        }
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -40,7 +56,7 @@ public class SheepMovement : MonoBehaviour
 
     private void MoveLeft(InputAction.CallbackContext context)
     {
-        print("Move left");
+        //print("Move left");
         switch (PlayerData.curr_lane)
         {
             case PlayerData.Lanes.LEFT:
@@ -57,7 +73,7 @@ public class SheepMovement : MonoBehaviour
 
     private void MoveRight(InputAction.CallbackContext context)
     {
-        print("Move right");
+        //print("Move right");
         switch (PlayerData.curr_lane)
         {
             case PlayerData.Lanes.LEFT:

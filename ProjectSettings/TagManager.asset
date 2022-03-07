@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LeftTurn
-  - RightTurn
-  - ShortStraight
-  - LongStraight
-  - LongSraight
+  - Straight
+  - Turn
   layers:
   - Default
   - TransparentFX
