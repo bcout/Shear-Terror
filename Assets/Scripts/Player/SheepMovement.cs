@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using TMPro;
 
 public class SheepMovement : MonoBehaviour
 {
+    public TextMeshProUGUI debug_window;
     private float movement_speed = 0.5f;
 
     private GameObject game_controller;
@@ -41,6 +43,7 @@ public class SheepMovement : MonoBehaviour
         for(int i = 0; i < level_parent.transform.childCount; i++)
         {
             blocks_in_level.Add(level_parent.transform.GetChild(i).gameObject);
+            print(i + " " + blocks_in_level[i]);
         }
 
         // Start the player off on the first block in their current lane
@@ -55,6 +58,7 @@ public class SheepMovement : MonoBehaviour
 
     private void Update()
     {
+        debug_window.text = "";
         if (current_block.CompareTag("Turn"))
         {
             if (coroutine_available)
@@ -64,18 +68,38 @@ public class SheepMovement : MonoBehaviour
         }
         else if (current_block.CompareTag("Straight"))
         {
-            FollowStraight();
+            if (coroutine_available)
+            {
+                StartCoroutine(FollowStraight());
+            }
         }
-        
+
+        for (int i = 0; i < blocks_in_level.Count; i++)
+        {
+            debug_window.text += blocks_in_level[i] + "\n";
+        }
+
+        //debug_window.text = "";
     }
 
-    private void FollowStraight()
+    private IEnumerator FollowStraight()
     {
-        Vector3 end_point = current_lane.transform.Find("End").position;
-        //print(end_point);
-        transform.position = end_point;
+        coroutine_available = false;
+        while (t < 1)
+        {
+            t += Time.deltaTime * movement_speed;   
+            Vector3 start_point = current_lane.transform.Find("Start").position;
+            Vector3 end_point = current_lane.transform.Find("End").position;
+            Vector3 next_point = Vector3.Lerp(start_point, end_point, t);
 
+            transform.position = next_point;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t = 0f;
         GoToNextBlock();
+        coroutine_available = true;
     }
 
     private IEnumerator FollowCurve()
@@ -107,6 +131,8 @@ public class SheepMovement : MonoBehaviour
         if (current_block_index < blocks_in_level.Count)
         {
             current_block = blocks_in_level[current_block_index];
+            //print(current_block_index);
+            //print(current_block);
             current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
         }
         
