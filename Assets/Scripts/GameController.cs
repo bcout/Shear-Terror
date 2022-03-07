@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -13,7 +14,6 @@ public class GameController : MonoBehaviour
     {
         level = GetComponent<LevelData>();
         level.GenerateLevel();
-
         SpawnPlayer();
     }
 

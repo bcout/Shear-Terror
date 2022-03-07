@@ -122,7 +122,8 @@ public class LevelData : MonoBehaviour {
                 else
                 {
                     // The block we just spawned will cause a collision, so remove it from both the scene and the list of available blocks
-                    Destroy(curr_block);
+                    curr_block.transform.parent = null;
+                    Destroy(curr_block.gameObject);
                     available_blocks.RemoveAt(block_index);
 
                     // If there are no more blocks to choose from, abandon this level generation
@@ -144,7 +145,7 @@ public class LevelData : MonoBehaviour {
 
         // Spawn the ending block
         prev_end = prev_block.transform.Find("End");
-        GameObject last_block = Instantiate(ending_block, prev_end.position, prev_end.rotation, level_parent.transform);
+        Instantiate(ending_block, prev_end.position, prev_end.rotation, level_parent.transform);
 
         return true;
     }

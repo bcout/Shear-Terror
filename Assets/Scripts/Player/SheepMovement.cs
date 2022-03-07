@@ -6,7 +6,6 @@ using TMPro;
 
 public class SheepMovement : MonoBehaviour
 {
-    public TextMeshProUGUI debug_window;
     private float movement_speed = 0.5f;
 
     private GameObject game_controller;
@@ -38,12 +37,11 @@ public class SheepMovement : MonoBehaviour
     {
         game_controller = GameObject.Find("Game Controller");
         GameObject level_parent = GameObject.Find("Level Parent");
-        blocks_in_level = new List<GameObject>();
 
-        for(int i = 0; i < level_parent.transform.childCount; i++)
+        blocks_in_level = new List<GameObject>();
+        for (int i = 0; i < level_parent.transform.childCount; i++)
         {
             blocks_in_level.Add(level_parent.transform.GetChild(i).gameObject);
-            print(i + " " + blocks_in_level[i]);
         }
 
         // Start the player off on the first block in their current lane
@@ -58,7 +56,6 @@ public class SheepMovement : MonoBehaviour
 
     private void Update()
     {
-        debug_window.text = "";
         if (current_block.CompareTag("Turn"))
         {
             if (coroutine_available)
@@ -73,13 +70,6 @@ public class SheepMovement : MonoBehaviour
                 StartCoroutine(FollowStraight());
             }
         }
-
-        for (int i = 0; i < blocks_in_level.Count; i++)
-        {
-            debug_window.text += blocks_in_level[i] + "\n";
-        }
-
-        //debug_window.text = "";
     }
 
     private IEnumerator FollowStraight()
