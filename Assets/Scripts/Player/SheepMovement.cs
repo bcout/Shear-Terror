@@ -47,6 +47,12 @@ public class SheepMovement : MonoBehaviour
             transform.position = start_point.position;
             transform.rotation = start_point.rotation;
         }
+        else if (current_block.tag == "Turn")
+        {
+            Transform start_point = current_lane.GetComponent<CurveData>().control_points[0];
+            transform.position = start_point.position;
+            transform.rotation = start_point.rotation;
+        }
     }
 
     private void Jump(InputAction.CallbackContext context)
