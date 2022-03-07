@@ -32,10 +32,15 @@ public class LevelData : MonoBehaviour {
 
     private System.Random rand;
 
+    public List<GameObject> GetBlocksInLevel()
+    {
+        return blocks_in_level;
+    }
+
     /*
      * The game controller calls this when it is time to start a level
      */
-    public List<GameObject> GenerateLevel()
+    public bool GenerateLevel()
     {
         level_parent = new GameObject("Level Parent");
 
@@ -61,7 +66,7 @@ public class LevelData : MonoBehaviour {
             }
         }
 
-        return blocks_in_level;
+        return successful;
     }
 
     /*
