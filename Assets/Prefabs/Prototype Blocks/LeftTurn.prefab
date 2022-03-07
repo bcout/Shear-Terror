@@ -99,12 +99,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9120609457588246456}
+  - component: {fileID: 2102518398395145772}
   - component: {fileID: 5277429793901680669}
   - component: {fileID: 7987632181830905047}
   - component: {fileID: 8718413727302874814}
   m_Layer: 0
   m_Name: LeftTurn
-  m_TagString: LeftTurn
+  m_TagString: Turn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +130,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2102518398395145772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491881614386515202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064460e8b4faf5844ac247aca84574f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left_lane: {fileID: 1486668249108429754}
+  middle_lane: {fileID: 5753820985707880158}
+  right_lane: {fileID: 4509458757743166969}
 --- !u!33 &5277429793901680669
 MeshFilter:
   m_ObjectHideFlags: 0

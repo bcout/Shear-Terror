@@ -151,7 +151,7 @@ public class RecursiveLevelGeneration : MonoBehaviour
      */
     private void CreateObjectPool()
     {
-        available_blocks = GetComponent<GameData>().all_level_blocks;
+        available_blocks = GetComponent<LevelData>().all_level_blocks;
         block_pool_parent = new GameObject("Block Pool");
         for (int i = 0; i < available_blocks.Length; i++)
         {

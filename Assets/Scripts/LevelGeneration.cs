@@ -27,7 +27,7 @@ public class LevelGeneration : MonoBehaviour
         * GameData keeps an array of all the prefabs we want to use to generate levels.
         * The values are set in the inspector
         */
-        all_blocks = new List<GameObject>(GetComponent<GameData>().all_level_blocks);
+        all_blocks = new List<GameObject>(GetComponent<LevelData>().all_level_blocks);
 
         /*
          * This algorithm might take a long long time, so limit it to 10 iterations.
