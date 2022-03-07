@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public static class PlayerData
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Lanes
     {
-        
+        LEFT,
+        MIDDLE,
+        RIGHT
     }
 
-    // Update is called once per frame
-    void Update()
+    public static Lanes curr_lane { get; set; }
+
+    static PlayerData()
     {
-        
+        // Start the player off in the middle lane
+        curr_lane = Lanes.MIDDLE;
     }
+
+
 }
+
