@@ -6,7 +6,7 @@ using TMPro;
 
 public class SheepMovement : MonoBehaviour
 {
-    private float movement_speed = 0.5f;
+    private float movement_speed;
 
     private GameObject game_controller;
     private List<GameObject> blocks_in_level;
@@ -56,6 +56,19 @@ public class SheepMovement : MonoBehaviour
 
     private void Update()
     {
+        if (current_block.name == "Short Straight(Clone)")
+        {
+            movement_speed = 1.5f;
+        }
+        else if (current_block.name == "Long Straight(Clone)")
+        {
+            movement_speed = 1f;
+        }
+        else
+        {
+            movement_speed = 0.5f;
+        }
+
         if (current_block.CompareTag("Turn"))
         {
             if (coroutine_available)
