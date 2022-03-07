@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class SheepMovement : MonoBehaviour
 {
-    public float movement_speed = 0.5f;
+    private float movement_speed = 0.5f;
 
     private GameObject game_controller;
     private List<GameObject> blocks_in_level;
     private GameObject current_block;
     private GameObject current_lane;
     private int current_block_index;
+
+    private float t;
+    private bool coroutine_available;
 
     private void Awake()
     {
@@ -38,11 +41,39 @@ public class SheepMovement : MonoBehaviour
         current_block_index = 0;
         current_block = blocks_in_level[current_block_index];
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
+        
+        t = 0f;
+        coroutine_available = true;
     }
 
     private void Update()
     {
-        
+        if (coroutine_available)
+        {
+            StartCoroutine(FollowCurve());
+        }
+    }
+
+    private IEnumerator FollowCurve()
+    {
+        coroutine_available = false;
+        while (t < 1)
+        {
+            t += Time.deltaTime * movement_speed;
+            print(t);
+
+            CurveData curve_data = current_lane.GetComponent<CurveData>();
+            Vector3 next_point = curve_data.GetNextPoint(t);
+
+            transform.LookAt(next_point);
+            transform.position = next_point;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t = 0f;
+
+        coroutine_available = true;
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -88,18 +119,6 @@ public class SheepMovement : MonoBehaviour
     {
         // TESTING
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
-        if (current_block.tag == "Straight")
-        {
-            Transform start_point = current_lane.transform.Find("Start");
-            transform.position = start_point.position;
-            transform.rotation = start_point.rotation;
-        }
-        else if (current_block.tag == "Turn")
-        {
-            Transform start_point = current_lane.GetComponent<CurveData>().control_points[0];
-            transform.position = start_point.position;
-            transform.rotation = start_point.rotation;
-        }
         //
     }
 }
