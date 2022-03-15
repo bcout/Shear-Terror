@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class ExportPrebuiltLevels : MonoBehaviour
 {
@@ -20,8 +21,8 @@ public class ExportPrebuiltLevels : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WriteLevelData(GameData.SHORT_LEVEL_DATA_PATH, short_level_parent);
-        WriteLevelData(GameData.LONG_LEVEL_DATA_PATH, long_level_parent);
+        WriteLevelData(Constants.SHORT_LEVEL_DATA_PATH, short_level_parent);
+        WriteLevelData(Constants.LONG_LEVEL_DATA_PATH, long_level_parent);
     }
 
     private void WriteLevelData(string path, GameObject level_parent)
@@ -33,7 +34,6 @@ public class ExportPrebuiltLevels : MonoBehaviour
         }
 
         string output = "";
-
         // Start by exporting the short levels to their own file
         foreach (Transform level in level_parent.transform)
         {
@@ -44,16 +44,16 @@ public class ExportPrebuiltLevels : MonoBehaviour
             }
 
             level_blocks_mapped = MapLevelBlocks(level_blocks);
-            foreach (int value in level_blocks_mapped)
-            {
-                // Write numbers to a csv file
-                output += value + ",";
-            }
 
-            output += "\n";
+            // Write the normal level data
+            //output += WriteLevelData();
 
-            File.WriteAllText(full_path, output);
+            // Reverse the level data and write it as a new level
+            Array.Reverse(level_blocks_mapped);
+            output += WriteLevelData();
         }
+
+        File.WriteAllText(full_path, output);
     }
 
     private int[] MapLevelBlocks(GameObject[] blocks)
@@ -65,21 +65,34 @@ public class ExportPrebuiltLevels : MonoBehaviour
             switch (blocks[i].name)
             {
                 case SHORT_STRAIGHT:
-                    mapped_value = 0;
+                    mapped_value = Constants.SHORT_STRAIGHT_ID;
                     break;
                 case LONG_STRAIGHT:
-                    mapped_value = 1;
+                    mapped_value = Constants.LONG_STRAIGHT_ID;
                     break;
                 case LEFT_TURN:
-                    mapped_value = 2;
+                    mapped_value = Constants.LEFT_TURN_ID;
                     break;
                 case RIGHT_TURN:
-                    mapped_value = 3;
+                    mapped_value = Constants.RIGHT_TURN_ID;
                     break;
             }
             to_return[i] = mapped_value;
         }
 
         return to_return;
+    }
+
+    private string WriteLevelData()
+    {
+        string output = "";
+        for (int i = 0; i < level_blocks_mapped.Length - 1; i++)
+        {
+            output += level_blocks_mapped[i] + ",";
+        }
+        output += level_blocks_mapped[level_blocks_mapped.Length - 1];
+        output += "\n";
+
+        return output;
     }
 }

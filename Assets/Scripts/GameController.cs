@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     {
         level_spawner = GetComponent<LevelSpawner>();
         level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
-        //SpawnPlayer();
+        SpawnPlayer();
     }
 
     private void SpawnPlayer()

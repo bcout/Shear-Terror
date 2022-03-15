@@ -12,4 +12,12 @@ public static class Constants
 
     public const int SHORT_LEVEL_ID = 1;
     public const int LONG_LEVEL_ID = 2;
+
+    public const int SHORT_STRAIGHT_ID = 0;
+    public const int LONG_STRAIGHT_ID = 1;
+    public const int LEFT_TURN_ID = 2;
+    public const int RIGHT_TURN_ID = 3;
+
+    public const string SHORT_LEVEL_DATA_PATH = "/LevelData/short_levels.csv";
+    public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
 }
