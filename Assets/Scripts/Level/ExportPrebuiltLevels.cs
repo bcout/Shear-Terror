@@ -20,13 +20,13 @@ public class ExportPrebuiltLevels : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WriteLevelData("/short_levels.csv", short_level_parent);
-        WriteLevelData("/long_levels.csv", long_level_parent);
+        WriteLevelData(GameData.SHORT_LEVEL_DATA_PATH, short_level_parent);
+        WriteLevelData(GameData.LONG_LEVEL_DATA_PATH, long_level_parent);
     }
 
     private void WriteLevelData(string path, GameObject level_parent)
     {
-        string full_path = Application.dataPath + "/LevelData/" + path;
+        string full_path = Application.streamingAssetsPath + path;
         if (!File.Exists(full_path))
         {
             File.WriteAllText(full_path, "");

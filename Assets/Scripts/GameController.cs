@@ -8,22 +8,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject player_object;
 
-    private LevelData level;
+    private LevelSpawner level_spawner;
     // Start is called before the first frame update
     void Start()
     {
-        level = GetComponent<LevelData>();
-        level.GenerateLevel();
-        SpawnPlayer();
+        level_spawner = GetComponent<LevelSpawner>();
+        level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
+        //SpawnPlayer();
     }
 
     private void SpawnPlayer()
     {
         Instantiate(player_object);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

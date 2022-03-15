@@ -9,4 +9,7 @@ public static class Constants
     public const float MAX_BLOCK_SIZE = 200;
 
     public const float BASE_MOVEMENT_SPEED = 0.5f;
+
+    public const int SHORT_LEVEL_ID = 1;
+    public const int LONG_LEVEL_ID = 2;
 }

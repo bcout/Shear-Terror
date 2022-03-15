@@ -16,7 +16,5 @@ public static class PlayerData
         // Start the player off in the middle lane
         curr_lane = Lanes.MIDDLE;
     }
-
-
 }
 
