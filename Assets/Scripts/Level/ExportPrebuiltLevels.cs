@@ -46,7 +46,7 @@ public class ExportPrebuiltLevels : MonoBehaviour
             level_blocks_mapped = MapLevelBlocks(level_blocks);
 
             // Write the normal level data
-            //output += WriteLevelData();
+            output += WriteLevelData();
 
             // Reverse the level data and write it as a new level
             Array.Reverse(level_blocks_mapped);
