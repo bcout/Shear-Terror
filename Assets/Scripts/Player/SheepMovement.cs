@@ -143,13 +143,17 @@ public class SheepMovement : MonoBehaviour
         
     }
 
-    private void Jump(InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context)
     {
         print("Jump");
     }
 
-    private void MoveLeft(InputAction.CallbackContext context)
+    public void MoveLeft(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+        {
+            return;
+        }
         //print("Move left");
         switch (PlayerData.curr_lane)
         {
@@ -165,8 +169,12 @@ public class SheepMovement : MonoBehaviour
         }
     }
 
-    private void MoveRight(InputAction.CallbackContext context)
+    public void MoveRight(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+        {
+            return;
+        }
         //print("Move right");
         switch (PlayerData.curr_lane)
         {
@@ -182,10 +190,12 @@ public class SheepMovement : MonoBehaviour
         }
     }
 
-    private void ChangeLane(InputAction.CallbackContext context)
+    public void ChangeLane(InputAction.CallbackContext context)
     {
-        // TESTING
+        if (!context.performed)
+        {
+            return;
+        }
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
-        //
     }
 }
