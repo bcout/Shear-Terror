@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ExportPrebuiltLevels : MonoBehaviour
 {
@@ -19,28 +20,40 @@ public class ExportPrebuiltLevels : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        WriteLevelData("/short_levels.csv", short_level_parent);
+        WriteLevelData("/long_levels.csv", long_level_parent);
+    }
+
+    private void WriteLevelData(string path, GameObject level_parent)
+    {
+        string full_path = Application.dataPath + "/LevelData/" + path;
+        if (!File.Exists(full_path))
+        {
+            File.WriteAllText(full_path, "");
+        }
+
+        string output = "";
+
         // Start by exporting the short levels to their own file
-        foreach (Transform level in short_level_parent.transform)
+        foreach (Transform level in level_parent.transform)
         {
             level_blocks = new GameObject[level.childCount];
-            for(int i = 0; i < level_blocks.Length; i++)
+            for (int i = 0; i < level_blocks.Length; i++)
             {
                 level_blocks[i] = level.GetChild(i).gameObject;
             }
 
             level_blocks_mapped = MapLevelBlocks(level_blocks);
-            foreach(int value in level_blocks_mapped)
+            foreach (int value in level_blocks_mapped)
             {
-                print(value);
+                // Write numbers to a csv file
+                output += value + ",";
             }
-        }
 
-        /*
-        foreach (Transform level in long_level_parent.transform)
-        {
-            print(level.childCount);
+            output += "\n";
+
+            File.WriteAllText(full_path, output);
         }
-        */
     }
 
     private int[] MapLevelBlocks(GameObject[] blocks)
