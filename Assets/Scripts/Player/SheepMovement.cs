@@ -27,7 +27,7 @@ public class SheepMovement : MonoBehaviour
 
     private void Update()
     {
-        if (GameData.game_started && PlayerData.state != PlayerData.State.RUNNING)
+        if (GameData.state == GameData.State.RUNNING && PlayerData.state != PlayerData.State.RUNNING)
         {
             StartFollowingLevel();
             PlayerData.state = PlayerData.State.RUNNING;

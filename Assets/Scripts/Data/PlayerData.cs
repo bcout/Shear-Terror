@@ -13,7 +13,8 @@ public static class PlayerData
     {
         IDLE,
         RUNNING,
-        RAGDOllING
+        RAGDOllING,
+        JUMPING
     }
 
     public static Lanes curr_lane { get; set; }

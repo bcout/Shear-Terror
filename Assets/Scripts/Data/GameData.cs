@@ -1,8 +1,16 @@
 ﻿public static class GameData
 {
-    public static bool game_started { get; set; }
+    public enum State
+    {
+        PAUSED,
+        RUNNING,
+        LOADING
+    }
+
+    public static State state { get; set; }
+
     static GameData()
     {
-        game_started = false;
+        state = State.PAUSED;
     }
 }
