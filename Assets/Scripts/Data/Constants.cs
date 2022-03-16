@@ -18,6 +18,13 @@ public static class Constants
     public const int LEFT_TURN_ID = 2;
     public const int RIGHT_TURN_ID = 3;
 
+    public const string SHORT_STRAIGHT_TAG = "Short Straight";
+    public const string LONG_STRAIGHT_TAG = "Long Straight";
+    public const string TURN_TAG = "Turn";
+
+    public const string LANE_END_NAME = "End";
+    public const string LANE_START_NAME = "Start";
+
     public const string SHORT_LEVEL_DATA_PATH = "/LevelData/short_levels.csv";
     public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
 }

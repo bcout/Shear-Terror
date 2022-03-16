@@ -6,7 +6,7 @@ public class IdleState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        print("IDLE");
+
     }
 
     public void Enter()

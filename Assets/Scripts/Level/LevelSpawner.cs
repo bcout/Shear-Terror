@@ -29,7 +29,7 @@ public class LevelSpawner : MonoBehaviour {
      */
     public void GenerateLevel(int level_code)
     {
-        level_parent = new GameObject("Level Parent");
+        level_parent = new GameObject(GameData.level_parent_name);
         IDs_to_spawn = PickRandomLevel(level_code);
         blocks_to_spawn = IDsToBlocks(IDs_to_spawn);
 

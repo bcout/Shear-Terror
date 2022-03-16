@@ -2,7 +2,7 @@
 
 public class RagdollToggle : MonoBehaviour
 {
-    private Animator animator;
+    //private Animator animator;
     private Rigidbody rigid_body;
     private CapsuleCollider capsule_collider;
     private SheepController sheep_controller;
@@ -35,7 +35,7 @@ public class RagdollToggle : MonoBehaviour
             body.isKinematic = !active;
         }
 
-        animator.enabled = !active;
+        //animator.enabled = !active;
         rigid_body.detectCollisions = !active;
         rigid_body.isKinematic = active;
         capsule_collider.enabled = !active;
@@ -44,7 +44,7 @@ public class RagdollToggle : MonoBehaviour
 
     private void LoadComponents()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         rigid_body = GetComponent<Rigidbody>();
         capsule_collider = GetComponent<CapsuleCollider>();
         sheep_controller = GetComponent<SheepController>();
