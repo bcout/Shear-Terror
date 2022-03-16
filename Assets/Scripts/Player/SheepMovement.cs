@@ -8,7 +8,7 @@ public class SheepMovement : MonoBehaviour
 {
     private float movement_speed;
 
-    private GameObject game_controller;
+    private RagdollToggle ragdoll;
     private List<GameObject> blocks_in_level;
     private GameObject current_block;
     private GameObject current_lane;
@@ -17,14 +17,21 @@ public class SheepMovement : MonoBehaviour
     private float t;
     private bool coroutine_available;
 
-    private bool is_jumping;
-    private bool is_grounded;
-    private float vertical_speed;
-
     private void Start()
     {
-        
-        game_controller = GameObject.Find("Game Controller");
+        ragdoll = GetComponent<RagdollToggle>();
+        //StartFollowingLevel();
+    }
+
+    private void Update()
+    {
+        //SetMovementSpeed();
+
+        //FollowBlockPath();
+    }
+
+    private void StartFollowingLevel()
+    {
         GameObject level_parent = GameObject.Find("Level Parent");
 
         blocks_in_level = new List<GameObject>();
@@ -37,17 +44,9 @@ public class SheepMovement : MonoBehaviour
         current_block_index = 0;
         current_block = blocks_in_level[current_block_index];
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
-        
+
         t = 0f;
         coroutine_available = true;
-        
-    }
-
-    private void Update()
-    {
-        SetMovementSpeed();
-
-        FollowBlockPath();
     }
 
     private IEnumerator FollowStraight()
@@ -113,7 +112,7 @@ public class SheepMovement : MonoBehaviour
             return;
         }
 
-
+        ragdoll.ToggleRagdoll(true);
     }
 
     public void MoveLeft(InputAction.CallbackContext context)
