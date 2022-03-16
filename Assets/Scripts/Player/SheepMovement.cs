@@ -7,7 +7,6 @@ using TMPro;
 public class SheepMovement : MonoBehaviour
 {
     private float movement_speed;
-    private float jump_height = 5.0f;
 
     private GameObject game_controller;
     private List<GameObject> blocks_in_level;
@@ -24,7 +23,7 @@ public class SheepMovement : MonoBehaviour
 
     private void Start()
     {
-        /*
+        
         game_controller = GameObject.Find("Game Controller");
         GameObject level_parent = GameObject.Find("Level Parent");
 
@@ -41,14 +40,14 @@ public class SheepMovement : MonoBehaviour
         
         t = 0f;
         coroutine_available = true;
-        */
+        
     }
 
     private void Update()
     {
-        //SetMovementSpeed();
+        SetMovementSpeed();
 
-        //FollowBlockPath();
+        FollowBlockPath();
     }
 
     private IEnumerator FollowStraight()
