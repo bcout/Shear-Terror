@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RagdollToggle : MonoBehaviour
 {
@@ -15,13 +13,8 @@ public class RagdollToggle : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        animator = GetComponent<Animator>();
-        rigid_body = GetComponent<Rigidbody>();
-        capsule_collider = GetComponent<CapsuleCollider>();
-        movement_script = GetComponent<SheepMovement>();
-
-        children_colliders = GetComponentsInChildren<Collider>();
-        children_rigid_bodies = GetComponentsInChildren<Rigidbody>();
+        LoadComponents();
+        LoadChildComponents();
     }
 
     private void Start()
@@ -47,5 +40,19 @@ public class RagdollToggle : MonoBehaviour
         rigid_body.isKinematic = active;
         capsule_collider.enabled = !active;
         movement_script.enabled = !active;
+    }
+
+    private void LoadComponents()
+    {
+        animator = GetComponent<Animator>();
+        rigid_body = GetComponent<Rigidbody>();
+        capsule_collider = GetComponent<CapsuleCollider>();
+        movement_script = GetComponent<SheepMovement>();
+    }
+
+    private void LoadChildComponents()
+    {
+        children_colliders = GetComponentsInChildren<Collider>();
+        children_rigid_bodies = GetComponentsInChildren<Rigidbody>();
     }
 }
