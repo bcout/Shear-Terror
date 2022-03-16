@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6515142753245305822}
   - component: {fileID: 3732151640565087177}
   - component: {fileID: 8561015371615784702}
+  - component: {fileID: 8349293680059720438}
   m_Layer: 0
   m_Name: FrontLeg2.R
   m_TagString: Untagged
@@ -94,6 +95,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &8349293680059720438
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391416408472400444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12872377
+  m_Height: 0.55201274
+  m_Direction: 1
+  m_Center: {x: -0.028563319, y: 0.23716618, z: -0.014620268}
 --- !u!1 &512641462989044137
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +338,7 @@ GameObject:
   - component: {fileID: 7848390108983505339}
   - component: {fileID: 1278399692893553001}
   - component: {fileID: 4474426242846012114}
+  - component: {fileID: 4572969852045627121}
   m_Layer: 0
   m_Name: BackLeg1.R
   m_TagString: Untagged
@@ -406,6 +422,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &4572969852045627121
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127648466000510505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.15933137
+  m_Height: 0.801479
+  m_Direction: 1
+  m_Center: {x: -1.1913581e-14, y: 0.36837706, z: -0.0797031}
 --- !u!1 &1200144376793802140
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +586,7 @@ GameObject:
   - component: {fileID: 3147933954342260}
   - component: {fileID: 2653404150100489700}
   - component: {fileID: 2645619986799144330}
+  - component: {fileID: 4477298468667589402}
   m_Layer: 0
   m_Name: FrontLeg3.R
   m_TagString: Untagged
@@ -639,6 +670,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &4477298468667589402
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557384321222054501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.094329104
+  m_Height: 0.55451083
+  m_Direction: 1
+  m_Center: {x: -0.030029668, y: 0.42549518, z: -0.020431915}
 --- !u!1 &2629983908121550850
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +819,7 @@ GameObject:
   - component: {fileID: 7421152850168347081}
   - component: {fileID: 8970125844055991778}
   - component: {fileID: 7805144717227233957}
+  - component: {fileID: 9098951815870340009}
   m_Layer: 0
   m_Name: BackLeg2.R
   m_TagString: Untagged
@@ -857,6 +903,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &9098951815870340009
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2902689024150552137}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1320306
+  m_Height: 0.71053445
+  m_Direction: 1
+  m_Center: {x: -5.165087e-14, y: 0.48396093, z: 0.037365887}
 --- !u!1 &3011891047042177708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1131,7 @@ GameObject:
   - component: {fileID: 7231762120136276173}
   - component: {fileID: 5872221249701669763}
   - component: {fileID: 2546663272656884573}
+  - component: {fileID: 1307097818262474106}
   m_Layer: 0
   m_Name: FrontFoot.R
   m_TagString: Untagged
@@ -1154,6 +1215,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &1307097818262474106
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275509748859515297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12300676
+  m_Height: 0.3810724
+  m_Direction: 1
+  m_Center: {x: -0.02515418, y: 0.22134246, z: 0.04233309}
 --- !u!1 &3504428147848504990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1386,7 @@ GameObject:
   - component: {fileID: 7983661983433628147}
   - component: {fileID: 1988734171578660206}
   - component: {fileID: 3848899945158177203}
+  - component: {fileID: 6929062196074391030}
   m_Layer: 0
   m_Name: FrontFoot.L
   m_TagString: Untagged
@@ -1394,6 +1470,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &6929062196074391030
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546852445714293158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.13781685
+  m_Height: 0.38107243
+  m_Direction: 1
+  m_Center: {x: 0.02696236, y: 0.22134246, z: 0.04233313}
 --- !u!1 &3561188015863605801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1589,7 @@ GameObject:
   - component: {fileID: 8511246276783285132}
   - component: {fileID: 9064819143379481933}
   - component: {fileID: 8063989612510923458}
+  - component: {fileID: 3969870584562945144}
   m_Layer: 0
   m_Name: BackFoot.R
   m_TagString: Untagged
@@ -1582,6 +1673,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &3969870584562945144
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808829204526856763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.13088854
+  m_Height: 0.3655077
+  m_Direction: 1
+  m_Center: {x: -4.534979e-14, y: 0.17760369, z: 0.040828656}
 --- !u!1 &3914688716823503938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,6 +2641,7 @@ GameObject:
   - component: {fileID: 4727023276105300505}
   - component: {fileID: 1185892387664359136}
   - component: {fileID: 2944709096822508432}
+  - component: {fileID: 7622842645433210178}
   m_Layer: 0
   m_Name: FrontLeg3.L
   m_TagString: Untagged
@@ -2619,6 +2725,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &7622842645433210178
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025045086190801372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.09476606
+  m_Height: 0.55451083
+  m_Direction: 1
+  m_Center: {x: -8.3429036e-10, y: 0.42549524, z: -0.020431945}
 --- !u!1 &7320730046599653952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2934,7 @@ GameObject:
   - component: {fileID: 7083409172831929577}
   - component: {fileID: 7447878029895590527}
   - component: {fileID: 8266928521472230645}
+  - component: {fileID: 8349229378991758376}
   m_Layer: 0
   m_Name: FrontLeg2.L
   m_TagString: Untagged
@@ -2897,6 +3018,20 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &8349229378991758376
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082562584829534459}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.119509116
+  m_Height: 0.55201274
+  m_Direction: 1
+  m_Center: {x: 0.000000002291552, y: 0.23716617, z: -0.014620269}
 --- !u!1 &8139993212490028666
 GameObject:
   m_ObjectHideFlags: 0
