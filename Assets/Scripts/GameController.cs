@@ -14,11 +14,11 @@ public class GameController : MonoBehaviour
     {
         level_spawner = GetComponent<LevelSpawner>();
         level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
-        SpawnPlayer();
+        GameData.game_started = true;
     }
 
     private void SpawnPlayer()
     {
-        Instantiate(player_object);
+        //Instantiate(player_object);
     }
 }

@@ -16,18 +16,25 @@ public class SheepMovement : MonoBehaviour
 
     private float t;
     private bool coroutine_available;
+    private bool ragdoll_enabled;
 
     private void Start()
     {
         ragdoll = GetComponent<RagdollToggle>();
-        //StartFollowingLevel();
+        PlayerData.state = PlayerData.State.IDLE;
+        ragdoll_enabled = false;
     }
 
     private void Update()
     {
-        //SetMovementSpeed();
+        if (GameData.game_started && PlayerData.state != PlayerData.State.RUNNING)
+        {
+            StartFollowingLevel();
+            PlayerData.state = PlayerData.State.RUNNING;
+        }
+        SetMovementSpeed();
 
-        //FollowBlockPath();
+        FollowBlockPath();
     }
 
     private void StartFollowingLevel()
@@ -52,9 +59,9 @@ public class SheepMovement : MonoBehaviour
     private IEnumerator FollowStraight()
     {
         coroutine_available = false;
-        while (t < 1)
+        while (t < 1 && PlayerData.state == PlayerData.State.RUNNING)
         {
-            t += Time.deltaTime * movement_speed;   
+            t += Time.deltaTime * movement_speed;
             Vector3 start_point = current_lane.transform.Find("Start").position;
             Vector3 end_point = current_lane.transform.Find("End").position;
             Vector3 next_point = Vector3.Lerp(start_point, end_point, t);
@@ -72,7 +79,7 @@ public class SheepMovement : MonoBehaviour
     private IEnumerator FollowCurve()
     {
         coroutine_available = false;
-        while (t < 1)
+        while (t < 1 && PlayerData.state == PlayerData.State.RUNNING)
         {
             t += Time.deltaTime * movement_speed;
 
@@ -111,8 +118,6 @@ public class SheepMovement : MonoBehaviour
         {
             return;
         }
-
-        ragdoll.ToggleRagdoll(true);
     }
 
     public void MoveLeft(InputAction.CallbackContext context)
