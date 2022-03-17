@@ -142,5 +142,10 @@ public class MovementController : MonoBehaviour
             sheep_controller.SetCurrentBlock(blocks_in_level[current_block_index]);
             sheep_controller.UpdateLane();
         }
+        else
+        {
+            sheep_controller.SetState(sheep_controller.GetIdleState());
+            coroutine_available = false;
+        }
     }
 }
