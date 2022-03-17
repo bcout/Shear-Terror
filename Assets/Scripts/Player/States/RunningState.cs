@@ -5,6 +5,7 @@ public class RunningState : MonoBehaviour, SheepState
 {
     private SheepController sheep_controller;
     private MovementController movement_controller;
+    private Animator animator;
 
     public void StateUpdate()
     {
@@ -17,17 +18,19 @@ public class RunningState : MonoBehaviour, SheepState
     {
         print("RUNNING");
         LoadComponents();
+        animator.SetBool(Animator.StringToHash("IsRunning"), true);
     }
 
     public void Exit()
     {
-
+        animator.SetBool(Animator.StringToHash("IsRunning"), false);
     }
 
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();
+        animator = GetComponent<Animator>();
     }
 
     private void HandleInput()

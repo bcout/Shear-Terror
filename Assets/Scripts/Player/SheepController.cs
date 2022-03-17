@@ -50,7 +50,7 @@ public class SheepController : MonoBehaviour
 
     private void ReadLevelBlocks()
     {
-        level_parent = GameObject.Find(GameData.level_parent_name);
+        level_parent = GameObject.Find(Constants.LEVEL_PARENT_NAME);
         blocks_in_level = new List<GameObject>();
 
         for (int i = 0; i < level_parent.transform.childCount; i++)

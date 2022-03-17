@@ -5,6 +5,7 @@ public class JumpingState : MonoBehaviour, SheepState
 {
     private SheepController sheep_controller;
     private MovementController movement_controller;
+    private Animator animator;
 
     public void StateUpdate()
     {
@@ -16,16 +17,18 @@ public class JumpingState : MonoBehaviour, SheepState
     {
         LoadComponents();
         sheep_controller.SetVerticalPosition(5f);
+        animator.SetBool(Animator.StringToHash("IsJumping"), true);
     }
 
     public void Exit()
     {
-
+        animator.SetBool(Animator.StringToHash("IsJumping"), false);
     }
 
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();
+        animator = GetComponent<Animator>();
     }
 }
