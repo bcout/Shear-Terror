@@ -41,7 +41,8 @@ public class MovementController : MonoBehaviour
             case Constants.LONG_STRAIGHT_TAG:
                 movement_speed = 1.5f * Constants.BASE_MOVEMENT_SPEED;
                 break;
-            case Constants.TURN_TAG:
+            case Constants.LEFT_TURN_TAG:
+            case Constants.RIGHT_TURN_TAG:
                 movement_speed = Constants.BASE_MOVEMENT_SPEED;
                 break;
         }
@@ -55,7 +56,8 @@ public class MovementController : MonoBehaviour
 
             switch (current_block.tag)
             {
-                case Constants.TURN_TAG:
+                case Constants.LEFT_TURN_TAG:
+                case Constants.RIGHT_TURN_TAG:
                     StartCoroutine(FollowCurve());
                     break;
                 case Constants.SHORT_STRAIGHT_TAG:
@@ -69,9 +71,20 @@ public class MovementController : MonoBehaviour
     private IEnumerator FollowCurve()
     {
         coroutine_available = false;
+        SheepState state = sheep_controller.GetState();
         CurveData curve_data;
         Vector3 next_point;
-        SheepState state = sheep_controller.GetState();
+
+        float change = Constants.ROTATION_CHANGE_IN_TURNS;
+
+        if (sheep_controller.GetCurrentBlock().CompareTag(Constants.LEFT_TURN_TAG))
+        {
+            change = -change;
+        }
+
+        float end_angle = transform.eulerAngles.y + change;
+        float start_angle = transform.eulerAngles.y;
+        float turn_angle;
 
         while (t < 1
                && ((RunningState)state == sheep_controller.GetRunningState() || (JumpingState)state == sheep_controller.GetJumpingState()))
@@ -80,7 +93,9 @@ public class MovementController : MonoBehaviour
 
             curve_data = sheep_controller.GetCurrentLane().GetComponent<CurveData>();
             next_point = curve_data.GetNextPoint(t);
+            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t));
 
+            transform.eulerAngles = new Vector3(0, turn_angle, 0);
             transform.position = next_point;
 
             yield return new WaitForEndOfFrame();

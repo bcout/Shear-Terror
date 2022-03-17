@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8718413727302874814}
   m_Layer: 0
   m_Name: Left Turn
-  m_TagString: Turn
+  m_TagString: Left Turn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
