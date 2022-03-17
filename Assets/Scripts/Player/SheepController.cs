@@ -11,6 +11,7 @@ public class SheepController : MonoBehaviour
     private RagdollState ragdoll_state;
 
     private MovementController movement_controller;
+    private Animator animator;
 
     private List<GameObject> blocks_in_level;
     private GameObject current_block;
@@ -38,6 +39,7 @@ public class SheepController : MonoBehaviour
     private void LoadComponents()
     {
         movement_controller = GetComponent<MovementController>();
+        animator = GetComponent<Animator>();
     }
 
     // Called by GameController once the level is generated
@@ -67,6 +69,16 @@ public class SheepController : MonoBehaviour
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
 
         movement_controller.StartFollowingLevel();
+    }
+
+    public void StopAnimation(string anim_name)
+    {
+        animator.SetBool(Animator.StringToHash(anim_name), false);
+    }
+
+    public void StartAnimation(string anim_name)
+    {
+        animator.SetBool(Animator.StringToHash(anim_name), true);
     }
 
     #region Vertical position Get/Set Methods
