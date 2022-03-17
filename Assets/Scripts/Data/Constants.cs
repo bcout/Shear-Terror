@@ -25,4 +25,12 @@ public static class Constants
     public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
 
     public const string LEVEL_PARENT_NAME = "Level Parent";
+
+    public const string IDLE_ANIM = "Idle";
+    public const string RUN_ANIM = "Run";
+    public const string JUMP_UP_ANIM = "Jump Up";
+    public const string FALL_IDLE_ANIM = "Fall Idle";
+    public const string LANDING_ANIM = "Landing";
+    public const string TUCK_IN_ANIM = "Tuck In";
+    public const string TUCK_OUT_ANIM = "Tuck Out";
 }
