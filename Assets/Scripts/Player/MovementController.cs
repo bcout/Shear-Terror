@@ -8,15 +8,12 @@ public class MovementController : MonoBehaviour
 
     private float movement_speed;
     private float t;
-    private float y_value;
 
     private bool coroutine_available;
 
     private void Start()
     {
         LoadComponents();
-
-        y_value = 0f;
     }
 
     private void LoadComponents()
@@ -87,7 +84,7 @@ public class MovementController : MonoBehaviour
         float turn_angle;
 
         while (t < 1
-               && ((RunningState)state == sheep_controller.GetRunningState() || (JumpingState)state == sheep_controller.GetJumpingState()))
+               && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
             t += Time.deltaTime * movement_speed;
 
@@ -96,7 +93,7 @@ public class MovementController : MonoBehaviour
             turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t));
 
             transform.eulerAngles = new Vector3(0, turn_angle, 0);
-            transform.position = next_point;
+            transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();
         }
@@ -115,14 +112,14 @@ public class MovementController : MonoBehaviour
         SheepState state = sheep_controller.GetState();
 
         while (t < 1
-               && ((RunningState)state == sheep_controller.GetRunningState() || (JumpingState)state == sheep_controller.GetJumpingState()))
+               && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
             t += Time.deltaTime * movement_speed;
             start_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_START_NAME).position;
             end_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_END_NAME).position;
             next_point = Vector3.Lerp(start_point, end_point, t);
 
-            transform.position = new Vector3(next_point.x, y_value, next_point.z);
+            transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();
         }

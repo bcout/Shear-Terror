@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RunningState : MonoBehaviour, SheepState
 {
-    private SheepController parent;
+    private SheepController sheep_controller;
     private MovementController movement_controller;
 
     public void StateUpdate()
@@ -26,7 +26,7 @@ public class RunningState : MonoBehaviour, SheepState
 
     private void LoadComponents()
     {
-        parent = GetComponent<SheepController>();
+        sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();
     }
 
@@ -42,7 +42,7 @@ public class RunningState : MonoBehaviour, SheepState
         }
         if (Input.GetKeyDown(GameData.jump_key))
         {
-            // Transition to jump state
+            sheep_controller.SetState(sheep_controller.GetJumpingState());
         }
     }
 
@@ -60,7 +60,7 @@ public class RunningState : MonoBehaviour, SheepState
                 break;
         }
 
-        parent.UpdateLane();
+        sheep_controller.UpdateLane();
     }
 
     private void MoveRight()
@@ -77,6 +77,6 @@ public class RunningState : MonoBehaviour, SheepState
                 break;
         }
 
-        parent.UpdateLane();
+        sheep_controller.UpdateLane();
     }
 }

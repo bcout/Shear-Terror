@@ -19,11 +19,15 @@ public class SheepController : MonoBehaviour
 
     private int current_block_index;
 
+    private float vertical_position;
+
     private void Start()
     {
         LoadStates();
         LoadComponents();
         SetDefaultState(idle_state);
+
+        vertical_position = 0f;
     }
 
     private void Update()
@@ -64,6 +68,18 @@ public class SheepController : MonoBehaviour
 
         movement_controller.StartFollowingLevel();
     }
+
+    #region Vertical position Get/Set Methods
+    public float GetVerticalPosition()
+    {
+        return vertical_position;
+    }
+
+    public void SetVerticalPosition(float value)
+    {
+        vertical_position = value;
+    }
+    #endregion
 
     #region Block Get/Set Methods
     public GameObject GetCurrentBlock()
