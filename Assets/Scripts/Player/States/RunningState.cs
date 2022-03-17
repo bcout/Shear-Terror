@@ -4,12 +4,13 @@ using UnityEngine;
 public class RunningState : MonoBehaviour, SheepState
 {
     private SheepController parent;
+    private MovementController movement_controller;
 
     public void StateUpdate()
     {
         HandleInput();
-        parent.UpdateMovementSpeed();
-        parent.MoveAlongPath();
+        movement_controller.UpdateMovementSpeed();
+        movement_controller.MoveAlongPath();
     }
 
     public void Enter()
@@ -26,6 +27,7 @@ public class RunningState : MonoBehaviour, SheepState
     private void LoadComponents()
     {
         parent = GetComponent<SheepController>();
+        movement_controller = GetComponent<MovementController>();
     }
 
     private void HandleInput()
