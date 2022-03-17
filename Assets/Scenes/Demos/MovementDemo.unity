@@ -440,14 +440,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7b85154b64e90459ce678b5955e1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  short_straight: {fileID: 6106438333409884417, guid: 7cc3225d460e9d944af90a4fef6c3c78,
-    type: 3}
-  long_straight: {fileID: 8819929164116469287, guid: 3cce5a311aac5be4786a2a18d9151260,
-    type: 3}
-  left_turn: {fileID: 7802871722262831274, guid: fb05bbaab0e0ca541a89d2cd813347df,
-    type: 3}
-  right_turn: {fileID: 2085161593739932406, guid: 4a4f4567e35fcab44be7233381b59a8a,
-    type: 3}
+  short_straights:
+  - {fileID: 6106438333409884417, guid: 7cc3225d460e9d944af90a4fef6c3c78, type: 3}
+  long_straights:
+  - {fileID: 8819929164116469287, guid: 3cce5a311aac5be4786a2a18d9151260, type: 3}
+  left_turns:
+  - {fileID: 7802871722262831274, guid: fb05bbaab0e0ca541a89d2cd813347df, type: 3}
+  right_turns:
+  - {fileID: 2085161593739932406, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
 --- !u!4 &2029080723
 Transform:
   m_ObjectHideFlags: 0

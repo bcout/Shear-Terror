@@ -11,7 +11,7 @@ using System.Linq;
 public class LevelSpawner : MonoBehaviour {
 
     [SerializeField]
-    private GameObject short_straight, long_straight, left_turn, right_turn;
+    private GameObject[] short_straights, long_straights, left_turns, right_turns;
 
     private GameObject level_parent;
     private int[] IDs_to_spawn;
@@ -68,22 +68,32 @@ public class LevelSpawner : MonoBehaviour {
     private GameObject GetBlock(int ID)
     {
         GameObject to_return = null;
+        GameObject[] block_list = null;
+        System.Random rand = new System.Random(DateTime.Now.Second);
+        int random_index;
+
         switch (ID)
         {
             case Constants.SHORT_STRAIGHT_ID:
-                to_return = short_straight;
+                block_list = short_straights;
                 break;
             case Constants.LONG_STRAIGHT_ID:
-                to_return = long_straight;
+                block_list = long_straights;
                 break;
             case Constants.LEFT_TURN_ID:
-                to_return = left_turn;
+                block_list = left_turns;
                 break;
             case Constants.RIGHT_TURN_ID:
-                to_return = right_turn;
+                block_list = right_turns;
                 break;
         }
 
+        if (block_list != null)
+        {
+            random_index = rand.Next(0, block_list.Length);
+            to_return = block_list[random_index];
+        }
+        
         return to_return;
     }
 

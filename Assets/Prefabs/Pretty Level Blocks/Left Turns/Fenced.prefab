@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8595579541735670143}
   - component: {fileID: 7020654682775329558}
   m_Layer: 0
-  m_Name: 0
+  m_Name: Fenced
   m_TagString: Left Turn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

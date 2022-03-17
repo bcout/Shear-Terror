@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 5746189877277808852}
   - component: {fileID: 4926407120569962988}
   m_Layer: 0
-  m_Name: 0
+  m_Name: Fenced
   m_TagString: Short Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
