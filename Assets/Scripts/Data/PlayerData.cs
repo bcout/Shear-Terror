@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public static class PlayerData
+﻿public static class PlayerData
 {
     public enum Lanes
     {

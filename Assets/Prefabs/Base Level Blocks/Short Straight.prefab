@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 9118858784771410389}
   m_Layer: 0
   m_Name: Short Straight
-  m_TagString: Straight
+  m_TagString: Short Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 301760044171274591}
   m_Layer: 0
   m_Name: Right Turn
-  m_TagString: Turn
+  m_TagString: Right Turn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

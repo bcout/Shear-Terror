@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player_object;
-
     private LevelSpawner level_spawner;
+    private SheepController sheep_controller;
+
     // Start is called before the first frame update
     void Start()
     {
-        level_spawner = GetComponent<LevelSpawner>();
-        level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
-        SpawnPlayer();
+        LoadComponents();
+        GenerateLevel();
+        sheep_controller.StartLevel();
     }
 
-    private void SpawnPlayer()
+    private void LoadComponents()
     {
-        Instantiate(player_object);
+        level_spawner = GetComponent<LevelSpawner>();
+        sheep_controller = GameObject.Find("Sheep").GetComponent<SheepController>();
+    }
+
+    private void GenerateLevel()
+    {
+        level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
     }
 }
