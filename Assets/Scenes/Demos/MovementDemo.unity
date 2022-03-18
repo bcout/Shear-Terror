@@ -441,16 +441,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   short_straights:
-  - {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa, type: 3}
   - {fileID: 3050003752225466335, guid: 768873d7fddd74b4f9f0ac02aec3b57d, type: 3}
   long_straights:
-  - {fileID: 3775923813037673553, guid: 5389caccad63136458e564e8b1ca93ea, type: 3}
   - {fileID: 4055175904901661410, guid: bc783020b688f3c45923ed37b14920d7, type: 3}
   left_turns:
-  - {fileID: 8491881614386515202, guid: e2e954da034457445a53a6c6363c25f5, type: 3}
   - {fileID: 5110886572434382876, guid: 6b179bc5316a59049bb97c94c0f2c08f, type: 3}
   right_turns:
-  - {fileID: 2085161593739932406, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
+  - {fileID: 652657913834229330, guid: 7925ccc629170174fa66b66448146b4f, type: 3}
 --- !u!4 &2029080723
 Transform:
   m_ObjectHideFlags: 0
