@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4249535830156604390
+--- !u!1 &2581428602847101052
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6497548277774388823}
-  m_Layer: 0
-  m_Name: Environment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6497548277774388823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4249535830156604390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8078331096417899574}
-  m_Father: {fileID: 163647216288765160}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6821689005505548913
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8078331096417899574}
+  - component: {fileID: 5399099749714877672}
   m_Layer: 0
   m_Name: Fences
   m_TagString: Untagged
@@ -47,21 +16,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8078331096417899574
+--- !u!4 &5399099749714877672
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821689005505548913}
+  m_GameObject: {fileID: 2581428602847101052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5803663881650698633}
-  - {fileID: 3935497936982668895}
-  m_Father: {fileID: 6497548277774388823}
-  m_RootOrder: 0
+  - {fileID: 733224275665294770}
+  - {fileID: 4603356541910882226}
+  m_Father: {fileID: 5643960977304091918}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1576628763645983908
 PrefabInstance:
@@ -130,20 +99,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fenced
       objectReference: {fileID: 0}
+    - target: {fileID: 6607395395471950250, guid: 4a4f4567e35fcab44be7233381b59a8a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
---- !u!4 &163647216288765160 stripped
+--- !u!4 &5643960977304091918 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1703534694439037004, guid: 4a4f4567e35fcab44be7233381b59a8a,
+  m_CorrespondingSourceObject: {fileID: 6607395395471950250, guid: 4a4f4567e35fcab44be7233381b59a8a,
     type: 3}
   m_PrefabInstance: {fileID: 1576628763645983908}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4949969391120971694
+--- !u!1001 &2168479898168368021
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8078331096417899574}
+    m_TransformParent: {fileID: 5399099749714877672}
     m_Modifications:
     - target: {fileID: 1457780218082070055, guid: cbe2bff17cbbcce45b199ef780b471c0,
         type: 3}
@@ -207,18 +181,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe2bff17cbbcce45b199ef780b471c0, type: 3}
---- !u!4 &5803663881650698633 stripped
+--- !u!4 &733224275665294770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1457780218082070055, guid: cbe2bff17cbbcce45b199ef780b471c0,
     type: 3}
-  m_PrefabInstance: {fileID: 4949969391120971694}
+  m_PrefabInstance: {fileID: 2168479898168368021}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8857735248168922152
+--- !u!1001 &8328041507187805637
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8078331096417899574}
+    m_TransformParent: {fileID: 5399099749714877672}
     m_Modifications:
     - target: {fileID: 3300840888655261696, guid: 1aa40ef6e2c1d5043a976db3b0209691,
         type: 3}
@@ -282,9 +256,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa40ef6e2c1d5043a976db3b0209691, type: 3}
---- !u!4 &3935497936982668895 stripped
+--- !u!4 &4603356541910882226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5508269318656416375, guid: 1aa40ef6e2c1d5043a976db3b0209691,
     type: 3}
-  m_PrefabInstance: {fileID: 8857735248168922152}
+  m_PrefabInstance: {fileID: 8328041507187805637}
   m_PrefabAsset: {fileID: 0}
