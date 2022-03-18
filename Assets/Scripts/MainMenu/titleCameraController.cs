@@ -14,7 +14,7 @@ public class titleCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xRotCounter += 9.0f * Time.deltaTime;
+        xRotCounter += 4.0f * Time.deltaTime;
         transform.localEulerAngles = new Vector3(5, xRotCounter, 0);
     }
 }
