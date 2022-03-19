@@ -34,10 +34,6 @@ public class SheepController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
-
-        AnimatorClipInfo[] clip_info = animator.GetCurrentAnimatorClipInfo(0);
-        print(clip_info[0].clip.name);
-
     }
 
     private void LoadComponents()
