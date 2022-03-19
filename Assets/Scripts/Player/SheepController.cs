@@ -35,23 +35,8 @@ public class SheepController : MonoBehaviour
     {
         state.StateUpdate();
 
-        bool run = animator.GetBool(Constants.RUN_ANIM);
-        bool jump = animator.GetBool(Constants.JUMP_UP_ANIM);
-        bool landing = animator.GetBool(Constants.LANDING_ANIM);
-        bool tuck_in = animator.GetBool(Constants.TUCK_IN_ANIM);
-        bool tuck_out = animator.GetBool(Constants.TUCK_OUT_ANIM);
-        bool idle = animator.GetBool(Constants.IDLE_ANIM);
-        bool fall_idle = animator.GetBool(Constants.FALL_IDLE_ANIM);
-
-        string output = "State: " + state + "\n" +
-                        "Run: " + run + "\n" + 
-                        "Jump Up: " + jump + "\n" +
-                        "Landing: " + landing + "\n" +
-                        "Tuck In: " + tuck_in + "\n" +
-                        "Tuck Out: " + tuck_out + "\n" +
-                        "Idle: " + idle + "\n" +
-                        "Fall Idle: " + fall_idle + "\n";
-        print(output);
+        AnimatorClipInfo[] clip_info = animator.GetCurrentAnimatorClipInfo(0);
+        print(clip_info[0].clip.name);
 
     }
 
