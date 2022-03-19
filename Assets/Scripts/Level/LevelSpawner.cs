@@ -20,6 +20,8 @@ public class LevelSpawner : MonoBehaviour {
     private GameObject prev_block, curr_block;
     private Transform prev_end;
 
+    private System.Random rand;
+
     /*
      * The game controller calls this when it is time to start a level. This script
      * pulls a random line from one of the level data files (short_levels.csv or long_levels.csv) and 
@@ -29,6 +31,7 @@ public class LevelSpawner : MonoBehaviour {
      */
     public void GenerateLevel(int level_code)
     {
+        rand = new System.Random(DateTime.Now.Second);
         level_parent = new GameObject(Constants.LEVEL_PARENT_NAME);
         IDs_to_spawn = PickRandomLevel(level_code);
         blocks_to_spawn = IDsToBlocks(IDs_to_spawn);
@@ -52,7 +55,6 @@ public class LevelSpawner : MonoBehaviour {
         int num_available_levels = File.ReadLines(filepath).Count();
 
         // Pick a random line in the file
-        System.Random rand = new System.Random(DateTime.Now.Second);
         int random_level = rand.Next(1, num_available_levels);
         string line = File.ReadLines(filepath).Skip(random_level - 1).Take(1).First();
 
@@ -67,9 +69,8 @@ public class LevelSpawner : MonoBehaviour {
      */
     private GameObject GetBlock(int ID)
     {
-        GameObject to_return = null;
-        GameObject[] block_list = null;
-        System.Random rand = new System.Random(DateTime.Now.Second);
+        GameObject to_return;
+        GameObject[] block_list;
         int random_index;
 
         switch (ID)
@@ -84,17 +85,13 @@ public class LevelSpawner : MonoBehaviour {
                 block_list = left_turns;
                 break;
             case Constants.RIGHT_TURN_ID:
+            default:
                 block_list = right_turns;
                 break;
         }
-
-        if (block_list != null)
-        {
-            random_index = rand.Next(0, block_list.Length);
-            print(block_list.Length);
-            print(random_index);
-            to_return = block_list[random_index];
-        }
+        
+        random_index = rand.Next(0, block_list.Length);
+        to_return = block_list[random_index];
         
         return to_return;
     }

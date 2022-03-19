@@ -15,7 +15,6 @@ public class RunningState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        print("RUNNING");
         LoadComponents();
         sheep_controller.StartAnimation(Constants.RUN_ANIM);
     }
