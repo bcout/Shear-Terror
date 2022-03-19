@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class JumpingState : MonoBehaviour, SheepState
@@ -10,10 +11,12 @@ public class JumpingState : MonoBehaviour, SheepState
     {
         movement_controller.UpdateMovementSpeed();
         movement_controller.MoveAlongPath();
+        movement_controller.ContinueJump();
     }
 
     public void Enter()
     {
+        print("JUMPING");
         LoadComponents();
         sheep_controller.StartAnimation(Constants.JUMP_UP_ANIM);
     }
