@@ -221,11 +221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   short_straights:
-  - {fileID: 3050003752225466335, guid: 768873d7fddd74b4f9f0ac02aec3b57d, type: 3}
+  - {fileID: 6118732620200273005, guid: c4e2caae6763b0a419cc795590c763d0, type: 3}
   long_straights:
   - {fileID: 4055175904901661410, guid: bc783020b688f3c45923ed37b14920d7, type: 3}
   left_turns:
-  - {fileID: 5110886572434382876, guid: 6b179bc5316a59049bb97c94c0f2c08f, type: 3}
+  - {fileID: 1337890452435256662, guid: 79f36c5f81015f94687edc43fec2af52, type: 3}
   right_turns:
   - {fileID: 652657913834229330, guid: 7925ccc629170174fa66b66448146b4f, type: 3}
 --- !u!4 &2029080723
