@@ -221,8 +221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   short_straights:
+  - {fileID: 1042719243164303030, guid: ad954b4f9621d0f4698e60c2d585e099, type: 3}
   - {fileID: 6118732620200273005, guid: c4e2caae6763b0a419cc795590c763d0, type: 3}
   long_straights:
+  - {fileID: 1933968812978751977, guid: d0ac9576c86302f4bbe1891883a4ecf9, type: 3}
   - {fileID: 4055175904901661410, guid: bc783020b688f3c45923ed37b14920d7, type: 3}
   left_turns:
   - {fileID: 1337890452435256662, guid: 79f36c5f81015f94687edc43fec2af52, type: 3}
