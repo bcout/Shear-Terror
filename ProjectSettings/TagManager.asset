@@ -8,8 +8,12 @@ TagManager:
   - Short Straight
   - Left Turn
   - Right Turn
+<<<<<<< HEAD
   - OptionsCanvas
   - TitleCanvas
+=======
+  - Environment
+>>>>>>> 1e888eee1d758358fea704adc8be8b0185d58399
   layers:
   - Default
   - TransparentFX
