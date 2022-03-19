@@ -91,7 +91,6 @@ public class LevelSpawner : MonoBehaviour {
         }
         
         random_index = rand.Next(0, block_list.Length);
-        print(random_index);
         to_return = block_list[random_index];
         
         return to_return;
