@@ -187,14 +187,14 @@ public class MovementController : MonoBehaviour
         current_block_index++;
         sheep_controller.SetCurrentBlockIndex(current_block_index);
 
-        if (current_block_index < blocks_in_level.Count)
+        if (current_block_index < blocks_in_level.Count - 1)
         {
             sheep_controller.SetCurrentBlock(blocks_in_level[current_block_index]);
             sheep_controller.UpdateLane();
         }
         else
         {
-            sheep_controller.SetState(sheep_controller.GetIdleState());
+            sheep_controller.SetState(sheep_controller.GetEndState());
             move_coroutine_available = false;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IdleState : MonoBehaviour, SheepState
+public class EndState : MonoBehaviour, SheepState
 {
     private SheepController sheep_controller;
 
