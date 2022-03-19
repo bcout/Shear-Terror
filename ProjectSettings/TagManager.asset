@@ -8,6 +8,7 @@ TagManager:
   - Short Straight
   - Left Turn
   - Right Turn
+  - Environment
   layers:
   - Default
   - TransparentFX
