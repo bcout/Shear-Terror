@@ -8,6 +8,8 @@ TagManager:
   - Short Straight
   - Left Turn
   - Right Turn
+  - OptionsCanvas
+  - TitleCanvas
   layers:
   - Default
   - TransparentFX
