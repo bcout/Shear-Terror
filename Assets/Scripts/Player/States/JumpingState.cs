@@ -16,7 +16,6 @@ public class JumpingState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        print("JUMPING");
         LoadComponents();
         sheep_controller.StartAnimation(Constants.JUMP_UP_ANIM);
     }
