@@ -39,4 +39,8 @@ public static class Constants
     public const string LANDING_ANIM = "Landing";
     public const string TUCK_IN_ANIM = "Tuck In";
     public const string TUCK_OUT_ANIM = "Tuck Out";
+
+    public const string FARM_RUN_ANIM = "Run";
+    public const string FARM_WAIT_ANIM = "Wait";
+    public const string FARM_END_ANIM = "End";
 }
