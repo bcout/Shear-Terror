@@ -30,7 +30,7 @@ public class JumpingState : MonoBehaviour, SheepState
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(GameData.spin_key))
+        if (Input.GetKeyDown(GameData.jump_key))
         {
             Spin();
         }
