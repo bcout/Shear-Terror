@@ -8,6 +8,9 @@ public static class Constants
     public const float JUMP_HEIGHT = 25f;
     public const float JUMP_SPEED = 2.5f;
 
+    public const float SPIN_SPEED = 2f;
+    public const float SPIN_ROTATION = 360f;
+
     public const int SHORT_LEVEL_ID = 1;
     public const int LONG_LEVEL_ID = 2;
 

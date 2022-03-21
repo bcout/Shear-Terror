@@ -1,18 +1,26 @@
 ﻿public static class PlayerData
 {
-    public enum Lanes
+    public enum Lane
     {
         LEFT,
         MIDDLE,
         RIGHT
     }
 
-    public static Lanes curr_lane { get; set; }
+    public enum Trick
+    {
+        SPIN,
+        FLIP,
+        NONE
+    }
+
+    public static Lane curr_lane { get; set; }
+    public static Trick curr_trick { get; set; }
 
     static PlayerData()
     {
         // Start the player off in the middle lane
-        curr_lane = Lanes.MIDDLE;
+        curr_lane = Lane.MIDDLE;
     }
 }
 
