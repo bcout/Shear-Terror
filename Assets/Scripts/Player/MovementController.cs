@@ -5,13 +5,16 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     private SheepController sheep_controller;
+    private Transform body;
 
     private float movement_speed;
     private float t_run;
     private float t_jump;
+    private float t_trick;
 
     private bool move_coroutine_available;
     private bool jump_coroutine_available;
+    private bool trick_coroutine_available;
 
     private void Start()
     {
@@ -21,14 +24,17 @@ public class MovementController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
+        body = transform.Find("Armature");
     }
 
     public void StartFollowingLevel()
     {
         t_jump = 0f;
         t_run = 0f;
+        t_trick = 0f;
         move_coroutine_available = true;
         jump_coroutine_available = true;
+        trick_coroutine_available = true;
     }
 
     public void UpdateMovementSpeed()
@@ -75,6 +81,37 @@ public class MovementController : MonoBehaviour
         {
             StartCoroutine(Jump());
         }
+    }
+
+    public void ContinueTrick()
+    {
+        if(trick_coroutine_available && PlayerData.curr_trick != PlayerData.Trick.NONE)
+        {
+            StartCoroutine(Trick());
+        }
+    }
+
+    private IEnumerator Trick()
+    {
+        trick_coroutine_available = false;
+        Quaternion inital = body.localRotation;
+
+        float start_angle = body.localRotation.x;
+        float end_angle = body.localRotation.x + Constants.SPIN_ROTATION;
+        float turn_angle;
+
+        while (t_trick < 1)
+        {
+            t_trick += Time.deltaTime * Constants.SPIN_SPEED;
+            turn_angle = Mathf.Lerp(start_angle, end_angle, EaseOut(t_trick));
+            body.localRotation = inital * Quaternion.Euler(turn_angle, body.rotation.y, body.rotation.z);
+
+            yield return new WaitForEndOfFrame();
+        }
+        t_trick = 0f;
+
+        PlayerData.curr_trick = PlayerData.Trick.NONE;
+        trick_coroutine_available = true;
     }
 
     private IEnumerator Jump()
@@ -142,7 +179,7 @@ public class MovementController : MonoBehaviour
             next_point = curve_data.GetNextPoint(t_run);
             turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t_run));
 
-            transform.eulerAngles = new Vector3(0, turn_angle, 0);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, turn_angle, transform.eulerAngles.z);
             transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();

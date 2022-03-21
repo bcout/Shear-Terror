@@ -50,13 +50,13 @@ public class RunningState : MonoBehaviour, SheepState
     {
         switch (PlayerData.curr_lane)
         {
-            case PlayerData.Lanes.LEFT:
+            case PlayerData.Lane.LEFT:
                 break;
-            case PlayerData.Lanes.MIDDLE:
-                PlayerData.curr_lane = PlayerData.Lanes.LEFT;
+            case PlayerData.Lane.MIDDLE:
+                PlayerData.curr_lane = PlayerData.Lane.LEFT;
                 break;
-            case PlayerData.Lanes.RIGHT:
-                PlayerData.curr_lane = PlayerData.Lanes.MIDDLE;
+            case PlayerData.Lane.RIGHT:
+                PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
                 break;
         }
 
@@ -67,13 +67,13 @@ public class RunningState : MonoBehaviour, SheepState
     {
         switch (PlayerData.curr_lane)
         {
-            case PlayerData.Lanes.LEFT:
-                PlayerData.curr_lane = PlayerData.Lanes.MIDDLE;
+            case PlayerData.Lane.LEFT:
+                PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
                 break;
-            case PlayerData.Lanes.MIDDLE:
-                PlayerData.curr_lane = PlayerData.Lanes.RIGHT;
+            case PlayerData.Lane.MIDDLE:
+                PlayerData.curr_lane = PlayerData.Lane.RIGHT;
                 break;
-            case PlayerData.Lanes.RIGHT:
+            case PlayerData.Lane.RIGHT:
                 break;
         }
 
