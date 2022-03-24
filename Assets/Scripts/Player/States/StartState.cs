@@ -6,7 +6,6 @@ public class StartState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        LoadComponents();
 
         // Press any key to begin
         if (Input.anyKeyDown)

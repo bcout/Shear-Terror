@@ -22,6 +22,8 @@ public class FarmerController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
+
+        print(state);
     }
 
     private void LoadStates()
@@ -35,12 +37,6 @@ public class FarmerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         farmer_movement_controller = GetComponent<FarmerMovementController>();
-    }
-
-    private void SetDefaultState(FarmerState default_state)
-    {
-        state = default_state;
-        state.Enter();
     }
 
     public void StopAnimation(string anim_name)
@@ -69,6 +65,19 @@ public class FarmerController : MonoBehaviour
     public FarmerEndState GetEndState()
     {
         return end_state;
+    }
+
+    private void SetDefaultState(FarmerState default_state)
+    {
+        state = default_state;
+        state.Enter();
+    }
+
+    public void SetState(FarmerState new_state)
+    {
+        state.Exit();
+        state = new_state;
+        state.Enter();
     }
     #endregion
 }
