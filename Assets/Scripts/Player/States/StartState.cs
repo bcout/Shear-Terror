@@ -6,7 +6,6 @@ public class StartState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        LoadComponents();
 
         // Press any key to begin
         if (Input.anyKeyDown)
@@ -20,8 +19,8 @@ public class StartState : MonoBehaviour, SheepState
         LoadComponents();
         sheep_controller.StartAnimation(Constants.IDLE_ANIM);
 
-        transform.position = sheep_controller.GetCurrentBlock().transform.Find("Center").position;
-        transform.rotation = sheep_controller.GetCurrentBlock().transform.Find("Center").rotation;
+        transform.position = sheep_controller.GetCurrentBlock().transform.Find(Constants.BLOCK_CENTER_NAME).position;
+        transform.rotation = sheep_controller.GetCurrentBlock().transform.Find(Constants.BLOCK_CENTER_NAME).rotation;
     }
 
     public void Exit()

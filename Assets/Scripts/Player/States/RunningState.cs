@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class RunningState : MonoBehaviour, SheepState
 {
+    [SerializeField]
+    private GameObject lane_change_trigger_prefab;
+
     private SheepController sheep_controller;
     private MovementController movement_controller;
 
@@ -60,6 +63,8 @@ public class RunningState : MonoBehaviour, SheepState
                 break;
         }
 
+        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
+        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(false);
         sheep_controller.UpdateLane();
     }
 
@@ -76,6 +81,9 @@ public class RunningState : MonoBehaviour, SheepState
             case PlayerData.Lane.RIGHT:
                 break;
         }
+
+        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
+        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(true);
 
         sheep_controller.UpdateLane();
     }

@@ -23,6 +23,25 @@ public class BlockData : MonoBehaviour
 
         return to_return;
     }
+
+    public Transform GetLane(FarmerData.Lane lane)
+    {
+        Transform to_return = null;
+        switch (lane)
+        {
+            case FarmerData.Lane.LEFT:
+                to_return = left_lane;
+                break;
+            case FarmerData.Lane.MIDDLE:
+                to_return = middle_lane;
+                break;
+            case FarmerData.Lane.RIGHT:
+                to_return = right_lane;
+                break;
+        }
+
+        return to_return;
+    }
 }
 
 
