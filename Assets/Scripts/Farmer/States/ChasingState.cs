@@ -30,6 +30,24 @@ public class ChasingState : MonoBehaviour, FarmerState
         farmer_movement_controller = GetComponent<FarmerMovementController>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.LANE_CHANGE_TRIGGER_TAG))
+        {
+            bool move_right = other.GetComponent<LaneChangeTrigger>().GetDirection();
+            if (move_right)
+            {
+                MoveRight();
+            }
+            else
+            {
+                MoveLeft();
+            }
+        }
+
+        Destroy(other.gameObject);
+    }
+
     private void MoveLeft()
     {
         switch (FarmerData.curr_lane)
@@ -55,7 +73,7 @@ public class ChasingState : MonoBehaviour, FarmerState
                 FarmerData.curr_lane = FarmerData.Lane.MIDDLE;
                 break;
             case FarmerData.Lane.MIDDLE:
-                FarmerData.curr_lane = FarmerData.Lane.LEFT;
+                FarmerData.curr_lane = FarmerData.Lane.RIGHT;
                 break;
             case FarmerData.Lane.RIGHT:
                 break;

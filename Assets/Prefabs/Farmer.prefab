@@ -1597,6 +1597,7 @@ GameObject:
   - component: {fileID: 3098480728560657285}
   - component: {fileID: 6711689975499314553}
   - component: {fileID: 3105998033320716908}
+  - component: {fileID: 2672522320264158798}
   m_Layer: 0
   m_Name: Farmer
   m_TagString: Untagged
@@ -1703,6 +1704,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0684da05913d141b73b2797176eb43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2672522320264158798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4749352914788614049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6232545, y: 1.8515768, z: 1.5990047}
+  m_Center: {x: 0.010463595, y: 0.89822674, z: 0.29950237}
 --- !u!1 &4959456043949828836
 GameObject:
   m_ObjectHideFlags: 0

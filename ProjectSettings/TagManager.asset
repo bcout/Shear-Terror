@@ -9,6 +9,7 @@ TagManager:
   - Left Turn
   - Right Turn
   - Environment
+  - Lane Change Trigger
   layers:
   - Default
   - TransparentFX

@@ -2790,6 +2790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eddd16355556d941bde11e01133079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lane_change_trigger_prefab: {fileID: 2010465466878720475, guid: 6b53180335a873544a344ff0777eea16,
+    type: 3}
 --- !u!114 &6902204067504946638
 MonoBehaviour:
   m_ObjectHideFlags: 0

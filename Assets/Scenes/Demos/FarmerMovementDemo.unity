@@ -213,7 +213,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &654163453
+--- !u!1 &337623195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6650607507731865748, guid: 8a6a77e36275e4745bc5aa397ca1a9fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 715580405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &715580405
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -282,12 +288,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6a77e36275e4745bc5aa397ca1a9fb, type: 3}
---- !u!1 &654163454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6650607507731865748, guid: 8a6a77e36275e4745bc5aa397ca1a9fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 654163453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1717418549
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d37e30240a6ea429a5af34fdc4c090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheep: {fileID: 654163454}
+  sheep: {fileID: 337623195}
   farmer: {fileID: 1800286712}
 --- !u!4 &1717418552
 Transform:
@@ -369,7 +369,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sheep
       value: 
-      objectReference: {fileID: 654163454}
+      objectReference: {fileID: 337623195}
     - target: {fileID: 4749352914788614049, guid: 2d1c45ee63f72104cb5bab72bd78ea03,
         type: 3}
       propertyPath: m_Name
@@ -434,12 +434,12 @@ PrefabInstance:
         type: 3}
       propertyPath: sheep
       value: 
-      objectReference: {fileID: 654163454}
+      objectReference: {fileID: 337623195}
     - target: {fileID: 8951888875053759830, guid: 2d1c45ee63f72104cb5bab72bd78ea03,
         type: 3}
       propertyPath: sheep
       value: 
-      objectReference: {fileID: 654163454}
+      objectReference: {fileID: 337623195}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1c45ee63f72104cb5bab72bd78ea03, type: 3}
 --- !u!1 &1800286712 stripped
