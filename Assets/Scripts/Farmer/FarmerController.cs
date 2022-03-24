@@ -32,7 +32,6 @@ public class FarmerController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
-        print(FarmerData.curr_lane);
     }
 
     private void LoadComponents()
