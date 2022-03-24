@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class WaitingState : MonoBehaviour, FarmerState
 {
+    [SerializeField]
+    private GameObject sheep;
+
     private FarmerController farmer_controller;
+    private SheepController sheep_controller;
 
     public void StateUpdate()
     {
-
+        if (sheep_controller.GetState() == (SheepState)sheep_controller.GetRunningState()
+            || sheep_controller.GetState() == (SheepState)sheep_controller.GetJumpingState())
+        {
+            farmer_controller.SetState(farmer_controller.GetChasingState());
+        }
     }
 
     public void Exit()
@@ -25,5 +33,6 @@ public class WaitingState : MonoBehaviour, FarmerState
     private void LoadComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
+        sheep_controller = sheep.GetComponent<SheepController>();
     }
 }

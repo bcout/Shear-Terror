@@ -26,6 +26,11 @@ public static class Constants
 
     public const string LANE_END_NAME = "End";
     public const string LANE_START_NAME = "Start";
+    public const string BLOCK_CENTER_NAME = "Center";
+
+    public const string LEFT_LANE_NAME = "Left";
+    public const string MIDDLE_LANE_NAME = "Middle";
+    public const string RIGHT_LANE_NAME = "Right";
 
     public const string SHORT_LEVEL_DATA_PATH = "/LevelData/short_levels.csv";
     public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
