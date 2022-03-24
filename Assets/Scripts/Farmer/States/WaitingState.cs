@@ -15,8 +15,14 @@ public class WaitingState : MonoBehaviour, FarmerState
         if (sheep_controller.GetState() == (SheepState)sheep_controller.GetRunningState()
             || sheep_controller.GetState() == (SheepState)sheep_controller.GetJumpingState())
         {
-            farmer_controller.SetState(farmer_controller.GetChasingState());
+            StartCoroutine(StartDelayed());
         }
+    }
+
+    private IEnumerator StartDelayed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        farmer_controller.SetState(farmer_controller.GetChasingState());
     }
 
     public void Exit()
