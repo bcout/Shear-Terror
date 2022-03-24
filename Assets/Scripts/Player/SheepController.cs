@@ -86,7 +86,6 @@ public class SheepController : MonoBehaviour
     #region Vertical position Get/Set Methods
     public float GetVerticalPosition()
     {
-        print(vertical_position);
         return vertical_position;
     }
 
