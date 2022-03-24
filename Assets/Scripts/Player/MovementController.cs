@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
-        body = transform.Find("Armature");
+        body = transform.Find("Pivot");
     }
 
     public void StartFollowingLevel()
