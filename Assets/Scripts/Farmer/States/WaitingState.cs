@@ -8,10 +8,7 @@ public class WaitingState : MonoBehaviour, FarmerState
 
     public void StateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            farmer_controller.SetState(farmer_controller.GetChasingState());
-        }
+
     }
 
     public void Exit()

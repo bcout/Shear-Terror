@@ -8,10 +8,7 @@ public class FarmerEndState : MonoBehaviour, FarmerState
 
     public void StateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            farmer_controller.SetState(farmer_controller.GetWaitingState());
-        }
+
     }
 
     public void Exit()

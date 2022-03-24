@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FarmerController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject sheep;
+
     private FarmerState state;
     private ChasingState chasing_state;
     private WaitingState waiting_state;
@@ -12,6 +15,8 @@ public class FarmerController : MonoBehaviour
     private Animator animator;
     private FarmerMovementController farmer_movement_controller;
 
+    private List<GameObject> blocks_in_level;
+
     private void Start()
     {
         LoadStates();
@@ -19,11 +24,15 @@ public class FarmerController : MonoBehaviour
         SetDefaultState(waiting_state);
     }
 
+    public void StartLevel()
+    {
+        blocks_in_level = sheep.GetComponent<SheepController>().GetBlocksInLevel();
+
+    }
+
     private void Update()
     {
         state.StateUpdate();
-
-        print(state);
     }
 
     private void LoadStates()
@@ -48,8 +57,6 @@ public class FarmerController : MonoBehaviour
     {
         animator.SetBool(Animator.StringToHash(anim_name), true);
     }
-
-
 
     #region State Get Methods
     public ChasingState GetChasingState()
