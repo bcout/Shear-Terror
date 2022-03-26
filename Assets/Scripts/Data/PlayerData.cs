@@ -9,8 +9,12 @@
 
     public enum Trick
     {
-        SPIN,
-        FLIP,
+        LEFT_SPIN,
+        RIGHT_SPIN,
+        FRONT_FLIP,
+        BACK_FLIP,
+        BARREL_ROLL_LEFT,
+        BARREL_ROLL_RIGHT,
         NONE
     }
 
