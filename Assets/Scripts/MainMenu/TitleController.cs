@@ -45,41 +45,4 @@ public class TitleController : MonoBehaviour
     {
         
     }
-    
-    // Change a given keybind.
-    // Takes input of which key to change. 0 is jump, 1 is left, 2 is right.
-    // Returns 0 on success, 1 when event is not a key and 2 when key is already in use.
-    static int changeKeyBind(int bind)
-    {
-        Event e = Event.current;
-        if(e.isKey){
-            if (e.keyCode == GameData.jump_key || e.keyCode == GameData.move_left_key || e.keyCode == GameData.move_right_key)
-            {
-                Debug.Log(e.keyCode + " is already in use!");
-                return 2;
-            }
-
-            if (bind == 0)
-            {
-                GameData.jump_key = e.keyCode;
-            }
-            else if(bind == 1)
-            {
-                GameData.move_left_key = e.keyCode;
-            }
-            else
-            {
-                GameData.move_right_key = e.keyCode;
-            }
-
-            Debug.Log("Detected key code: " + e.keyCode);
-            Debug.Log("New keybinds are: ");
-            Debug.Log("J: " + GameData.jump_key + "\nL: " + GameData.move_left_key + "\nR" + GameData.move_right_key);
-
-            return 0;
-        }
-        else{
-            return 1;
-        }
-    }
 }

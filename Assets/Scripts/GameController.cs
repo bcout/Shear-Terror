@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject sheep, farmer;
     private LevelSpawner level_spawner;
     private SheepController sheep_controller;
+    private FarmerController farmer_controller;
 
     // Start is called before the first frame update
     void Start()
@@ -14,12 +17,14 @@ public class GameController : MonoBehaviour
         LoadComponents();
         GenerateLevel();
         sheep_controller.StartLevel();
+        farmer_controller.StartLevel();
     }
 
     private void LoadComponents()
     {
         level_spawner = GetComponent<LevelSpawner>();
-        sheep_controller = GameObject.Find("Sheep").GetComponent<SheepController>();
+        sheep_controller = sheep.GetComponent<SheepController>();
+        farmer_controller = farmer.GetComponent<FarmerController>();
     }
 
     private void GenerateLevel()

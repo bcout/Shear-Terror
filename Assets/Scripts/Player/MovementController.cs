@@ -5,11 +5,16 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     private SheepController sheep_controller;
+    private Transform body;
 
     private float movement_speed;
-    private float t;
+    private float t_run;
+    private float t_jump;
+    private float t_trick;
 
-    private bool coroutine_available;
+    private bool move_coroutine_available;
+    private bool jump_coroutine_available;
+    private bool trick_coroutine_available;
 
     private void Start()
     {
@@ -19,12 +24,17 @@ public class MovementController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
+        body = transform.Find("Armature");
     }
 
     public void StartFollowingLevel()
     {
-        t = 0f;
-        coroutine_available = true;
+        t_jump = 0f;
+        t_run = 0f;
+        t_trick = 0f;
+        move_coroutine_available = true;
+        jump_coroutine_available = true;
+        trick_coroutine_available = true;
     }
 
     public void UpdateMovementSpeed()
@@ -47,7 +57,7 @@ public class MovementController : MonoBehaviour
 
     public void MoveAlongPath()
     {
-        if (coroutine_available)
+        if (move_coroutine_available)
         {
             GameObject current_block = sheep_controller.GetCurrentBlock();
 
@@ -65,9 +75,86 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    public void ContinueJump()
+    {
+        if(jump_coroutine_available)
+        {
+            StartCoroutine(Jump());
+        }
+    }
+
+    public void ContinueTrick()
+    {
+        if(trick_coroutine_available && PlayerData.curr_trick != PlayerData.Trick.NONE)
+        {
+            StartCoroutine(Trick());
+        }
+    }
+
+    private IEnumerator Trick()
+    {
+        trick_coroutine_available = false;
+        Quaternion inital = body.localRotation;
+
+        float start_angle = body.localRotation.x;
+        float end_angle = body.localRotation.x + Constants.SPIN_ROTATION;
+        float turn_angle;
+
+        while (t_trick < 1)
+        {
+            t_trick += Time.deltaTime * Constants.SPIN_SPEED;
+            turn_angle = Mathf.Lerp(start_angle, end_angle, EaseOut(t_trick));
+            body.localRotation = inital * Quaternion.Euler(turn_angle, body.rotation.y, body.rotation.z);
+
+            yield return new WaitForEndOfFrame();
+        }
+        t_trick = 0f;
+
+        PlayerData.curr_trick = PlayerData.Trick.NONE;
+        trick_coroutine_available = true;
+    }
+
+    private IEnumerator Jump()
+    {
+        jump_coroutine_available = false;
+
+        while (t_jump < 1)
+        {
+            t_jump += Time.deltaTime * Constants.JUMP_SPEED;
+            sheep_controller.SetVerticalPosition(Mathf.Lerp(0, Constants.JUMP_HEIGHT, EaseOut(t_jump)));
+            yield return new WaitForEndOfFrame();
+        }
+        t_jump = 0f;
+
+        while (t_jump < 1)
+        {
+            t_jump += Time.deltaTime * Constants.JUMP_SPEED;
+            sheep_controller.SetVerticalPosition(Mathf.Lerp(Constants.JUMP_HEIGHT, 0, EaseIn(t_jump)));
+            yield return new WaitForEndOfFrame();
+        }
+        t_jump = 0f;
+
+        sheep_controller.SetState(sheep_controller.GetRunningState());
+
+        jump_coroutine_available = true;
+    }
+
+    private static float EaseOut(float value)
+    {
+        //quartic ease out
+        return 1 - (1 - value) * (1 - value);
+    }
+
+    private static float EaseIn(float value)
+    {
+        //quartic ease in
+        return value*value;
+    }
+
+
     private IEnumerator FollowCurve()
     {
-        coroutine_available = false;
+        move_coroutine_available = false;
         SheepState state = sheep_controller.GetState();
         CurveData curve_data;
         Vector3 next_point;
@@ -83,50 +170,50 @@ public class MovementController : MonoBehaviour
         float start_angle = transform.eulerAngles.y;
         float turn_angle;
 
-        while (t < 1
+        while (t_run < 1
                && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
-            t += Time.deltaTime * movement_speed;
+            t_run += Time.deltaTime * movement_speed;
 
             curve_data = sheep_controller.GetCurrentLane().GetComponent<CurveData>();
-            next_point = curve_data.GetNextPoint(t);
-            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t));
+            next_point = curve_data.GetNextPoint(t_run);
+            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t_run));
 
-            transform.eulerAngles = new Vector3(0, turn_angle, 0);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, turn_angle, transform.eulerAngles.z);
             transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();
         }
 
-        t = 0f;
+        t_run = 0f;
         GoToNextBlock();
-        coroutine_available = true;
+        move_coroutine_available = true;
     }
 
     private IEnumerator FollowStraight()
     {
-        coroutine_available = false;
+        move_coroutine_available = false;
         Vector3 start_point;
         Vector3 end_point;
         Vector3 next_point;
         SheepState state = sheep_controller.GetState();
 
-        while (t < 1
+        while (t_run < 1
                && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
-            t += Time.deltaTime * movement_speed;
+            t_run += Time.deltaTime * movement_speed;
             start_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_START_NAME).position;
             end_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_END_NAME).position;
-            next_point = Vector3.Lerp(start_point, end_point, t);
+            next_point = Vector3.Lerp(start_point, end_point, t_run);
 
             transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();
         }
 
-        t = 0f;
+        t_run = 0f;
         GoToNextBlock();
-        coroutine_available = true;
+        move_coroutine_available = true;
     }
 
     private void GoToNextBlock()
@@ -137,15 +224,15 @@ public class MovementController : MonoBehaviour
         current_block_index++;
         sheep_controller.SetCurrentBlockIndex(current_block_index);
 
-        if (current_block_index < blocks_in_level.Count)
+        if (current_block_index < blocks_in_level.Count - 1)
         {
             sheep_controller.SetCurrentBlock(blocks_in_level[current_block_index]);
             sheep_controller.UpdateLane();
         }
         else
         {
-            sheep_controller.SetState(sheep_controller.GetIdleState());
-            coroutine_available = false;
+            sheep_controller.SetState(sheep_controller.GetEndState());
+            move_coroutine_available = false;
         }
     }
 }

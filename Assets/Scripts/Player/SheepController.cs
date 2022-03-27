@@ -7,6 +7,8 @@ public class SheepController : MonoBehaviour
     private SheepState state;
     private RunningState running_state;
     private IdleState idle_state;
+    private EndState end_state;
+    private StartState start_state;
     private JumpingState jumping_state;
     private RagdollState ragdoll_state;
 
@@ -47,7 +49,7 @@ public class SheepController : MonoBehaviour
     {
         ReadLevelBlocks();
         StartFollowingLevel();
-        SetState(running_state);
+        SetState(start_state);
     }
 
     private void ReadLevelBlocks()
@@ -165,6 +167,16 @@ public class SheepController : MonoBehaviour
         return ragdoll_state;
     }
 
+    public StartState GetStartState()
+    {
+        return start_state;
+    }
+    
+    public EndState GetEndState()
+    {
+        return end_state;
+    }
+
     private void SetDefaultState(SheepState default_state)
     {
         state = default_state;
@@ -177,6 +189,8 @@ public class SheepController : MonoBehaviour
         idle_state = GetComponent<IdleState>();
         jumping_state = GetComponent<JumpingState>();
         ragdoll_state = GetComponent<RagdollState>();
+        start_state = GetComponent<StartState>();
+        end_state = GetComponent<EndState>();
     }
     #endregion
 }

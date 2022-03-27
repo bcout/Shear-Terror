@@ -5,6 +5,12 @@ public static class Constants
     public const float BASE_MOVEMENT_SPEED = 0.3f;
     public const float ROTATION_CHANGE_IN_TURNS = 90f;
 
+    public const float JUMP_HEIGHT = 25f;
+    public const float JUMP_SPEED = 2.5f;
+
+    public const float SPIN_SPEED = 2f;
+    public const float SPIN_ROTATION = 360f;
+
     public const int SHORT_LEVEL_ID = 1;
     public const int LONG_LEVEL_ID = 2;
 
@@ -20,6 +26,11 @@ public static class Constants
 
     public const string LANE_END_NAME = "End";
     public const string LANE_START_NAME = "Start";
+    public const string BLOCK_CENTER_NAME = "Center";
+
+    public const string LEFT_LANE_NAME = "Left";
+    public const string MIDDLE_LANE_NAME = "Middle";
+    public const string RIGHT_LANE_NAME = "Right";
 
     public const string SHORT_LEVEL_DATA_PATH = "/LevelData/short_levels.csv";
     public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
@@ -33,4 +44,10 @@ public static class Constants
     public const string LANDING_ANIM = "Landing";
     public const string TUCK_IN_ANIM = "Tuck In";
     public const string TUCK_OUT_ANIM = "Tuck Out";
+
+    public const string FARM_RUN_ANIM = "Run";
+    public const string FARM_WAIT_ANIM = "Wait";
+    public const string FARM_END_ANIM = "End";
+
+    public const string LANE_CHANGE_TRIGGER_TAG = "Lane Change Trigger";
 }

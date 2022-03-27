@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6832444529549819098}
   - component: {fileID: 7601622677441196927}
   - component: {fileID: 5664003055863941045}
-  - component: {fileID: 6438741625389570867}
   m_Layer: 0
   m_Name: Street_Lamp
   m_TagString: Untagged
@@ -56,7 +55,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,18 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6438741625389570867
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6168357766534588000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 3015142684120576650, guid: 359ee090241a9714a8212555d3db9365, type: 3}

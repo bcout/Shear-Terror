@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Long Straight
-  - Short Straight
-  - Left Turn
-  - Right Turn
-<<<<<<< HEAD
-  - OptionsCanvas
-  - TitleCanvas
-=======
-  - Environment
->>>>>>> 1e888eee1d758358fea704adc8be8b0185d58399
+  tags: []
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class RunningState : MonoBehaviour, SheepState
 {
+    [SerializeField]
+    private GameObject lane_change_trigger_prefab;
+
     private SheepController sheep_controller;
     private MovementController movement_controller;
 
@@ -50,16 +53,18 @@ public class RunningState : MonoBehaviour, SheepState
     {
         switch (PlayerData.curr_lane)
         {
-            case PlayerData.Lanes.LEFT:
+            case PlayerData.Lane.LEFT:
                 break;
-            case PlayerData.Lanes.MIDDLE:
-                PlayerData.curr_lane = PlayerData.Lanes.LEFT;
+            case PlayerData.Lane.MIDDLE:
+                PlayerData.curr_lane = PlayerData.Lane.LEFT;
                 break;
-            case PlayerData.Lanes.RIGHT:
-                PlayerData.curr_lane = PlayerData.Lanes.MIDDLE;
+            case PlayerData.Lane.RIGHT:
+                PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
                 break;
         }
 
+        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
+        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(false);
         sheep_controller.UpdateLane();
     }
 
@@ -67,15 +72,18 @@ public class RunningState : MonoBehaviour, SheepState
     {
         switch (PlayerData.curr_lane)
         {
-            case PlayerData.Lanes.LEFT:
-                PlayerData.curr_lane = PlayerData.Lanes.MIDDLE;
+            case PlayerData.Lane.LEFT:
+                PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
                 break;
-            case PlayerData.Lanes.MIDDLE:
-                PlayerData.curr_lane = PlayerData.Lanes.RIGHT;
+            case PlayerData.Lane.MIDDLE:
+                PlayerData.curr_lane = PlayerData.Lane.RIGHT;
                 break;
-            case PlayerData.Lanes.RIGHT:
+            case PlayerData.Lane.RIGHT:
                 break;
         }
+
+        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
+        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(true);
 
         sheep_controller.UpdateLane();
     }

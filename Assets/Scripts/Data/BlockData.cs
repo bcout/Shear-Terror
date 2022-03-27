@@ -5,18 +5,37 @@ public class BlockData : MonoBehaviour
     [SerializeField]
     private Transform left_lane, middle_lane, right_lane;
 
-    public Transform GetLane(PlayerData.Lanes lane)
+    public Transform GetLane(PlayerData.Lane lane)
     {
         Transform to_return = null;
         switch (lane)
         {
-            case PlayerData.Lanes.LEFT:
+            case PlayerData.Lane.LEFT:
                 to_return = left_lane;
                 break;
-            case PlayerData.Lanes.MIDDLE:
+            case PlayerData.Lane.MIDDLE:
                 to_return = middle_lane;
                 break;
-            case PlayerData.Lanes.RIGHT:
+            case PlayerData.Lane.RIGHT:
+                to_return = right_lane;
+                break;
+        }
+
+        return to_return;
+    }
+
+    public Transform GetLane(FarmerData.Lane lane)
+    {
+        Transform to_return = null;
+        switch (lane)
+        {
+            case FarmerData.Lane.LEFT:
+                to_return = left_lane;
+                break;
+            case FarmerData.Lane.MIDDLE:
+                to_return = middle_lane;
+                break;
+            case FarmerData.Lane.RIGHT:
                 to_return = right_lane;
                 break;
         }
