@@ -12,6 +12,7 @@ TagManager:
   - Right Turn
   - Lane Change Trigger
   - OptionsCanvasTricks
+  - KeyboardCanvas
   layers:
   - Default
   - TransparentFX

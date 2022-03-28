@@ -14,7 +14,7 @@ public static class GameData
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
-        jump_key = KeyCode.Alpha1;
+        jump_key = KeyCode.UpArrow;
         move_left_key = KeyCode.LeftArrow;
         move_right_key = KeyCode.RightArrow;
         look_back_key = KeyCode.DownArrow;

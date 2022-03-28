@@ -9,24 +9,17 @@ using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
-    // public Button startButton;
-    // public Button optionsButton;
-    // public Button quitButton;
-
-    private int screenNum;  // 0 = title screen, 1 = first menu, 2 = tricks menu
     private GameObject optionsCanvas;
     private GameObject optionsCanvasTricks;
+    private GameObject keyboardCanvas;
     private GameObject titleCanvas;
     
     public Text miscText;
     public Text miscTextTricks;
 
     private bool waiting;
-    // private bool needToUpdateKB;
     private int bind;
-    // private int kbToUpdate;
-    
-    // private ColorBlock buttonDefaultColour;
+    private int screenNum;  // 0 = title screen, 1 = first menu, 2 = tricks menu
 
     public Color jmpColor;
     public Color rightColor;
@@ -39,6 +32,7 @@ public class TitleController : MonoBehaviour
     public Color spinLeftColor;
     public Color spinRightColor;
 
+    // Filled in by unity.
     public Button[] kbButtons =
     {
         
@@ -115,23 +109,25 @@ public class TitleController : MonoBehaviour
     {
         optionsCanvas = GameObject.FindGameObjectWithTag("OptionsCanvas");
         optionsCanvasTricks = GameObject.FindGameObjectWithTag("OptionsCanvasTricks");
+        keyboardCanvas = GameObject.FindGameObjectWithTag("KeyboardCanvas");
         titleCanvas = GameObject.FindGameObjectWithTag("TitleCanvas");
         titleCanvas.SetActive(true);
+        keyboardCanvas.SetActive(false);
         optionsCanvas.SetActive(false);
         optionsCanvasTricks.SetActive(false);
+        
         screenNum = 0;
-        miscText.text = "Select the keybind to change";
+        miscText.text = "Select the key bind to change";
+        miscTextTricks.text = "Select the key bind to change";
         waiting = false;
         bind = -1;
-        // kbToUpdate = -1;
 
-        for (int i = 0; i < 62; i++)
+        for (int i = 0; i < 75; i++)
         {
-            int fuck = i;
-            kbButtons[i].onClick.AddListener(() => ButtonClicked(fuck));
+            int tmp = i;    // I have no idea why, but this is needed and it breaks without it.
+            kbButtons[i].onClick.AddListener(() => ButtonClicked(tmp));
         }
         
-        // buttonDefaultColour = kbButtons[0].GetComponent<Button>().colors;
         ColorUtility.TryParseHtmlString("#92FFA7", out jmpColor);
         ColorUtility.TryParseHtmlString("#FF9697", out rightColor);
         ColorUtility.TryParseHtmlString("#86A0FF", out leftColor);
@@ -159,6 +155,7 @@ public class TitleController : MonoBehaviour
     {
         screenNum = 1;
         titleCanvas.SetActive(false);
+        keyboardCanvas.SetActive(true);
         optionsCanvas.SetActive(true);
         optionsCanvasTricks.SetActive(false);
         refresh_KB_Highlights();
@@ -168,101 +165,13 @@ public class TitleController : MonoBehaviour
     {
         screenNum = 2;
         titleCanvas.SetActive(false);
+        keyboardCanvas.SetActive(true);
         optionsCanvas.SetActive(false);
         optionsCanvasTricks.SetActive(true);
         refresh_KB_Highlights();
     }
 
-    public void changeJmp()
-    {
-        if (!waiting)
-        {
-            bind = 0;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeLeft()
-    {
-        if (!waiting)
-        {
-            bind = 1;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeRight()
-    {
-        if (!waiting)
-        {
-            bind = 2;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeLookBack()
-    {
-        if (!waiting)
-        {
-            bind = 3;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeFlipF()
-    {
-        if (!waiting)
-        {
-            bind = 4;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeFlipB()
-    {
-        if (!waiting)
-        {
-            bind = 5;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeRollL()
-    {
-        if (!waiting)
-        {
-            bind = 6;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeRollR()
-    {
-        if (!waiting)
-        {
-            bind = 7;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeSpinL()
-    {
-        if (!waiting)
-        {
-            bind = 8;
-            changeKeyBind();
-        }
-    }
-    
-    public void changeSpinR()
-    {
-        if (!waiting)
-        {
-            bind = 9;
-            changeKeyBind();
-        }
-    }
-
+    // Go back to the previous screen.
     public void goBack()
     {
         if (screenNum == 2)
@@ -272,6 +181,7 @@ public class TitleController : MonoBehaviour
         }
         else
         {
+            keyboardCanvas.SetActive(false);
             optionsCanvas.SetActive(false);
             optionsCanvasTricks.SetActive(false);
             titleCanvas.SetActive(true);
@@ -279,6 +189,7 @@ public class TitleController : MonoBehaviour
         }
     }
     
+    // For inoutting inputs using the keyboard
     void OnGUI()
     {
         if (screenNum == 1)
@@ -293,19 +204,20 @@ public class TitleController : MonoBehaviour
                 }
                 else
                 {
-                    if (bind == 0)
-                    {
-                        GameData.jump_key = e.keyCode;
-                    }
-                    else if (bind == 1)
+                    Debug.Log("fuck me: " + bind);
+                    if (bind == 7)
                     {
                         GameData.move_left_key = e.keyCode;
                     }
-                    else if (bind == 2)
+                    else if (bind == 8)
                     {
                         GameData.move_right_key = e.keyCode;
                     }
-                    else if (bind == 3)
+                    else if (bind == 9)
+                    {
+                        GameData.jump_key = e.keyCode;
+                    }
+                    else if (bind == 10)
                     {
                         GameData.look_back_key = e.keyCode;
                     }
@@ -320,55 +232,54 @@ public class TitleController : MonoBehaviour
                 }
             }
         }
-        // else if (screenNum == 2)
-        // {
-        //     Event e = Event.current;
-        //     if (waiting && e.isKey && e.type == EventType.KeyUp)
-        //     {
-        //         if (e.keyCode == GameData.flip_front_key || e.keyCode == GameData.flip_back_key || e.keyCode == GameData.roll_left_key || e.keyCode == GameData.roll_right_key || e.keyCode == GameData.spin_left_key || e.keyCode == GameData.spin_right_key)
-        //         {
-        //             miscTextTricks.text = "Key already in use. Try again.";
-        //         }
-        //         else
-        //         {
-        //             if (bind == 4)
-        //             {
-        //                 GameData.flip_front_key = e.keyCode;
-        //             }
-        //             else if (bind == 5)
-        //             {
-        //                 GameData.flip_back_key = e.keyCode;
-        //             }
-        //             else if (bind == 6)
-        //             {
-        //                 GameData.roll_left_key = e.keyCode;
-        //             }
-        //             else if (bind == 7)
-        //             {
-        //                 GameData.roll_right_key = e.keyCode;
-        //             }
-        //             else if (bind == 8)
-        //             {
-        //                 GameData.spin_left_key = e.keyCode;
-        //             }
-        //             else if (bind == 9)
-        //             {
-        //                 GameData.spin_right_key = e.keyCode;
-        //             }
-        //             refresh_KB_Highlights();
-        //             waiting = false;
-        //             bind = -1;
-        //             miscTextTricks.text = "Successfully changed key bind";
-        //
-        //             // Debug.Log("Detected key code: " + e.keyCode);
-        //             // Debug.Log("New keybinds are: ");
-        //             Debug.Log("FF: " + GameData.flip_front_key + "\tFB: " + GameData.flip_back_key + "\tRL" + GameData.roll_left_key + "\tRR" + GameData.roll_right_key + "\tSL" + GameData.spin_left_key + "\tSR" + GameData.spin_right_key);
-        //         }
-        //     }
-        // }
+        else if (screenNum == 2)
+        {
+            Event e = Event.current;
+            if (waiting && e.isKey && e.type == EventType.KeyUp)
+            {
+                if (e.keyCode == GameData.flip_front_key || e.keyCode == GameData.flip_back_key || e.keyCode == GameData.roll_left_key || e.keyCode == GameData.roll_right_key || e.keyCode == GameData.spin_left_key || e.keyCode == GameData.spin_right_key)
+                {
+                    miscTextTricks.text = "Key already in use. Try again.";
+                }
+                else
+                {
+                    if (bind == 1)
+                    {
+                        GameData.flip_back_key = e.keyCode;
+                    }
+                    else if (bind == 2)
+                    {
+                        GameData.roll_right_key = e.keyCode;
+                    }
+                    else if (bind == 3)
+                    {
+                        GameData.spin_right_key = e.keyCode;
+                    }
+                    else if (bind == 4)
+                    {
+                        GameData.flip_front_key = e.keyCode;
+                    }
+                    else if (bind == 5)
+                    {
+                        GameData.roll_left_key = e.keyCode;
+                    }
+                    else if (bind == 6)
+                    {
+                        GameData.spin_left_key = e.keyCode;
+                    }
+                    refresh_KB_Highlights();
+                    waiting = false;
+                    bind = -1;
+                    miscTextTricks.text = "Successfully changed key bind";
+        
+                    // Debug.Log("Detected key code: " + e.keyCode);
+                    // Debug.Log("New keybinds are: ");
+                    // Debug.Log("FF: " + GameData.flip_front_key + "\tFB: " + GameData.flip_back_key + "\tRL" + GameData.roll_left_key + "\tRR" + GameData.roll_right_key + "\tSL" + GameData.spin_left_key + "\tSR" + GameData.spin_right_key);
+                }
+            }
+        }
     }
     
-    // Change a given keybind.
     // Tells the listeners that we are waiting for input and to start listening.
     void changeKeyBind()
     {
@@ -384,172 +295,216 @@ public class TitleController : MonoBehaviour
         waiting = true;
     }
 
-    void ButtonClicked(int buttonNo)
+    // Figure out what this button is.
+    void handleButtons(int buttonNo)
     {
-        //Output this to console when the Button3 is clicked
-        Debug.Log("Button clicked = " + buttonNo);
-        KeyCode k = KeyCodes2[buttonNo];
-        if (waiting)
+        int tmp = buttonNo - 62;
+        Debug.Log("tmp" + tmp);
+        if (tmp == 0 || tmp == 10)
         {
-            waiting = false;
-            if (screenNum == 1)
-            {
-                if (k == GameData.jump_key || k == GameData.move_left_key ||
-                    k == GameData.move_right_key || k == GameData.look_back_key)
-                {
-                    miscText.text = "Key already in use. Try again.";
-                }
-                else
-                {
-                    if (bind == 0)
-                    {
-                        GameData.jump_key = k;
-                    }
-                    else if (bind == 1)
-                    {
-                        GameData.move_left_key = k;
-                    }
-                    else if (bind == 2)
-                    {
-                        GameData.move_right_key = k;
-                    }
-                    else if (bind == 3)
-                    {
-                        GameData.look_back_key = k;
-                    }
-                    // waiting = false;
-                    bind = -1;
-                    miscText.text = "Successfully changed key bind";
-                    // needToUpdateKB = true;
-                    // kbToUpdate = buttonNo;
-                    refresh_KB_Highlights();
-                    // Debug.Log("Detected key code: " + e.keyCode);
-                    // Debug.Log("New keybinds are: ");
-                    // Debug.Log("J: " + GameData.jump_key + "\tL: " + GameData.move_left_key + "\tR" + GameData.move_right_key + "\tS" + GameData.spin_key);
-                }
-            }
-            // else if (screenNum == 2)
-            // {
-            //     if (k == GameData.flip_front_key || k == GameData.flip_back_key || k == GameData.roll_left_key || k == GameData.roll_right_key || k == GameData.spin_left_key || k == GameData.spin_right_key)
-            //         {
-            //             miscTextTricks.text = "Key already in use. Try again.";
-            //         }
-                // else
-                // {
-                //     if (bind == 4)
-                //     {
-                //         GameData.flip_front_key = k;
-                //     }
-                //     else if (bind == 5)
-                //     {
-                //         GameData.flip_back_key = k;
-                //     }
-                //     else if (bind == 6)
-                //     {
-                //         GameData.roll_left_key = k;
-                //     }
-                //     else if (bind == 7)
-                //     {
-                //         GameData.roll_right_key = k;
-                //     }
-                //     else if (bind == 8)
-                //     {
-                //         GameData.spin_left_key = k;
-                //     }
-                //     else if (bind == 9)
-                //     {
-                //         GameData.spin_right_key = k;
-                //     }
-                //
-                //     waiting = false;
-                //     bind = -1;
-                //     miscTextTricks.text = "Successfully changed key bind";
-                //     refresh_KB_Highlights();
-                //     // Debug.Log("Detected key code: " + e.keyCode);
-                //     // Debug.Log("New keybinds are: ");
-                //     Debug.Log("FF: " + GameData.flip_front_key + "\tFB: " + GameData.flip_back_key + "\tRL" +
-                //               GameData.roll_left_key + "\tRR" + GameData.roll_right_key + "\tSL" +
-                //               GameData.spin_left_key + "\tSR" + GameData.spin_right_key);
-                // }
-            // }
+            goBack();
+        }
+
+        else if (1 <= tmp && tmp <= 6)
+        {
+            bind = tmp;
+            changeKeyBind();
+        }
+        else if (tmp == 7)
+        {
+            launchOptionsTricks();
+        }
+        else if(tmp == 8 || tmp == 9)
+        {
+            bind = tmp - 1;
+            changeKeyBind();
+        }
+        else if (tmp == 11 || tmp == 12)
+        {
+            bind = tmp - 2;
+            changeKeyBind();
         }
     }
 
+    // Handle all onscreen button inputs.
+    void ButtonClicked(int buttonNo)
+    {
+        // Debug.Log("Button clicked = " + buttonNo);
+        // If button is not from the onscreen keyboard.
+        if (buttonNo > 61)
+        {
+            if (!waiting)
+            {
+                handleButtons(buttonNo);
+            }
+        }
+        else
+        {
+            if (waiting)
+            {   
+                KeyCode k = KeyCodes2[buttonNo];
+                if (screenNum == 1)
+                {
+                    if (k == GameData.jump_key || k == GameData.move_left_key ||
+                        k == GameData.move_right_key || k == GameData.look_back_key)
+                    {
+                        miscText.text = "Key already in use. Try again.";
+                    }
+                    else
+                    {
+                        if (bind == 7)
+                        {
+                            GameData.move_left_key = k;
+                        }
+                        else if (bind == 8)
+                        {
+                            GameData.move_right_key = k;
+                        }
+                        else if (bind == 9)
+                        {
+                            GameData.jump_key = k;
+                        }
+                        else if (bind == 10)
+                        {
+                            GameData.look_back_key = k;
+                        }
+                        waiting = false;
+                        bind = -1;
+                        miscText.text = "Successfully changed key bind";
+                        refresh_KB_Highlights();
+                        // Debug.Log("Detected key code: " + e.keyCode);
+                        // Debug.Log("New keybinds are: ");
+                        // Debug.Log("J: " + GameData.jump_key + "\tL: " + GameData.move_left_key + "\tR" + GameData.move_right_key + "\tLB" + GameData.look_back_key);
+                    }
+                }
+                else if (screenNum == 2)
+                {
+                    if (k == GameData.flip_front_key || k == GameData.flip_back_key || k == GameData.roll_left_key || k == GameData.roll_right_key || k == GameData.spin_left_key || k == GameData.spin_right_key)
+                    {
+                            miscTextTricks.text = "Key already in use. Try again.";
+                    }
+                    else
+                    {
+                        if (bind == 1)
+                        {
+                            GameData.flip_back_key = k;
+                        }
+                        else if (bind == 2)
+                        {
+                            GameData.roll_right_key = k;
+                        }
+                        else if (bind == 3)
+                        {
+                            GameData.spin_right_key = k;
+                        }
+                        else if (bind == 4)
+                        {
+                            GameData.flip_front_key = k;
+                        }
+                        else if (bind == 5)
+                        {
+                            GameData.roll_left_key = k;
+                        }
+                        else if (bind == 6)
+                        {
+                            GameData.spin_left_key = k;
+                        }
+                    
+                        waiting = false;
+                        bind = -1;
+                        miscTextTricks.text = "Successfully changed key bind";
+                        refresh_KB_Highlights();
+                        // Debug.Log("Detected key code: " + e.keyCode);
+                        // Debug.Log("New keybinds are: ");
+                        // Debug.Log("FF: " + GameData.flip_front_key + "\tFB: " + GameData.flip_back_key + "\tRL" +
+                        //           GameData.roll_left_key + "\tRR" + GameData.roll_right_key + "\tSL" +
+                        //           GameData.spin_left_key + "\tSR" + GameData.spin_right_key);
+                    }
+                }
+            }
+        }
+    }
+
+// Refresh the highlighted keys on the keyboard.
     void refresh_KB_Highlights()
     {
-        // if (screenNum == 2)
-        // {
-        //     for (int i = 0; i < 62; i++)
-        //     {
-        //         KeyCode k = KeyCodes[i];
-        //         // if(k == GameData.jump_key){
-        //         // if (k == GameData.flip_front_key || k == GameData.flip_back_key || k == GameData.roll_left_key ||
-        //         //     k == GameData.roll_right_key || k == GameData.spin_left_key || k == GameData.spin_right_key)
-        //         // {
-        //             ColorBlock colorBlock = kbButtons[i].GetComponent<Button>().colors;
-        //             colorBlock.normalColor = Color.red;
-        //             kbButtons[i].GetComponent<Button>().colors = colorBlock;
-        //         }
-        //
-        //     }
-        // }
-        
-        if (screenNum == 1)
+        if (screenNum == 2)
         {
-            for (int j = 0; j < 62; j++)
+            for (int i = 0; i < 62; i++)
             {
-                int i = j;
-
-                // Debug.Log("Key: " + i + "\t" + KeyCodes2[i]);
                 KeyCode k = KeyCodes2[i];
-                // if (k == GameData.jump_key || k == GameData.move_left_key || k == GameData.move_right_key || k == GameData.look_back_key)
-                // {
-                
-                ColorBlock colorBlock = kbButtons[i].GetComponent<Button>().colors;
-                if (k == GameData.jump_key)
+                if (k == GameData.flip_front_key)
                 {
-                    colorBlock.normalColor = jmpColor;
-                    kbButtons[i].GetComponent<Button>().colors = colorBlock;
+                    changeButtonColor(frontFlipColor, kbButtons[i]);
                 }
-                else if (k == GameData.move_left_key)
+                else if (k == GameData.flip_back_key)
                 {
-                    colorBlock.normalColor = leftColor;
-                    kbButtons[i].GetComponent<Button>().colors = colorBlock;
+                    changeButtonColor(backFlipColor, kbButtons[i]);
                 }
-                else if (k == GameData.move_right_key)
+                else if (k == GameData.roll_left_key)
                 {
-                    colorBlock.normalColor = rightColor;
-                    kbButtons[i].GetComponent<Button>().colors = colorBlock;
+                    changeButtonColor(rollLeftColor, kbButtons[i]);
                 }
-                else if (k == GameData.look_back_key)
+                else if (k == GameData.roll_right_key)
                 {
-                    colorBlock.normalColor = lookBackColor;
-                    kbButtons[i].GetComponent<Button>().colors = colorBlock;
+                    changeButtonColor(rollRightColor, kbButtons[i]);
+                }
+                else if (k == GameData.spin_left_key)
+                {
+                    changeButtonColor(spinLeftColor, kbButtons[i]);
+                }
+                else if (k == GameData.spin_right_key)
+                {
+                    changeButtonColor(spinRightColor, kbButtons[i]);
                 }
                 else
                 {
                     kbButtons[i].GetComponent<Button>().colors = ColorBlock.defaultColorBlock;
                 }
-
             }
         }
+        else if (screenNum == 1)
+        {
+            for (int i = 0; i < 62; i++)
+            {
+                KeyCode k = KeyCodes2[i];
+                if (k == GameData.jump_key)
+                {
+                    changeButtonColor(jmpColor, kbButtons[i]);
+                }
+                else if (k == GameData.move_left_key)
+                {
+                    changeButtonColor(leftColor, kbButtons[i]);
+                }
+                else if (k == GameData.move_right_key)
+                {
+                    changeButtonColor(rightColor, kbButtons[i]);
+                }
+                else if (k == GameData.look_back_key)
+                {
+                    changeButtonColor(lookBackColor, kbButtons[i]);
+                }
+                else
+                {
+                    kbButtons[i].GetComponent<Button>().colors = ColorBlock.defaultColorBlock;
+                }
+            }
+        }
+    }
 
+    // Changing the colour of a button is ridiculously hard.
+    void changeButtonColor(Color col, Button btn)
+    {
+        ColorBlock colorBlock = btn.GetComponent<Button>().colors;
+        colorBlock.normalColor = col;
+        colorBlock.highlightedColor = col;
+        colorBlock.pressedColor = col;
+        colorBlock.selectedColor = col;
+        btn.GetComponent<Button>().colors = colorBlock;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (needToUpdateKB)
-        // {
-        //     int kissmyass = 33;
-        //     // int kissmyass = kbToUpdate;
-        //     Debug.Log("NOW " + waiting + " " + GameData.jump_key + " KTU:" + kbToUpdate + " KMA:" + kissmyass);
-        //     needToUpdateKB = false;
-        //     ColorBlock colorBlock = kbButtons[kissmyass].GetComponent<Button>().colors;
-        //     colorBlock.normalColor = jmpColor;
-        //     kbButtons[kissmyass].GetComponent<Button>().colors = colorBlock;
-        //     kbToUpdate = -1;
-        //     // refresh_KB_Highlights();
-        // }
     }
 }
