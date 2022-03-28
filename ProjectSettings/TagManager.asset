@@ -6,6 +6,12 @@ TagManager:
   tags:
   - OptionsCanvas
   - TitleCanvas
+  - Short Straight
+  - Long Straight
+  - Left Turn
+  - Right Turn
+  - Lane Change Trigger
+  - OptionsCanvasTricks
   layers:
   - Default
   - TransparentFX
