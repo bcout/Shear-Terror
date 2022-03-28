@@ -4,15 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - OptionsCanvas
-  - TitleCanvas
-  - Short Straight
   - Long Straight
+  - Short Straight
   - Left Turn
   - Right Turn
+  - Environment
   - Lane Change Trigger
-  - OptionsCanvasTricks
-  - KeyboardCanvas
   layers:
   - Default
   - TransparentFX
