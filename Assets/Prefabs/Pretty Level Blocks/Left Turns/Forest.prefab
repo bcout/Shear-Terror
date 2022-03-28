@@ -1953,7 +1953,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5884593308932695352, guid: 66f040ad5ab1f2d4991687f52ee57e5e,
+        type: 3}
     - target: {fileID: 7987632181830905047, guid: e2e954da034457445a53a6c6363c25f5,
         type: 3}
       propertyPath: m_SelectedEditorRenderState
