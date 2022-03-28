@@ -11,6 +11,8 @@ public static class GameData
     public static KeyCode roll_right_key { get; set; }
     public static KeyCode spin_left_key { get; set; }
     public static KeyCode spin_right_key { get; set; }
+    public static float sheep_t_run { get; set; }
+    public static float farmer_t_run { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;

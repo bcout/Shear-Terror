@@ -11,7 +11,6 @@ public class FarmerMovementController : MonoBehaviour
     private SheepController sheep_controller;
 
     private float movement_speed;
-    private float t;
 
     private bool move_coroutine_available;
 
@@ -29,7 +28,7 @@ public class FarmerMovementController : MonoBehaviour
     public void StartFollowingLevel()
     {
         move_coroutine_available = true;
-        t = 0f;
+        GameData.farmer_t_run = 0f;
     }
 
     public void UpdateMovementSpeed()
@@ -88,13 +87,13 @@ public class FarmerMovementController : MonoBehaviour
         float start_angle = transform.eulerAngles.y;
         float turn_angle;
 
-        while (t < 1 && (state == (FarmerState)farmer_controller.GetChasingState()))
+        while (GameData.farmer_t_run < 1 && (state == (FarmerState)farmer_controller.GetChasingState()))
         {
-            t += Time.deltaTime * movement_speed;
+            GameData.farmer_t_run += Time.deltaTime * movement_speed;
 
             curve_data = farmer_controller.GetCurrentLane().GetComponent<CurveData>();
-            next_point = curve_data.GetNextPoint(t);
-            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t));
+            next_point = curve_data.GetNextPoint(GameData.farmer_t_run);
+            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, GameData.farmer_t_run));
 
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, turn_angle, transform.eulerAngles.z);
             transform.position = new Vector3(next_point.x, 0f, next_point.z);
@@ -102,7 +101,7 @@ public class FarmerMovementController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        t = 0f;
+        GameData.farmer_t_run = 0f;
         GoToNextBlock();
         move_coroutine_available = true;
     }
@@ -115,19 +114,19 @@ public class FarmerMovementController : MonoBehaviour
         Vector3 next_point;
         FarmerState state = farmer_controller.GetState();
 
-        while (t < 1 && (state == (FarmerState)farmer_controller.GetChasingState()))
+        while (GameData.farmer_t_run < 1 && (state == (FarmerState)farmer_controller.GetChasingState()))
         {
-            t += Time.deltaTime * movement_speed;
+            GameData.farmer_t_run += Time.deltaTime * movement_speed;
             start_point = farmer_controller.GetCurrentLane().transform.Find(Constants.LANE_START_NAME).position;
             end_point = farmer_controller.GetCurrentLane().transform.Find(Constants.LANE_END_NAME).position;
-            next_point = Vector3.Lerp(start_point, end_point, t);
+            next_point = Vector3.Lerp(start_point, end_point, GameData.farmer_t_run);
 
             transform.position = new Vector3(next_point.x, 0f, next_point.z);
 
             yield return new WaitForEndOfFrame();
         }
 
-        t = 0f;
+        GameData.farmer_t_run = 0f;
         GoToNextBlock();
         move_coroutine_available = true;
     }
