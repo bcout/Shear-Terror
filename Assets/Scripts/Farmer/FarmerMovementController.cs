@@ -11,12 +11,14 @@ public class FarmerMovementController : MonoBehaviour
     private SheepController sheep_controller;
 
     private float movement_speed;
+    private float turn_start_angle;
 
     private bool move_coroutine_available;
 
     private void Start()
     {
         LoadComponents();
+        turn_start_angle = 0f;
     }
 
     private void LoadComponents()
@@ -76,6 +78,11 @@ public class FarmerMovementController : MonoBehaviour
         CurveData curve_data;
         Vector3 next_point;
 
+        if (GameData.farmer_t_run == 0)
+        {
+            turn_start_angle = transform.eulerAngles.y;
+        }
+
         float change = Constants.ROTATION_CHANGE_IN_TURNS;
 
         if (farmer_controller.GetCurrentBlock().CompareTag(Constants.LEFT_TURN_TAG))
@@ -83,8 +90,7 @@ public class FarmerMovementController : MonoBehaviour
             change = -change;
         }
 
-        float end_angle = transform.eulerAngles.y + change;
-        float start_angle = transform.eulerAngles.y;
+        float end_angle = turn_start_angle + change;
         float turn_angle;
 
         while (GameData.farmer_t_run < 1 && (state == (FarmerState)farmer_controller.GetChasingState()))
@@ -93,7 +99,7 @@ public class FarmerMovementController : MonoBehaviour
 
             curve_data = farmer_controller.GetCurrentLane().GetComponent<CurveData>();
             next_point = curve_data.GetNextPoint(GameData.farmer_t_run);
-            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, GameData.farmer_t_run));
+            turn_angle = Mathf.Lerp(turn_start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, GameData.farmer_t_run));
 
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, turn_angle, transform.eulerAngles.z);
             transform.position = new Vector3(next_point.x, 0f, next_point.z);
@@ -149,5 +155,10 @@ public class FarmerMovementController : MonoBehaviour
             farmer_controller.SetState(farmer_controller.GetEndState());
             move_coroutine_available = false;
         }
+    }
+
+    public void SetMovementCoroutineAvailable(bool value)
+    {
+        move_coroutine_available = value;
     }
 }

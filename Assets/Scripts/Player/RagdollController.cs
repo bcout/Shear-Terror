@@ -10,6 +10,7 @@ public class RagdollController : MonoBehaviour
     private SheepController sheep_controller;
     private MovementController sheep_movement_controller;
     private FarmerController farmer_controller;
+    private FarmerMovementController farmer_movement_controller;
 
     private bool initialized = false;
 
@@ -39,16 +40,20 @@ public class RagdollController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = sheep.GetComponent<SheepController>();
+        farmer_controller = farmer.GetComponent<FarmerController>();
         sheep_movement_controller = sheep.GetComponent<MovementController>();
+        farmer_movement_controller = farmer.GetComponent<FarmerMovementController>();
     }
 
     private void PauseRunners()
     {
         sheep_movement_controller.StopAllCoroutines();
+        farmer_movement_controller.StopAllCoroutines();
     }
 
     private void ResumeRunners()
     {
         sheep_controller.Respawn();
+        farmer_controller.Respawn();
     }
 }
