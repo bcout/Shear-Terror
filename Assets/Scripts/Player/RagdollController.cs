@@ -21,6 +21,7 @@ public class RagdollController : MonoBehaviour
         sheep = sheep_reference;
         farmer = farmer_reference;
         LoadComponents();
+        AddForce();
 
         initialized = true;
 
@@ -48,6 +49,16 @@ public class RagdollController : MonoBehaviour
 
         sheep_collider = sheep.GetComponent<CapsuleCollider>();
         sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
+    }
+
+    private void AddForce()
+    {
+        transform.Find("Pivot").localRotation = sheep.transform.Find("Pivot").localRotation;
+        Rigidbody[] ragdoll_rb = transform.GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody rb in ragdoll_rb) {
+            rb.AddForce(sheep.transform.forward * Constants.RAGDOLL_FORCE);
+        }
     }
 
     private void PauseRunners()

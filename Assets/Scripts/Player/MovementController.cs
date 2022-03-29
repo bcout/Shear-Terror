@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
-        body = transform.Find("Pivot");
+        body = transform.Find(Constants.PIVOT);
     }
 
     public void StartFollowingLevel()
@@ -150,6 +150,11 @@ public class MovementController : MonoBehaviour
                     break;
             }
 
+            if (PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
+            {
+                sheep_controller.SetState(sheep_controller.GetRagdollState());
+            }
+
             yield return new WaitForEndOfFrame();
         }
         t_trick = 0f;
@@ -161,6 +166,7 @@ public class MovementController : MonoBehaviour
 
     private IEnumerator Jump()
     {
+        PlayerData.on_ground = false;
         jump_coroutine_available = false;
 
         while (t_jump < 1)
@@ -181,6 +187,7 @@ public class MovementController : MonoBehaviour
 
         sheep_controller.SetState(sheep_controller.GetRunningState());
 
+        PlayerData.on_ground = true;
         jump_coroutine_available = true;
     }
 

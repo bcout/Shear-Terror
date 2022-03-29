@@ -2,6 +2,9 @@
 
 public static class Constants
 {
+    public const float RAGDOLL_FORCE = 1000f;
+    public const float MIN_ROTATION_TO_LAND = 0.75f;
+
     public const float BASE_MOVEMENT_SPEED = 0.3f;
     public const float ROTATION_CHANGE_IN_TURNS = 90f;
 
@@ -50,4 +53,6 @@ public static class Constants
     public const string FARM_END_ANIM = "End";
 
     public const string LANE_CHANGE_TRIGGER_TAG = "Lane Change Trigger";
+
+    public const string PIVOT = "Pivot";
 }
