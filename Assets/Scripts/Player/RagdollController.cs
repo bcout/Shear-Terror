@@ -9,6 +9,8 @@ public class RagdollController : MonoBehaviour
 
     private SheepController sheep_controller;
     private MovementController sheep_movement_controller;
+    private CapsuleCollider sheep_collider;
+    private SkinnedMeshRenderer sheep_renderer;
     private FarmerController farmer_controller;
     private FarmerMovementController farmer_movement_controller;
 
@@ -43,16 +45,23 @@ public class RagdollController : MonoBehaviour
         farmer_controller = farmer.GetComponent<FarmerController>();
         sheep_movement_controller = sheep.GetComponent<MovementController>();
         farmer_movement_controller = farmer.GetComponent<FarmerMovementController>();
+
+        sheep_collider = sheep.GetComponent<CapsuleCollider>();
+        sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void PauseRunners()
     {
+        sheep_collider.enabled = false;
+        sheep_renderer.enabled = false;
         sheep_movement_controller.StopAllCoroutines();
         farmer_movement_controller.StopAllCoroutines();
     }
 
     private void ResumeRunners()
     {
+        sheep_collider.enabled = true;
+        sheep_renderer.enabled = true;
         sheep_controller.Respawn();
         farmer_controller.Respawn();
     }

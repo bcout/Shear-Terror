@@ -204,7 +204,8 @@ public class SheepController : MonoBehaviour
 
     public void Respawn()
     {
+        vertical_position = 0f;
         SetState(running_state);
-        movement_controller.SetMovementCoroutineAvailable(true);
+        movement_controller.SetCoroutineAvailability(true);
     }
 }

@@ -241,8 +241,13 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void SetMovementCoroutineAvailable(bool value)
+    public void SetCoroutineAvailability(bool value)
     {
         move_coroutine_available = value;
+        trick_coroutine_available = value;
+        jump_coroutine_available = value;
+
+        t_trick = 0f;
+        t_jump = 0f;
     }
 }
