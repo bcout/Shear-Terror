@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,13 +33,13 @@ public class JumpingState : MonoBehaviour, SheepState
     {
         if (Input.GetKeyDown(GameData.jump_key))
         {
-            Spin();
+            SetTrick();
         }
     }
 
-    private void Spin()
+    private void SetTrick()
     {
-        PlayerData.curr_trick = PlayerData.Trick.SPIN;
+        PlayerData.curr_trick = (PlayerData.Trick)UnityEngine.Random.Range((int)PlayerData.Trick.LEFT_SPIN, (int)PlayerData.Trick.NONE);
     }
 
     private void LoadComponents()
