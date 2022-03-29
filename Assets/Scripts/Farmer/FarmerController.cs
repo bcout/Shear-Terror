@@ -141,4 +141,10 @@ public class FarmerController : MonoBehaviour
         end_state = GetComponent<FarmerEndState>();
     }
     #endregion
+
+    public void Respawn()
+    {
+        SetState(chasing_state);
+        farmer_movement_controller.SetMovementCoroutineAvailable(true);
+    }
 }

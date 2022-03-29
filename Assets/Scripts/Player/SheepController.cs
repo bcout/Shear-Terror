@@ -36,6 +36,14 @@ public class SheepController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (state != (SheepState)ragdoll_state)
+            {
+                SetState(ragdoll_state);
+            }
+        }
     }
 
     private void LoadComponents()
@@ -193,4 +201,11 @@ public class SheepController : MonoBehaviour
         end_state = GetComponent<EndState>();
     }
     #endregion
+
+    public void Respawn()
+    {
+        vertical_position = 0f;
+        SetState(running_state);
+        movement_controller.SetCoroutineAvailability(true);
+    }
 }

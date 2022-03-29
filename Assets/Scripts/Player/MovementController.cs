@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
     private Transform body;
 
     private float movement_speed;
-    private float t_run;
+    private float turn_start_angle;
     private float t_jump;
     private float t_trick;
 
@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour
     private void Start()
     {
         LoadComponents();
+        turn_start_angle = 0f;
     }
 
     private void LoadComponents()
@@ -30,7 +31,7 @@ public class MovementController : MonoBehaviour
     public void StartFollowingLevel()
     {
         t_jump = 0f;
-        t_run = 0f;
+        GameData.sheep_t_run = 0f;
         t_trick = 0f;
         move_coroutine_available = true;
         jump_coroutine_available = true;
@@ -159,6 +160,11 @@ public class MovementController : MonoBehaviour
         CurveData curve_data;
         Vector3 next_point;
 
+        if (GameData.sheep_t_run == 0)
+        {
+            turn_start_angle = transform.eulerAngles.y;
+        }
+
         float change = Constants.ROTATION_CHANGE_IN_TURNS;
 
         if (sheep_controller.GetCurrentBlock().CompareTag(Constants.LEFT_TURN_TAG))
@@ -166,18 +172,17 @@ public class MovementController : MonoBehaviour
             change = -change;
         }
 
-        float end_angle = transform.eulerAngles.y + change;
-        float start_angle = transform.eulerAngles.y;
+        float end_angle = turn_start_angle + change;
         float turn_angle;
 
-        while (t_run < 1
+        while (GameData.sheep_t_run < 1
                && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
-            t_run += Time.deltaTime * movement_speed;
+            GameData.sheep_t_run += Time.deltaTime * movement_speed;
 
             curve_data = sheep_controller.GetCurrentLane().GetComponent<CurveData>();
-            next_point = curve_data.GetNextPoint(t_run);
-            turn_angle = Mathf.Lerp(start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, t_run));
+            next_point = curve_data.GetNextPoint(GameData.sheep_t_run);
+            turn_angle = Mathf.Lerp(turn_start_angle, end_angle, Mathf.SmoothStep(0.0f, 1.0f, GameData.sheep_t_run));
 
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, turn_angle, transform.eulerAngles.z);
             transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
@@ -185,7 +190,7 @@ public class MovementController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        t_run = 0f;
+        GameData.sheep_t_run = 0f;
         GoToNextBlock();
         move_coroutine_available = true;
     }
@@ -198,20 +203,20 @@ public class MovementController : MonoBehaviour
         Vector3 next_point;
         SheepState state = sheep_controller.GetState();
 
-        while (t_run < 1
+        while (GameData.sheep_t_run < 1
                && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
         {
-            t_run += Time.deltaTime * movement_speed;
+            GameData.sheep_t_run += Time.deltaTime * movement_speed;
             start_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_START_NAME).position;
             end_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_END_NAME).position;
-            next_point = Vector3.Lerp(start_point, end_point, t_run);
+            next_point = Vector3.Lerp(start_point, end_point, GameData.sheep_t_run);
 
             transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
 
             yield return new WaitForEndOfFrame();
         }
 
-        t_run = 0f;
+        GameData.sheep_t_run = 0f;
         GoToNextBlock();
         move_coroutine_available = true;
     }
@@ -234,5 +239,15 @@ public class MovementController : MonoBehaviour
             sheep_controller.SetState(sheep_controller.GetEndState());
             move_coroutine_available = false;
         }
+    }
+
+    public void SetCoroutineAvailability(bool value)
+    {
+        move_coroutine_available = value;
+        trick_coroutine_available = value;
+        jump_coroutine_available = value;
+
+        t_trick = 0f;
+        t_jump = 0f;
     }
 }
