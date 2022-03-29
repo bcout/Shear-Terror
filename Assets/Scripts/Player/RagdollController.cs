@@ -49,6 +49,6 @@ public class RagdollController : MonoBehaviour
 
     private void ResumeRunners()
     {
-        //sheep_controller.Respawn();
+        sheep_controller.Respawn();
     }
 }
