@@ -12,7 +12,6 @@ public class RagdollController : MonoBehaviour
     private CapsuleCollider sheep_collider;
     private SkinnedMeshRenderer sheep_renderer;
     private Camera sheep_camera;
-    private Quaternion default_camera_rotation;
     private Transform sheep_pivot;
     private Transform ragdoll_pivot;
     private Transform ragdoll_position;
@@ -28,8 +27,6 @@ public class RagdollController : MonoBehaviour
         farmer = farmer_reference;
         LoadComponents();
         FindTransforms();
-
-        default_camera_rotation = sheep_camera.transform.localRotation;
         AddForce();
 
         initialized = true;
@@ -48,7 +45,9 @@ public class RagdollController : MonoBehaviour
         }
 
         //this needs to be done smoothly
-        sheep_camera.transform.LookAt(ragdoll_position);
+        Vector3 lookDirection = ragdoll_position.position - sheep_camera.transform.position;
+        lookDirection.Normalize();
+        sheep_camera.transform.rotation = Quaternion.Slerp(sheep_camera.transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime);
     }
 
     private void LoadComponents()
@@ -92,7 +91,7 @@ public class RagdollController : MonoBehaviour
     {
         sheep_collider.enabled = true;
         sheep_renderer.enabled = true;
-        sheep_camera.transform.localRotation = default_camera_rotation;
+        sheep_camera.transform.localRotation = Quaternion.Euler(Constants.CAMERA_X_ROTATION, 0f, 0f);
         sheep_controller.Respawn();
         farmer_controller.Respawn();
     }

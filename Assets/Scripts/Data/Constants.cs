@@ -2,6 +2,8 @@
 
 public static class Constants
 {
+    public const float CAMERA_X_ROTATION = 18.23f;
+
     public const float RAGDOLL_FORCE = 1000f;
     public const float MIN_ROTATION_TO_LAND = 0.75f;
 
