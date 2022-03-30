@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
     private void LoadComponents()
     {
         sheep_controller = GetComponent<SheepController>();
-        body = transform.Find("Armature");
+        body = transform.Find(Constants.PIVOT);
     }
 
     public void StartFollowingLevel()
@@ -88,28 +88,77 @@ public class MovementController : MonoBehaviour
     {
         if(trick_coroutine_available && PlayerData.curr_trick != PlayerData.Trick.NONE)
         {
-            StartCoroutine(Trick());
+            StartCoroutine(Trick(PlayerData.curr_trick));
         }
     }
 
-    private IEnumerator Trick()
+    private IEnumerator Trick(PlayerData.Trick trick)
     {
         trick_coroutine_available = false;
         Quaternion inital = body.localRotation;
 
-        float start_angle = body.localRotation.x;
-        float end_angle = body.localRotation.x + Constants.SPIN_ROTATION;
+        float start_angle = 0f;
+        float end_angle = 0f;
         float turn_angle;
+
+        switch(trick)
+        {
+            case PlayerData.Trick.LEFT_SPIN:
+                start_angle = body.localRotation.y;
+                end_angle = body.localRotation.y - Constants.SPIN_ROTATION;
+                break;
+            case PlayerData.Trick.RIGHT_SPIN:
+                start_angle = body.localRotation.y;
+                end_angle = body.localRotation.y + Constants.SPIN_ROTATION;
+                break;
+            case PlayerData.Trick.FRONT_FLIP:
+                start_angle = body.localRotation.x;
+                end_angle = body.localRotation.x + Constants.SPIN_ROTATION;
+                break;
+            case PlayerData.Trick.BACK_FLIP:
+                start_angle = body.localRotation.x;
+                end_angle = body.localRotation.x - Constants.SPIN_ROTATION;
+                break;
+            case PlayerData.Trick.BARREL_ROLL_LEFT:
+                start_angle = body.localRotation.z;
+                end_angle = body.localRotation.z - Constants.SPIN_ROTATION;
+                break;
+            case PlayerData.Trick.BARREL_ROLL_RIGHT:
+                start_angle = body.localRotation.z;
+                end_angle = body.localRotation.z + Constants.SPIN_ROTATION;
+                break;
+        }
 
         while (t_trick < 1)
         {
             t_trick += Time.deltaTime * Constants.SPIN_SPEED;
             turn_angle = Mathf.Lerp(start_angle, end_angle, EaseOut(t_trick));
-            body.localRotation = inital * Quaternion.Euler(turn_angle, body.rotation.y, body.rotation.z);
+
+            switch (trick)
+            {
+                case PlayerData.Trick.LEFT_SPIN:
+                case PlayerData.Trick.RIGHT_SPIN:
+                    body.localRotation = inital * Quaternion.Euler(body.rotation.x, turn_angle, body.rotation.z);
+                    break;
+                case PlayerData.Trick.FRONT_FLIP:
+                case PlayerData.Trick.BACK_FLIP:
+                    body.localRotation = inital * Quaternion.Euler(turn_angle, body.rotation.y, body.rotation.z);
+                    break;
+                case PlayerData.Trick.BARREL_ROLL_LEFT:
+                case PlayerData.Trick.BARREL_ROLL_RIGHT:
+                    body.localRotation = inital * Quaternion.Euler(body.rotation.x, body.rotation.y, turn_angle);
+                    break;
+            }
+
+            if (PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
+            {
+                sheep_controller.SetState(sheep_controller.GetRagdollState());
+            }
 
             yield return new WaitForEndOfFrame();
         }
         t_trick = 0f;
+        body.localRotation = inital;
 
         PlayerData.curr_trick = PlayerData.Trick.NONE;
         trick_coroutine_available = true;
@@ -117,6 +166,7 @@ public class MovementController : MonoBehaviour
 
     private IEnumerator Jump()
     {
+        PlayerData.on_ground = false;
         jump_coroutine_available = false;
 
         while (t_jump < 1)
@@ -137,6 +187,7 @@ public class MovementController : MonoBehaviour
 
         sheep_controller.SetState(sheep_controller.GetRunningState());
 
+        PlayerData.on_ground = true;
         jump_coroutine_available = true;
     }
 
