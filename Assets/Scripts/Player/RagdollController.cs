@@ -11,6 +11,12 @@ public class RagdollController : MonoBehaviour
     private MovementController sheep_movement_controller;
     private CapsuleCollider sheep_collider;
     private SkinnedMeshRenderer sheep_renderer;
+    private Camera sheep_camera;
+    private Quaternion default_camera_rotation;
+    private Transform sheep_pivot;
+    private Transform ragdoll_pivot;
+    private Transform ragdoll_position;
+
     private FarmerController farmer_controller;
     private FarmerMovementController farmer_movement_controller;
 
@@ -21,10 +27,12 @@ public class RagdollController : MonoBehaviour
         sheep = sheep_reference;
         farmer = farmer_reference;
         LoadComponents();
+        FindTransforms();
+
+        default_camera_rotation = sheep_camera.transform.localRotation;
         AddForce();
 
         initialized = true;
-
         PauseRunners();
     }
 
@@ -38,6 +46,9 @@ public class RagdollController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        //this needs to be done smoothly
+        sheep_camera.transform.LookAt(ragdoll_position);
     }
 
     private void LoadComponents()
@@ -49,11 +60,19 @@ public class RagdollController : MonoBehaviour
 
         sheep_collider = sheep.GetComponent<CapsuleCollider>();
         sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
+        sheep_camera = sheep.GetComponentInChildren<Camera>();
+    }
+
+    private void FindTransforms()
+    {
+        sheep_pivot = sheep.transform.Find(Constants.PIVOT);
+        ragdoll_pivot = transform.Find(Constants.PIVOT);
+        ragdoll_position = transform.Find(Constants.ARMATURE);
     }
 
     private void AddForce()
     {
-        transform.Find("Pivot").localRotation = sheep.transform.Find("Pivot").localRotation;
+        ragdoll_pivot.localRotation = sheep_pivot.localRotation;
         Rigidbody[] ragdoll_rb = transform.GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody rb in ragdoll_rb) {
@@ -73,6 +92,7 @@ public class RagdollController : MonoBehaviour
     {
         sheep_collider.enabled = true;
         sheep_renderer.enabled = true;
+        sheep_camera.transform.localRotation = default_camera_rotation;
         sheep_controller.Respawn();
         farmer_controller.Respawn();
     }

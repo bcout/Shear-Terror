@@ -55,4 +55,5 @@ public static class Constants
     public const string LANE_CHANGE_TRIGGER_TAG = "Lane Change Trigger";
 
     public const string PIVOT = "Pivot";
+    public const string ARMATURE = "Pivot/Model/Armature";
 }
