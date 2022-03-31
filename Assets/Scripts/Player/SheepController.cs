@@ -205,6 +205,7 @@ public class SheepController : MonoBehaviour
     public void Respawn()
     {
         vertical_position = 0f;
+        transform.Find(Constants.PIVOT).transform.localRotation = Quaternion.identity;
         SetState(running_state);
         movement_controller.SetCoroutineAvailability(true);
     }
