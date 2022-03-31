@@ -41,7 +41,7 @@ public class IntroMovieController : MonoBehaviour
 
             if (current_scene >= NUM_SCENES)
             {
-                async_operation.allowSceneActivation = true;
+                async_operation.allowSceneActivation = true; // This is what actually switches to the next scene 
             }
             else
             {
