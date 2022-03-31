@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Demos/MovementDemo.unity
-    guid: 27bad228e763c4343b9b01dc2606997b
+    path: Assets/Scenes/Intro Movie.unity
+    guid: 2dd2c8fe0943692489aacc0f9f0d9d48
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: a731095a78ed5ed17a680879e19a9826
   m_configObjects: {}
