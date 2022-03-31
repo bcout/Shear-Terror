@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5028278254797068253}
   m_Layer: 0
-  m_Name: Farmer_Closed_Scissors
+  m_Name: Farmer_Leaving_House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
