@@ -50,4 +50,6 @@ public static class Constants
     public const string FARM_END_ANIM = "End";
 
     public const string LANE_CHANGE_TRIGGER_TAG = "Lane Change Trigger";
+
+    public const string TITLE_SCENE_NAME = "Title";
 }

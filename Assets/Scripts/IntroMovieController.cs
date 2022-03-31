@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroMovieController : MonoBehaviour
 {
@@ -34,7 +35,16 @@ public class IntroMovieController : MonoBehaviour
         {
             UnloadScene(current_scene);
             current_scene++;
-            LoadScene(current_scene);
+
+            if (current_scene >= NUM_SCENES)
+            {
+                SceneManager.LoadScene(Constants.TITLE_SCENE_NAME);
+            }
+            else
+            {
+                LoadScene(current_scene);
+            }
+            
         }
     }
 
