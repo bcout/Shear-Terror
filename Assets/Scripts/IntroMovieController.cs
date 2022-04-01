@@ -91,6 +91,8 @@ public class IntroMovieController : MonoBehaviour
 
     private IEnumerator StartLoadingMainMenu()
     {
+        yield return null;
+
         async_operation = SceneManager.LoadSceneAsync(Constants.MAIN_MENU_SCENE_NAME);
         async_operation.allowSceneActivation = false;
 
