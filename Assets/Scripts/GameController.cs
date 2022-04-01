@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     private SheepController sheep_controller;
     private FarmerController farmer_controller;
 
+    private bool game_paused;
+
     // Start is called before the first frame update
     void Start()
     {
