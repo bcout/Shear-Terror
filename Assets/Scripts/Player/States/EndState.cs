@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndState : MonoBehaviour, SheepState
 {
@@ -6,13 +7,14 @@ public class EndState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        LoadComponents();
+
     }
 
     public void Enter()
     {
         LoadComponents();
         sheep_controller.StartAnimation(Constants.IDLE_ANIM);
+        
     }
 
     public void Exit()
