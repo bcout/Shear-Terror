@@ -6,27 +6,20 @@ public class ObstacleController : MonoBehaviour
 {
     public GameObject sheep;
 
-    private float x_max;
-    private float y_max;
-    private float z_max;
+    public float x_max;
+    public float y_max;
+    public float z_max;
+    public float speed;
+
     private float t;
-
     private Vector3 destination;
-    private float speed;
-
     private bool moving;
-
     private SheepController sheep_controller;
 
     // Start is called before the first frame update
     void Start()
     {
         moving = false;
-
-        x_max = 20f;
-        y_max = 0f;
-        z_max = 0f;
-        speed = 0.25f;
 
         destination = new Vector3(x_max, y_max, z_max);
 
