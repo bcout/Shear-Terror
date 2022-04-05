@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    public GameObject sheep;
-
+    public float x_min;
+    public float y_min;
+    public float z_min;
     public float x_max;
     public float y_max;
     public float z_max;
     public float speed;
 
     private float t;
-    private Vector3 destination;
+    private Vector3 min;
+    private Vector3 max;
     private bool moving;
     private SheepController sheep_controller;
 
@@ -21,9 +23,10 @@ public class ObstacleController : MonoBehaviour
     {
         moving = false;
 
-        destination = new Vector3(x_max, y_max, z_max);
+        min = new Vector3(x_min, y_min, z_min);
+        max = new Vector3(x_max, y_max, z_max);
 
-        sheep_controller = sheep.GetComponent<SheepController>();
+        sheep_controller = GameObject.Find("Sheep").GetComponent<SheepController>();
     }
 
     // Update is called once per frame
@@ -31,14 +34,22 @@ public class ObstacleController : MonoBehaviour
     {
         if (!moving)
         {
-            StartCoroutine(MoveBackAndForth(new Vector3(0, 0, 0), destination));
+            StartCoroutine(MoveBackAndForth(new Vector3(0, 0, 0), min, max));
         }
     }
 
-    private IEnumerator MoveBackAndForth(Vector3 a, Vector3 b)
+    private IEnumerator MoveBackAndForth(Vector3 origin, Vector3 min, Vector3 max)
     {
-        yield return MoveTo(a, b);
-        yield return MoveTo(b, a);
+        if (origin != max)
+        {
+            yield return MoveTo(origin, max);
+            yield return MoveTo(max, origin);
+        }
+        if (origin != min)
+        {
+            yield return MoveTo(origin, min);
+            yield return MoveTo(min, origin);
+        }
     }
 
     private IEnumerator MoveTo(Vector3 a, Vector3 b)
@@ -55,7 +66,6 @@ public class ObstacleController : MonoBehaviour
         }
 
         t = 0f;
-        destination = -destination;
         moving = false;
     }
 

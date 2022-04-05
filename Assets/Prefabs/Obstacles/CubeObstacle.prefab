@@ -125,11 +125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed10244c7ad6fb49a0050ce134dc4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheep: {fileID: 0}
+  x_min: 0
+  y_min: 0
+  z_min: 0
   x_max: 0
   y_max: 0
   z_max: 0
-  speed: 0
+  speed: 1
 --- !u!65 &5603813459736181570
 BoxCollider:
   m_ObjectHideFlags: 0
