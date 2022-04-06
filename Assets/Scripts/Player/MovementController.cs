@@ -271,7 +271,6 @@ public class MovementController : MonoBehaviour
         GoToNextBlock();
         move_coroutine_available = true;
     }
-
     private void GoToNextBlock()
     {
         int current_block_index = sheep_controller.GetCurrentBlockIndex();

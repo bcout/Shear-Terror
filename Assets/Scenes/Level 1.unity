@@ -346,8 +346,8 @@ MonoBehaviour:
   - {fileID: 652657913834229330, guid: 7925ccc629170174fa66b66448146b4f, type: 3}
   - {fileID: 8132445374686228601, guid: bd506457e386dd64d9b2f174b462bc4e, type: 3}
   short_straight_obstacle_sets:
+  - {fileID: 8831503970467309830, guid: 93a196ee19153b04b977aaf637ea1ff6, type: 3}
   - {fileID: 2590079855815578891, guid: 78e7ed884671c5b48bf7520c7a49bf79, type: 3}
-  - {fileID: 3382807052453835918, guid: b99aa43b05531b146ab4e39bd5ea698f, type: 3}
   long_straight_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
   - {fileID: 6836890062750827352, guid: 9e55d2410ebf1a54ca2c9db8f20838f4, type: 3}
