@@ -51,39 +51,54 @@ public class RunningState : MonoBehaviour, SheepState
 
     private void MoveLeft()
     {
+        bool spawn_trigger = false;
         switch (PlayerData.curr_lane)
         {
             case PlayerData.Lane.LEFT:
                 break;
             case PlayerData.Lane.MIDDLE:
                 PlayerData.curr_lane = PlayerData.Lane.LEFT;
+                spawn_trigger = true;
                 break;
             case PlayerData.Lane.RIGHT:
                 PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
+                spawn_trigger = true;
                 break;
         }
-
-        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
-        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(false);
+        if (spawn_trigger)
+        {
+            Vector3 spawn_point = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
+            GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, spawn_point, transform.rotation);
+            lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(false);
+        }
+        
         sheep_controller.UpdateLane();
     }
 
     private void MoveRight()
     {
+        bool spawn_trigger = false;
         switch (PlayerData.curr_lane)
         {
             case PlayerData.Lane.LEFT:
                 PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
+                spawn_trigger = true;
                 break;
             case PlayerData.Lane.MIDDLE:
                 PlayerData.curr_lane = PlayerData.Lane.RIGHT;
+                spawn_trigger = true;
                 break;
             case PlayerData.Lane.RIGHT:
                 break;
         }
 
-        GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, transform.position, transform.rotation);
-        lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(true);
+        if (spawn_trigger)
+        {
+            Vector3 spawn_point = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
+            GameObject lane_change_trigger = Instantiate(lane_change_trigger_prefab, spawn_point, transform.rotation);
+            lane_change_trigger.GetComponent<LaneChangeTrigger>().SetDirection(true);
+        }
+        
 
         sheep_controller.UpdateLane();
     }

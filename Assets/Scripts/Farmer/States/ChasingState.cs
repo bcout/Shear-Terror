@@ -43,9 +43,9 @@ public class ChasingState : MonoBehaviour, FarmerState
             {
                 MoveLeft();
             }
-        }
 
-        Destroy(other.gameObject);
+            Destroy(other.gameObject);
+        }        
     }
 
     private void MoveLeft()
