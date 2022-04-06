@@ -31,16 +31,20 @@ public class PauseMenuController : MonoBehaviour
     {
         pause_menu.SetActive(false);
         Time.timeScale = 1f;
+        GameData.game_paused = false;
     }
 
     public void Pause()
     {
         pause_menu.SetActive(true);
         Time.timeScale = 0f;
+        GameData.game_paused = true;
     }
 
     public void QuitToMainMenu()
     {
+        Time.timeScale = 1f;
+        GameData.game_paused = false;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
     }
 }

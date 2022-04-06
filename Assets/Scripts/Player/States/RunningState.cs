@@ -11,7 +11,10 @@ public class RunningState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        HandleInput();
+        if (!GameData.game_paused)
+        {
+            HandleInput();
+        }
         movement_controller.UpdateMovementSpeed();
         movement_controller.MoveAlongPath();
     }
@@ -25,6 +28,7 @@ public class RunningState : MonoBehaviour, SheepState
     public void Exit()
     {
         sheep_controller.StopAnimation(Constants.RUN_ANIM);
+        sheep_controller.LookForward();
     }
 
     private void LoadComponents()
@@ -46,6 +50,14 @@ public class RunningState : MonoBehaviour, SheepState
         if (Input.GetKeyDown(GameData.jump_key))
         {
             sheep_controller.SetState(sheep_controller.GetJumpingState());
+        }
+        if (Input.GetKey(GameData.look_back_key))
+        {
+            sheep_controller.LookBack();
+        }
+        else
+        {
+            sheep_controller.LookForward();
         }
     }
 

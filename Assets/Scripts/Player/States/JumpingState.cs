@@ -10,7 +10,10 @@ public class JumpingState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        HandleInput();
+        if (!GameData.game_paused)
+        {
+            HandleInput();
+        }
         movement_controller.UpdateMovementSpeed();
         movement_controller.MoveAlongPath();
         movement_controller.ContinueJump();

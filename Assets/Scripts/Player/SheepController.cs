@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SheepController : MonoBehaviour
 {
+    [SerializeField] private GameObject forward_camera;
+    [SerializeField] private GameObject backwards_camera;
+
     private SheepState state;
     private RunningState running_state;
     private IdleState idle_state;
@@ -33,21 +36,14 @@ public class SheepController : MonoBehaviour
 
         collided_obstacle = null;
         vertical_position = 0f;
+
+        backwards_camera.SetActive(false);
+        forward_camera.SetActive(true);
     }
 
     private void Update()
     {
-        state.StateUpdate();
-
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (state != (SheepState)ragdoll_state)
-            {
-                SetState(ragdoll_state);
-            }
-        }
-        
+        state.StateUpdate();       
     }
 
     private void LoadComponents()
@@ -222,5 +218,17 @@ public class SheepController : MonoBehaviour
     public void SetCollidedObstacle(GameObject collided)
     {
         collided_obstacle = collided;
+    }
+
+    public void LookBack()
+    {
+        forward_camera.SetActive(false);
+        backwards_camera.SetActive(true);
+    }
+
+    public void LookForward()
+    {
+        forward_camera.SetActive(true);
+        backwards_camera.SetActive(false);
     }
 }
