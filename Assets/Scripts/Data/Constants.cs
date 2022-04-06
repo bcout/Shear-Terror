@@ -10,7 +10,7 @@ public static class Constants
     public const float BASE_MOVEMENT_SPEED = 0.3f;
     public const float ROTATION_CHANGE_IN_TURNS = 90f;
 
-    public const float JUMP_HEIGHT = 25f;
+    public const float JUMP_HEIGHT = 10f;
     public const float JUMP_SPEED = 2.5f;
 
     public const float SPIN_SPEED = 2f;
