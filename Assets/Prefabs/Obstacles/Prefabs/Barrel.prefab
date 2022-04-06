@@ -42,6 +42,9 @@ GameObject:
   - component: {fileID: 6745734947680441050}
   - component: {fileID: 7652303668449992063}
   - component: {fileID: 5608818740103850421}
+  - component: {fileID: 1566911663075385743}
+  - component: {fileID: 4557557889272416580}
+  - component: {fileID: 5629024934110359484}
   m_Layer: 0
   m_Name: Barrel Model
   m_TagString: Untagged
@@ -58,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 6257323548413397088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 2267085016820111702}
   m_RootOrder: 0
@@ -112,3 +115,47 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &1566911663075385743
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6257323548413397088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.2089119
+  m_Height: 2.417824
+  m_Direction: 1
+  m_Center: {x: -0.000000059604645, y: 0, z: -0.0029394627}
+--- !u!136 &4557557889272416580
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6257323548413397088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.2089119
+  m_Height: 2.417824
+  m_Direction: 1
+  m_Center: {x: -0.000000059604645, y: 0, z: -0.0029394627}
+--- !u!114 &5629024934110359484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6257323548413397088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed10244c7ad6fb49a0050ce134dc4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move_min: {x: 0, y: 0, z: 0}
+  move_max: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  speed: 0
