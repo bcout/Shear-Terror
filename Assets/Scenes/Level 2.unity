@@ -352,6 +352,7 @@ MonoBehaviour:
   long_straight_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
   - {fileID: 6836890062750827352, guid: 9e55d2410ebf1a54ca2c9db8f20838f4, type: 3}
+  - {fileID: 4529574001340348641, guid: 2e5b78cd405719143b1ab21a7d9670c2, type: 3}
   left_turn_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
   - {fileID: 1043213228631478256, guid: a7cc8ef893fdb014c9e908eaa43a18d0, type: 3}

@@ -31,15 +31,35 @@ public class JumpingState : MonoBehaviour, SheepState
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(GameData.jump_key))
+        if (Input.GetKeyDown(GameData.flip_front_key))
         {
-            SetTrick();
+            SetTrick(PlayerData.Trick.FRONT_FLIP);
+        }
+        if (Input.GetKeyDown(GameData.flip_back_key))
+        {
+            SetTrick(PlayerData.Trick.BACK_FLIP);
+        }
+        if (Input.GetKeyDown(GameData.roll_left_key))
+        {
+            SetTrick(PlayerData.Trick.BARREL_ROLL_LEFT);
+        }
+        if (Input.GetKeyDown(GameData.roll_right_key))
+        {
+            SetTrick(PlayerData.Trick.BARREL_ROLL_RIGHT);
+        }
+        if (Input.GetKeyDown(GameData.spin_left_key))
+        {
+            SetTrick(PlayerData.Trick.LEFT_SPIN);
+        }
+        if (Input.GetKeyDown(GameData.spin_right_key))
+        {
+            SetTrick(PlayerData.Trick.RIGHT_SPIN);
         }
     }
 
-    private void SetTrick()
+    private void SetTrick(PlayerData.Trick new_trick)
     {
-        PlayerData.curr_trick = (PlayerData.Trick)UnityEngine.Random.Range((int)PlayerData.Trick.LEFT_SPIN, (int)PlayerData.Trick.NONE);
+        PlayerData.curr_trick = new_trick;
     }
 
     private void LoadComponents()
