@@ -15,36 +15,73 @@ public class LoadScreenController : MonoBehaviour
     private int duration;
     private Int64 start;
     private Int64 now;
-    private float fakeProgress;
-    private float oldFakeProgress;
+    private double fakeProgress;
+    private double oldFakeProgress;
+    private bool keepGoing;
+    private double move;
+    private double count;
+    private float denom;
 
-    public void LoadLevel (string levelName)
+    private string levelName = "Level";
+    public void Start()
     {
-        // loadingPanel.SetActive(true);
-        duration = UnityEngine.Random.Range(3000, 6000);
+        keepGoing = true;
+        denom = UnityEngine.Random.Range(0.1f, 0.3f);
         start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         TwoDSheepCtrl.placeDaSheep();
-        StartCoroutine(LoadSceneAsync(levelName));
+        // start = 0;
+        count = 0.1;
+        // TwoDSheepCtrl.anim.speed = 2f;
     }
 
-    IEnumerator LoadSceneAsync ( string levelName )
+    public void Update()
     {
-        op = SceneManager.LoadSceneAsync(levelName);
-        op.allowSceneActivation = false;
-        
+        if (keepGoing)
+        {
+            if (fakeProgress < 1f)
+            // if(count < 2)
+            {
+                count += 0.001;
+                oldFakeProgress = fakeProgress;
+                // now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                fakeProgress += (Math.Sin(Math.Pow((count), 5*count)/(denom*count))+1.2)*0.5*0.005;
+                TwoDSheepCtrl.MoveDaSheep((float)(fakeProgress - oldFakeProgress));
+                loadingBar.value = (float)fakeProgress;
+                // Delay((float)(Math.Sin(Math.Pow(((double) (now - start) / (duration)) * 10.0, UnityEngine.Random.Range(0.1f, 0.14f)))*0.1));
+            }
+            else
+            {
+                TwoDSheepCtrl.anim.speed = 0f;
+                keepGoing = false;
+                StartCoroutine(LoadSceneAsync(levelName));
+            }
+        }
+    }
+
+    void OnEnable()
+    {
+        Debug.Log("OnEnable called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        // LoadLevel("Level");
+    }
+    
+    
+    IEnumerator Delay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+    }
+
+    IEnumerator LoadSceneAsync (string level)
+    {
+        op = SceneManager.LoadSceneAsync(level);
         while (!op.isDone)
         {
-            if (fakeProgress < 1f){
-                now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                oldFakeProgress = fakeProgress;
-                fakeProgress = (float) (now - start) / (duration);
-                TwoDSheepCtrl.MoveDaSheep(fakeProgress - oldFakeProgress);
-                loadingBar.value = fakeProgress;
-            }
-            else{
-                op.allowSceneActivation = true;
-            }
-
             yield return null;
         }
     }
