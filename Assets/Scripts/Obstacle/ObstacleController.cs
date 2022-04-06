@@ -16,7 +16,9 @@ public class ObstacleController : MonoBehaviour
     private Vector3 min;
     private Vector3 max;
     private bool moving;
+    private GameObject sheep;
     private SheepController sheep_controller;
+    private RagdollController ragdoll_controller;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,8 @@ public class ObstacleController : MonoBehaviour
         min = new Vector3(x_min, y_min, z_min);
         max = new Vector3(x_max, y_max, z_max);
 
-        sheep_controller = GameObject.Find("Sheep").GetComponent<SheepController>();
+        sheep = GameObject.Find("Sheep");
+        sheep_controller = sheep.GetComponent<SheepController>();
     }
 
     // Update is called once per frame
@@ -69,11 +72,12 @@ public class ObstacleController : MonoBehaviour
         moving = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Sheep")
         {
             sheep_controller.SetState(sheep_controller.GetRagdollState());
+            sheep_controller.SetCollidedObstacle(gameObject);
         }
     }
 }

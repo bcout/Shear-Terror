@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 7956947549334430008, guid: 2d7f07790b905e441b6691e8ca2f0efa,
         type: 3}
       propertyPath: m_Name
-      value: Fenced
+      value: Forest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7f07790b905e441b6691e8ca2f0efa, type: 3}

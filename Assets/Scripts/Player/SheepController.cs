@@ -19,6 +19,7 @@ public class SheepController : MonoBehaviour
     private GameObject current_block;
     private GameObject current_lane;
     private GameObject level_parent;
+    private GameObject collided_obstacle;
 
     private int current_block_index;
 
@@ -30,6 +31,7 @@ public class SheepController : MonoBehaviour
         LoadComponents();
         SetDefaultState(idle_state);
 
+        collided_obstacle = null;
         vertical_position = 0f;
     }
 
@@ -37,6 +39,7 @@ public class SheepController : MonoBehaviour
     {
         state.StateUpdate();
 
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (state != (SheepState)ragdoll_state)
@@ -44,6 +47,7 @@ public class SheepController : MonoBehaviour
                 SetState(ragdoll_state);
             }
         }
+        
     }
 
     private void LoadComponents()
@@ -208,5 +212,15 @@ public class SheepController : MonoBehaviour
         transform.Find(Constants.PIVOT).transform.localRotation = Quaternion.identity;
         SetState(running_state);
         movement_controller.SetCoroutineAvailability(true);
+    }
+
+    public GameObject GetCollidedObstacle()
+    {
+        return collided_obstacle;
+    }
+
+    public void SetCollidedObstacle(GameObject collided)
+    {
+        collided_obstacle = collided;
     }
 }

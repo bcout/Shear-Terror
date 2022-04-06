@@ -41,6 +41,12 @@ public class RagdollController : MonoBehaviour
             {
                 ResumeRunners();
                 Destroy(gameObject);
+                GameObject obstacle = sheep_controller.GetCollidedObstacle();
+                if (obstacle != null)
+                {
+                    Destroy(obstacle);
+                    sheep_controller.SetCollidedObstacle(null);
+                }
             }
         }
 
