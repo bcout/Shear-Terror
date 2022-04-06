@@ -91,6 +91,8 @@ public class RagdollController : MonoBehaviour
         sheep_renderer.enabled = false;
         sheep_movement_controller.StopAllCoroutines();
         farmer_movement_controller.StopAllCoroutines();
+        farmer_controller.StopAnimation(Constants.FARM_RUN_ANIM);
+        farmer_controller.StartAnimation(Constants.FARM_WAIT_ANIM);
     }
 
     private void ResumeRunners()
@@ -100,5 +102,7 @@ public class RagdollController : MonoBehaviour
         sheep_camera.transform.localRotation = Quaternion.Euler(Constants.CAMERA_X_ROTATION, 0f, 0f);
         sheep_controller.Respawn();
         farmer_controller.Respawn();
+        farmer_controller.StopAnimation(Constants.FARM_WAIT_ANIM);
+        farmer_controller.StartAnimation(Constants.FARM_RUN_ANIM);
     }
 }
