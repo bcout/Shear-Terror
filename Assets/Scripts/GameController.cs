@@ -31,6 +31,6 @@ public class GameController : MonoBehaviour
 
     private void GenerateLevel()
     {
-        level_spawner.GenerateLevel(Constants.SHORT_LEVEL_ID);
+        level_spawner.GenerateLevel(GameData.level_pool_id);
     }
 }
