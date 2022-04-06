@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 3775923813037673553, guid: 5389caccad63136458e564e8b1ca93ea,
         type: 3}
       propertyPath: m_Name
-      value: Fenced
+      value: Forest
       objectReference: {fileID: 0}
     - target: {fileID: 4552319122313893611, guid: 5389caccad63136458e564e8b1ca93ea,
         type: 3}

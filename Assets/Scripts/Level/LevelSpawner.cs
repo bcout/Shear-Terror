@@ -10,12 +10,13 @@ using System.Linq;
  */
 public class LevelSpawner : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject[] short_straights, long_straights, left_turns, right_turns;
+    [SerializeField] private GameObject[] short_straights, long_straights, left_turns, right_turns;
+    [SerializeField] private GameObject[] short_straight_obstacle_sets, long_straight_obstacle_sets, left_turn_obstacle_sets, right_turn_obstacle_sets;
 
-    private GameObject level_parent;
+    private GameObject level_parent, obstacle_parent;
     private int[] IDs_to_spawn;
     private GameObject[] blocks_to_spawn;
+    private GameObject[] obstacles_to_spawn;
 
     private GameObject prev_block, curr_block;
     private Transform prev_end;
@@ -33,8 +34,10 @@ public class LevelSpawner : MonoBehaviour {
     {
         rand = new System.Random(DateTime.Now.Second);
         level_parent = new GameObject(Constants.LEVEL_PARENT_NAME);
+        obstacle_parent = new GameObject(Constants.OBSTACLE_PARENT_NAME);
         IDs_to_spawn = PickRandomLevel(level_code);
         blocks_to_spawn = IDsToBlocks(IDs_to_spawn);
+        obstacles_to_spawn = PickObstacleSets(IDs_to_spawn);
 
         prev_block = blocks_to_spawn[0];
         for (int i = 0; i < blocks_to_spawn.Length; i++)
@@ -43,6 +46,12 @@ public class LevelSpawner : MonoBehaviour {
             prev_end = prev_block.transform.Find("End");
 
             curr_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent.transform);
+
+            if (obstacles_to_spawn[i] != null)
+            {
+                Instantiate(obstacles_to_spawn[i], curr_block.transform.Find("Start").position, curr_block.transform.rotation, obstacle_parent.transform);
+            }
+
             prev_block = curr_block;
         }
     }
@@ -63,10 +72,6 @@ public class LevelSpawner : MonoBehaviour {
         return to_return;
     }
 
-    /*
-     * This function will be modified to pull a random terrain block from a list of pre-made blocks.
-     * But for now, it just spawns the base building block
-     */
     private GameObject GetBlock(int ID)
     {
         GameObject to_return;
@@ -96,12 +101,57 @@ public class LevelSpawner : MonoBehaviour {
         return to_return;
     }
 
+    private GameObject GetRandomObstacleSet(int ID)
+    {
+        GameObject to_return;
+        GameObject[] obstacle_list;
+        int random_index;
+
+        switch (ID)
+        {
+            case Constants.SHORT_STRAIGHT_ID:
+                obstacle_list = short_straight_obstacle_sets;
+                break;
+            case Constants.LONG_STRAIGHT_ID:
+                obstacle_list = long_straight_obstacle_sets;
+                break;
+            case Constants.LEFT_TURN_ID:
+                obstacle_list = left_turn_obstacle_sets;
+                break;
+            case Constants.RIGHT_TURN_ID:
+            default:
+                obstacle_list = right_turn_obstacle_sets;
+                break;
+        }
+
+        if (obstacle_list.Length == 0)
+        {
+            return null;
+        }
+
+        random_index = rand.Next(0, obstacle_list.Length);
+        to_return = obstacle_list[random_index];
+
+        return to_return;
+    }
+
     private GameObject[] IDsToBlocks(int[] IDs)
     {
         GameObject[] to_return = new GameObject[IDs.Length];
         for (int i = 0; i < IDs.Length; i++)
         {
             to_return[i] = GetBlock(IDs[i]);
+        }
+
+        return to_return;
+    }
+
+    private GameObject[] PickObstacleSets(int[] IDs)
+    {
+        GameObject[] to_return = new GameObject[IDs.Length];
+        for (int i = 0; i < IDs.Length; i++)
+        {
+            to_return[i] = GetRandomObstacleSet(IDs[i]);
         }
 
         return to_return;
