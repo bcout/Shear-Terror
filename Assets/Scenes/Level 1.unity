@@ -348,13 +348,18 @@ MonoBehaviour:
   short_straight_obstacle_sets:
   - {fileID: 8831503970467309830, guid: 93a196ee19153b04b977aaf637ea1ff6, type: 3}
   - {fileID: 2590079855815578891, guid: 78e7ed884671c5b48bf7520c7a49bf79, type: 3}
+  - {fileID: 3686967276680720752, guid: 230063f26d78a2d459584160200841eb, type: 3}
   long_straight_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
   - {fileID: 6836890062750827352, guid: 9e55d2410ebf1a54ca2c9db8f20838f4, type: 3}
   left_turn_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
+  - {fileID: 1043213228631478256, guid: a7cc8ef893fdb014c9e908eaa43a18d0, type: 3}
+  - {fileID: 1656868648173679247, guid: dd89a98168e9ebb429c3bdc15a29e51c, type: 3}
   right_turn_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
+  - {fileID: 1163683463006668311, guid: 81d931f88d61c6948831ca7d2bb8d0e3, type: 3}
+  - {fileID: 2117963345517809351, guid: 4873a61e6bde40a46b2a4957edde34cc, type: 3}
 --- !u!114 &1717418551
 MonoBehaviour:
   m_ObjectHideFlags: 0
