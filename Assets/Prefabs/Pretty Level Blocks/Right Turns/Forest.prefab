@@ -548,6 +548,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest
       objectReference: {fileID: 0}
+    - target: {fileID: 6243647960975926893, guid: 4a4f4567e35fcab44be7233381b59a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003365823994611670, guid: 4a4f4567e35fcab44be7233381b59a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767162841525111227, guid: 4a4f4567e35fcab44be7233381b59a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4f4567e35fcab44be7233381b59a8a, type: 3}
 --- !u!4 &3999736922606879525 stripped
