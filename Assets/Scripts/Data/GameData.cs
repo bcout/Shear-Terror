@@ -13,6 +13,7 @@ public static class GameData
     public static KeyCode spin_right_key { get; set; }
     public static float sheep_t_run { get; set; }
     public static float farmer_t_run { get; set; }
+    public static int level_pool_id { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -27,5 +28,7 @@ public static class GameData
         roll_right_key = KeyCode.D;
         spin_left_key = KeyCode.Q;
         spin_right_key = KeyCode.E;
+
+        level_pool_id = Constants.SHORT_LEVEL_ID;
     }
 }
