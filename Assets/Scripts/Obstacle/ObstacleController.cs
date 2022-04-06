@@ -72,7 +72,7 @@ public class ObstacleController : MonoBehaviour
         moving = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Sheep")
         {

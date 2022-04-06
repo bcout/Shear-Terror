@@ -39,6 +39,7 @@ public class SheepController : MonoBehaviour
     {
         state.StateUpdate();
 
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (state != (SheepState)ragdoll_state)
@@ -46,6 +47,7 @@ public class SheepController : MonoBehaviour
                 SetState(ragdoll_state);
             }
         }
+        
     }
 
     private void LoadComponents()
