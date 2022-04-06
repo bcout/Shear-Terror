@@ -13,6 +13,12 @@ TagManager:
   - Lane Change Trigger
   - OptionsCanvasTricks
   - KeyboardCanvas
+  - Environment
+  - Heart1
+  - Heart2
+  - Heart3
+  - GameOverCanvas
+  - HeartsCanvas
   layers:
   - Default
   - TransparentFX

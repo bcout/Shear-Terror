@@ -17,6 +17,8 @@ public class TitleController : MonoBehaviour
     public Text miscText;
     public Text miscTextTricks;
 
+    private AsyncOperation op;
+
     private bool waiting;
     private int bind;
     private int screenNum;  // 0 = title screen, 1 = first menu, 2 = tricks menu
@@ -140,8 +142,17 @@ public class TitleController : MonoBehaviour
         ColorUtility.TryParseHtmlString("#92FFF3", out spinRightColor);
     }
 
+    IEnumerator LoadSceneAsync (string level)
+    {
+        op = SceneManager.LoadSceneAsync(level);
+        while (!op.isDone)
+        {
+            yield return null;
+        }
+    }
     public void startGame()
     {
+        StartCoroutine(LoadSceneAsync("Loading"));
         Debug.Log("Start button pressed");
     }
 

@@ -19,7 +19,7 @@ public class SheepController : MonoBehaviour
     private GameObject current_block;
     private GameObject current_lane;
     private GameObject level_parent;
-
+    
     private int current_block_index;
 
     private float vertical_position;

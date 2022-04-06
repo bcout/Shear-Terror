@@ -37,15 +37,25 @@ public class RunningState : MonoBehaviour, SheepState
     {
         if (Input.GetKeyDown(GameData.move_left_key))
         {
-            MoveLeft();
+            if (!GameData.isGameOver)
+            {
+                MoveLeft();
+            }
+
         }
         if (Input.GetKeyDown(GameData.move_right_key))
         {
-            MoveRight();
+            if (!GameData.isGameOver)
+            {
+                MoveRight();
+            }
         }
         if (Input.GetKeyDown(GameData.jump_key))
         {
-            sheep_controller.SetState(sheep_controller.GetJumpingState());
+            if (!GameData.isGameOver)
+            {
+                sheep_controller.SetState(sheep_controller.GetJumpingState());
+            }
         }
     }
 

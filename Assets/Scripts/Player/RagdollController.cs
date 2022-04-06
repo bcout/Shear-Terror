@@ -37,7 +37,7 @@ public class RagdollController : MonoBehaviour
     {
         if (initialized)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !GameData.isGameOver)
             {
                 ResumeRunners();
                 Destroy(gameObject);
