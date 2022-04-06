@@ -1234,8 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252fdc63a0d773349a044b366374bdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheep_ragdoll: {fileID: 9060848178154657479, guid: b875edfd50c8988499c62af519c93c55,
-    type: 3}
 --- !u!114 &7386345316332263028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sheep_ragdoll: {fileID: 9060848178154657479, guid: b875edfd50c8988499c62af519c93c55,
     type: 3}
+  farmer: {fileID: 0}
 --- !u!114 &1333033471150282078
 MonoBehaviour:
   m_ObjectHideFlags: 0

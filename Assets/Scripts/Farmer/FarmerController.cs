@@ -32,6 +32,7 @@ public class FarmerController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
+        print(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     private void LoadComponents()
