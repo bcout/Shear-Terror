@@ -47,7 +47,7 @@ public class LevelSpawner : MonoBehaviour {
 
             curr_block = Instantiate(curr_block, prev_end.position, prev_end.rotation, level_parent.transform);
 
-            if (i != 0 && obstacles_to_spawn[i] != null)
+            if (i != 0 && i != blocks_to_spawn.Length - 1 && obstacles_to_spawn[i] != null)
             {
                 Instantiate(obstacles_to_spawn[i], curr_block.transform.Find("Start").position, curr_block.transform.rotation, obstacle_parent.transform);
             }

@@ -353,8 +353,10 @@ MonoBehaviour:
   - {fileID: 6836890062750827352, guid: 9e55d2410ebf1a54ca2c9db8f20838f4, type: 3}
   left_turn_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
+  - {fileID: 1043213228631478256, guid: a7cc8ef893fdb014c9e908eaa43a18d0, type: 3}
   right_turn_obstacle_sets:
   - {fileID: 4187196521442896986, guid: 84dcc4ae097aaac48bcf079d72d9fd85, type: 3}
+  - {fileID: 1163683463006668311, guid: 81d931f88d61c6948831ca7d2bb8d0e3, type: 3}
 --- !u!114 &1717418551
 MonoBehaviour:
   m_ObjectHideFlags: 0
