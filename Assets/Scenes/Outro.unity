@@ -852,7 +852,7 @@ MonoBehaviour:
   prompt: {fileID: 498436101}
   end_y_value: 1191
   start_y_value: -450
-  speed: 50
+  default_speed: 25
 --- !u!1001 &1063847204
 PrefabInstance:
   m_ObjectHideFlags: 0

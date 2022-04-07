@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CreditsController : MonoBehaviour
 {
     [SerializeField] GameObject prompt;
     [SerializeField] float end_y_value;
     [SerializeField] float start_y_value;
-    [SerializeField] float speed;
+    [SerializeField] float default_speed;
+
+    private float speed;
+
+    private bool prompt_visible;
 
     private void Start()
     {
+        speed = default_speed;
         prompt.SetActive(false);
+        prompt_visible = false;
+
         transform.localPosition = new Vector3(transform.localPosition.x, start_y_value, transform.localPosition.z);
     }
 
@@ -26,11 +33,22 @@ public class CreditsController : MonoBehaviour
         {
             StartCoroutine(DelayShowPrompt());
         }
+
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        if (prompt_visible && Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
+        }
     }
 
     private IEnumerator DelayShowPrompt()
     {
         yield return new WaitForSeconds(2);
         prompt.SetActive(true);
+        prompt_visible = true;
     }
 }
