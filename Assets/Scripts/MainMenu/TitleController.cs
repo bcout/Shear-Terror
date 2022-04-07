@@ -101,7 +101,9 @@ public class TitleController : MonoBehaviour
         KeyCode.RightControl,
         KeyCode.LeftArrow,
         KeyCode.DownArrow,
-        KeyCode.RightArrow
+        KeyCode.RightArrow,
+        KeyCode.PageUp,
+        KeyCode.PageDown
     };
     
     // Start is called before the first frame update
