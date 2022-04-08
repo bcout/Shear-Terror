@@ -6,9 +6,11 @@ public class MusicPlayer : MonoBehaviour
 {
     [SerializeField] private AudioClip[] music_clips;
     private AudioSource audio_source;
+    private int music_clip_index;
 
     private void Start()
     {
+        music_clip_index = 0;
         LoadComponents();
     }
 
@@ -43,5 +45,12 @@ public class MusicPlayer : MonoBehaviour
     public void ResumeMusic()
     {
         audio_source.UnPause();
+    }
+
+    public void IncreaseTempo()
+    {
+        music_clip_index++;
+        audio_source.clip = music_clips[music_clip_index % 3];
+        audio_source.Play();
     }
 }
