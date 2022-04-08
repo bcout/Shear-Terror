@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     private SheepController sheep_controller;
+    private SoundEffectPlayer sfx_player;
     private Transform body;
 
     private float movement_speed;
@@ -26,6 +27,7 @@ public class MovementController : MonoBehaviour
     {
         sheep_controller = GetComponent<SheepController>();
         body = transform.Find(Constants.PIVOT);
+        sfx_player = GetComponent<SoundEffectPlayer>();
     }
 
     public void StartFollowingLevel()
@@ -153,6 +155,7 @@ public class MovementController : MonoBehaviour
             if (PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
             {
                 sheep_controller.SetState(sheep_controller.GetRagdollState());
+                sfx_player.PlayTrickFailSound();
             }
 
             yield return new WaitForEndOfFrame();

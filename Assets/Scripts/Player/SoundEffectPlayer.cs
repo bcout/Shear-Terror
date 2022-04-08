@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootstepPlayer : MonoBehaviour
+public class SoundEffectPlayer : MonoBehaviour
 {
     [SerializeField] AudioClip[] footstep_sounds;
+    [SerializeField] AudioClip thud_sound;
     private AudioSource audio_source;
 
     private bool sound_enabled;
@@ -19,8 +20,18 @@ public class FootstepPlayer : MonoBehaviour
     {
         if (sound_enabled)
         {
-            audio_source.PlayOneShot(GetRandomClip());
+            audio_source.PlayOneShot(GetRandomFootstepClip());
         }   
+    }
+
+    public void PlayThudSound()
+    {
+        audio_source.PlayOneShot(thud_sound);
+    }
+
+    public void PlayTrickFailSound()
+    {
+        audio_source.PlayOneShot(GetRandomFootstepClip());
     }
 
     public void EnableFootstepSounds(bool value)
@@ -28,7 +39,7 @@ public class FootstepPlayer : MonoBehaviour
         sound_enabled = value;
     }
 
-    private AudioClip GetRandomClip()
+    private AudioClip GetRandomFootstepClip()
     {
         return footstep_sounds[Random.Range(0, footstep_sounds.Length)];
     }

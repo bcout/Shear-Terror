@@ -11,7 +11,7 @@ public class RagdollController : MonoBehaviour
     private MovementController sheep_movement_controller;
     private CapsuleCollider sheep_collider;
     private SkinnedMeshRenderer sheep_renderer;
-    private FootstepPlayer sheep_footstep_player;
+    private SoundEffectPlayer sfx_player;
     private Camera sheep_camera;
     private Transform sheep_pivot;
     private Transform ragdoll_pivot;
@@ -80,7 +80,7 @@ public class RagdollController : MonoBehaviour
         sheep_collider = sheep.GetComponent<CapsuleCollider>();
         sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
         sheep_camera = sheep.GetComponentInChildren<Camera>();
-        sheep_footstep_player = sheep.GetComponent<FootstepPlayer>();
+        sfx_player = sheep.GetComponent<SoundEffectPlayer>();
     }
 
     private void FindTransforms()
@@ -104,7 +104,7 @@ public class RagdollController : MonoBehaviour
     {
         sheep_collider.enabled = false;
         sheep_renderer.enabled = false;
-        sheep_footstep_player.EnableFootstepSounds(false);
+        sfx_player.EnableFootstepSounds(false);
         sheep_movement_controller.StopAllCoroutines();
         farmer_movement_controller.StopAllCoroutines();
         farmer_controller.StopAnimation(Constants.FARM_RUN_ANIM);
@@ -115,7 +115,7 @@ public class RagdollController : MonoBehaviour
     {
         sheep_collider.enabled = true;
         sheep_renderer.enabled = true;
-        sheep_footstep_player.EnableFootstepSounds(true);
+        sfx_player.EnableFootstepSounds(true);
         sheep_camera.transform.localRotation = Quaternion.Euler(Constants.CAMERA_X_ROTATION, 0f, 0f);
         sheep_controller.Respawn();
         farmer_controller.Respawn();

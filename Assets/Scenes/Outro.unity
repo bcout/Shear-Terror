@@ -1319,7 +1319,7 @@ MonoBehaviour:
     and Outro Scenes\r\nLevel Generation\r\nObstacles\nSheep Ragdoll\r\nSheep and
     Farmer Movement\n\n\nAudio\r\nEnvironment Art\nLoading Screen\r\nMain Menu\r\nSettings
     Menu\n\n\nCamera Movement\r\nObstacles\r\nSheep Jumping\r\nSheep Parkour\r\nSheep
-    Ragdoll\n\n\nAdditional Art, Music, and \r\nOther Assets\n\n\n\n\n\n\n\n\n\n\n\n\nSpecial
+    Ragdoll\n\n\nAdditional Art, Music, and \r\nOther Assets\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpecial
     Thanks"
 --- !u!222 &1560808835
 CanvasRenderer:
@@ -1613,6 +1613,8 @@ MonoBehaviour:
     Se34ms
 
     Seekpng.com
+
+    tbone1999
 
     TFSui
 
