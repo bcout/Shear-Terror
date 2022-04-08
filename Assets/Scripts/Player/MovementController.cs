@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
     private float turn_start_angle;
     private float t_jump;
     private float t_trick;
+    private float t_end;
 
     private bool move_coroutine_available;
     private bool jump_coroutine_available;
@@ -33,6 +34,7 @@ public class MovementController : MonoBehaviour
         t_jump = 0f;
         GameData.sheep_t_run = 0f;
         t_trick = 0f;
+        t_end = 0f;
         move_coroutine_available = true;
         jump_coroutine_available = true;
         trick_coroutine_available = true;
@@ -74,6 +76,25 @@ public class MovementController : MonoBehaviour
                     break;
             }
         }
+    }
+    public IEnumerator MoveToEnd()
+    {
+        List<GameObject> blocks_in_level = sheep_controller.GetBlocksInLevel();
+        Vector3 start_point = transform.position;
+        Vector3 end_point = blocks_in_level[blocks_in_level.Count - 1].transform.Find(Constants.LANE_END_NAME).position;
+        Vector3 next_point;
+
+         while (t_end < 1)
+         {
+            t_end += Time.deltaTime * 3f * Constants.BASE_MOVEMENT_SPEED;
+            
+            next_point = Vector3.Lerp(start_point, end_point, t_end);
+            transform.position = new Vector3(next_point.x, sheep_controller.GetVerticalPosition(), next_point.z);
+
+            yield return new WaitForEndOfFrame();
+         }
+
+         t_end = 0f;
     }
 
     public void ContinueJump()
@@ -150,7 +171,8 @@ public class MovementController : MonoBehaviour
                     break;
             }
 
-            if (PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
+            SheepState state = sheep_controller.GetState();
+            if (state != (SheepState)sheep_controller.GetEndState() && PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
             {
                 sheep_controller.SetState(sheep_controller.GetRagdollState());
             }
@@ -185,7 +207,11 @@ public class MovementController : MonoBehaviour
         }
         t_jump = 0f;
 
-        sheep_controller.SetState(sheep_controller.GetRunningState());
+        SheepState state = sheep_controller.GetState();
+        if (state != (SheepState)sheep_controller.GetEndState())
+        {
+            sheep_controller.SetState(sheep_controller.GetRunningState());
+        }
 
         PlayerData.on_ground = true;
         jump_coroutine_available = true;
@@ -255,7 +281,7 @@ public class MovementController : MonoBehaviour
         SheepState state = sheep_controller.GetState();
 
         while (GameData.sheep_t_run < 1
-               && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()))
+               && (state == (SheepState)sheep_controller.GetRunningState() || state == (SheepState)sheep_controller.GetJumpingState()) || state == (SheepState)sheep_controller.GetEndState())
         {
             GameData.sheep_t_run += Time.deltaTime * movement_speed;
             start_point = sheep_controller.GetCurrentLane().transform.Find(Constants.LANE_START_NAME).position;
