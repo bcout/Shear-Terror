@@ -19,6 +19,10 @@ TagManager:
   - Heart3
   - GameOverCanvas
   - HeartsCanvas
+  - Heart4
+  - Heart5
+  - GameOverButtons
+  - GameOverSign
   layers:
   - Default
   - TransparentFX

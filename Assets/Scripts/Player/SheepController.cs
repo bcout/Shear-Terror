@@ -33,8 +33,8 @@ public class SheepController : MonoBehaviour
 
     private void Start()
     {
-        LoadStates();
         LoadComponents();
+        LoadStates();
         SetDefaultState(idle_state);
 
         collided_obstacle = null;
