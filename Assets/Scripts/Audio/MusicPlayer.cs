@@ -37,6 +37,11 @@ public class MusicPlayer : MonoBehaviour
         audio_source.Play();
     }
 
+    public void StopMusic()
+    {
+        audio_source.Stop();
+    }
+
     public void PauseMusic()
     {
         audio_source.Pause();

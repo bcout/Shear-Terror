@@ -104,7 +104,7 @@ public class RagdollController : MonoBehaviour
         sheep_renderer.enabled = false;
 
         sheep_controller.GetSoundEffectsPlayer().EnableFootstepSounds(false);
-        sheep_controller.GetMusicPlayer().PauseMusic();
+        sheep_controller.GetMusicPlayer().StopMusic();
         sheep_movement_controller.StopAllCoroutines();
         farmer_movement_controller.StopAllCoroutines();
         farmer_controller.StopAnimation(Constants.FARM_RUN_ANIM);
