@@ -18,13 +18,14 @@ public class LoadScreenController : MonoBehaviour
     private double count;
     private float denom;
 
-    private string levelName = "Level 1";// In future have code to provide the correct level to load.
+    private string levelName;
     public void Start()
     {
         keepGoing = true;
         denom = UnityEngine.Random.Range(0.1f, 0.3f);
         TwoDSheepCtrl.placeDaSheep();
         count = 0.1;
+        levelName = "Level " + GameData.current_level;
     }
 
     public void Update()
@@ -36,7 +37,7 @@ public class LoadScreenController : MonoBehaviour
                 count += 0.001;
                 oldFakeProgress = fakeProgress;
                 
-                // I mapped this function out in desmos and it works pretty good as a pseudo loading bar
+                // I mapped this function out in desmos and it works pretty good as a pseudo loading bar progress rate function.
                 fakeProgress += (Math.Sin(Math.Pow((count), 5*count)/(denom*count))+1.2)*0.5*0.005;
                 
                 TwoDSheepCtrl.MoveDaSheep((float)(fakeProgress - oldFakeProgress));

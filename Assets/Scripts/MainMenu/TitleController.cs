@@ -40,9 +40,10 @@ public class TitleController : MonoBehaviour
         
     };
 
+    // Used to figure out which key is assigned to which index. (has 2 at end because Unity cached an old copy and I couldn't clear it.)
     public KeyCode[] KeyCodes2 =
     {
-        KeyCode.Tilde,
+        KeyCode.BackQuote, // KeyCode.Tilde,
         KeyCode.Alpha1,
         KeyCode.Alpha2,
         KeyCode.Alpha3,
@@ -54,7 +55,7 @@ public class TitleController : MonoBehaviour
         KeyCode.Alpha9,
         KeyCode.Alpha0,
         KeyCode.Minus,
-        KeyCode.Plus,
+        KeyCode.Equals, // KeyCode.Plus,
         KeyCode.Backspace,
         KeyCode.Tab,
         KeyCode.Q,
@@ -91,9 +92,9 @@ public class TitleController : MonoBehaviour
         KeyCode.B,
         KeyCode.N,
         KeyCode.M,
-        KeyCode.Less,
-        KeyCode.Greater,
-        KeyCode.Question,
+        KeyCode.Comma, // KeyCode.Less,
+        KeyCode.Period, // KeyCode.Greater,
+        KeyCode.Slash, // KeyCode.Question,
         KeyCode.UpArrow,
         KeyCode.RightShift,
         KeyCode.LeftControl,
@@ -104,8 +105,8 @@ public class TitleController : MonoBehaviour
         KeyCode.LeftArrow,
         KeyCode.DownArrow,
         KeyCode.RightArrow,
-        KeyCode.PageUp,
-        KeyCode.PageDown
+        KeyCode.PageDown,
+        KeyCode.PageUp
     };
     
     // Start is called before the first frame update
@@ -116,9 +117,10 @@ public class TitleController : MonoBehaviour
         keyboardCanvas = GameObject.FindGameObjectWithTag("KeyboardCanvas");
         titleCanvas = GameObject.FindGameObjectWithTag("TitleCanvas");
         titleCanvas.SetActive(true);
-        keyboardCanvas.SetActive(false);
         optionsCanvas.SetActive(false);
         optionsCanvasTricks.SetActive(false);
+        keyboardCanvas.SetActive(false);
+
         
         screenNum = 0;
         miscText.text = "Select the key bind to change";
@@ -126,7 +128,7 @@ public class TitleController : MonoBehaviour
         waiting = false;
         bind = -1;
 
-        for (int i = 0; i < 75; i++)
+        for (int i = 0; i < 77; i++)
         {
             int tmp = i;    // I have no idea why, but this is needed and it breaks without it.
             kbButtons[i].onClick.AddListener(() => ButtonClicked(tmp));
@@ -167,20 +169,24 @@ public class TitleController : MonoBehaviour
     public void launchOptions()
     {
         screenNum = 1;
+        // Order of these matters!
+        keyboardCanvas.SetActive(false); // Needed because unity is dumb
         titleCanvas.SetActive(false);
-        keyboardCanvas.SetActive(true);
         optionsCanvas.SetActive(true);
         optionsCanvasTricks.SetActive(false);
+        keyboardCanvas.SetActive(true);
         refresh_KB_Highlights();
     }
     
     public void launchOptionsTricks()
     {
         screenNum = 2;
+        // Order of these matters!
+        keyboardCanvas.SetActive(false);    // Needed because unity is dumb
         titleCanvas.SetActive(false);
-        keyboardCanvas.SetActive(true);
         optionsCanvas.SetActive(false);
         optionsCanvasTricks.SetActive(true);
+        keyboardCanvas.SetActive(true);
         refresh_KB_Highlights();
     }
 
@@ -311,7 +317,7 @@ public class TitleController : MonoBehaviour
     // Figure out what this button is.
     void handleButtons(int buttonNo)
     {
-        int tmp = buttonNo - 62;
+        int tmp = buttonNo - 64;
         Debug.Log("tmp" + tmp);
         if (tmp == 0 || tmp == 10)
         {
@@ -344,7 +350,8 @@ public class TitleController : MonoBehaviour
     {
         // Debug.Log("Button clicked = " + buttonNo);
         // If button is not from the onscreen keyboard.
-        if (buttonNo > 61)
+        Debug.Log(buttonNo);
+        if (buttonNo > 63)
         {
             if (!waiting)
             {
@@ -416,11 +423,11 @@ public class TitleController : MonoBehaviour
                         }
                         else if (bind == 5)
                         {
-                            GameData.roll_left_key = k;
+                            GameData.spin_left_key = k;
                         }
                         else if (bind == 6)
                         {
-                            GameData.spin_left_key = k;
+                            GameData.roll_left_key = k;
                         }
                     
                         waiting = false;
@@ -443,7 +450,7 @@ public class TitleController : MonoBehaviour
     {
         if (screenNum == 2)
         {
-            for (int i = 0; i < 62; i++)
+            for (int i = 0; i < 64; i++)
             {
                 KeyCode k = KeyCodes2[i];
                 if (k == GameData.flip_front_key)
@@ -478,7 +485,7 @@ public class TitleController : MonoBehaviour
         }
         else if (screenNum == 1)
         {
-            for (int i = 0; i < 62; i++)
+            for (int i = 0; i < 64; i++)
             {
                 KeyCode k = KeyCodes2[i];
                 if (k == GameData.jump_key)
