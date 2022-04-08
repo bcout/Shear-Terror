@@ -152,6 +152,7 @@ public class MovementController : MonoBehaviour
 
             if (PlayerData.on_ground && t_trick < Constants.MIN_ROTATION_TO_LAND)
             {
+                sheep_controller.GetSoundEffectsPlayer().PlayFootstepSound();
                 sheep_controller.SetState(sheep_controller.GetRagdollState());
             }
 

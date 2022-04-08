@@ -14,7 +14,7 @@ public class EndState : MonoBehaviour, SheepState
     {
         LoadComponents();
         sheep_controller.StartAnimation(Constants.IDLE_ANIM);
-        
+        sheep_controller.GetMusicPlayer().StopMusic();
     }
 
     public void Exit()

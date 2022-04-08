@@ -5,9 +5,6 @@ public class RagdollState : MonoBehaviour, SheepState
     [SerializeField] private GameObject sheep_ragdoll;
     [SerializeField] private GameObject farmer;
 
-    private SheepController sheep_controller;
-    [SerializeField] private GameController gameController;
-
     public void StateUpdate()
     {
 
@@ -15,18 +12,12 @@ public class RagdollState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        LoadComponents();
         SpawnRagdoll();
     }
 
     public void Exit()
     {
 
-    }
-
-    private void LoadComponents()
-    {
-        sheep_controller = GetComponent<SheepController>();
     }
 
     private void SpawnRagdoll()

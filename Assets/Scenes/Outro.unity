@@ -154,6 +154,133 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 62.6, z: 0}
+--- !u!1 &320173166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320173167}
+  - component: {fileID: 320173168}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &320173167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320173166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747121318}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &320173168
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320173166}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 07adddf175d8dff41b1764c0200a3c31, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!43 &447188997
 Mesh:
   m_ObjectHideFlags: 0
@@ -351,7 +478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114, y: -1192.3}
+  m_AnchoredPosition: {x: -114, y: -1294}
   m_SizeDelta: {x: 171.08, y: 20.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498436103
@@ -726,7 +853,8 @@ Transform:
   m_LocalRotation: {x: 0.008676578, y: -0.7979359, z: 0.011489156, w: 0.6025703}
   m_LocalPosition: {x: 11.67305, y: 6.172498, z: -5.9050016}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 320173167}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -834,7 +962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55, y: 1191}
+  m_AnchoredPosition: {x: 55, y: 1298}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011584623
@@ -850,7 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: {fileID: 498436101}
-  end_y_value: 1191
+  end_y_value: 1298
   start_y_value: -450
   default_speed: 25
 --- !u!1001 &1063847204
@@ -1191,7 +1319,7 @@ MonoBehaviour:
     and Outro Scenes\r\nLevel Generation\r\nObstacles\nSheep Ragdoll\r\nSheep and
     Farmer Movement\n\n\nAudio\r\nEnvironment Art\nLoading Screen\r\nMain Menu\r\nSettings
     Menu\n\n\nCamera Movement\r\nObstacles\r\nSheep Jumping\r\nSheep Parkour\r\nSheep
-    Ragdoll\n\n\nAdditional Art, Music, and \r\nOther Assets\n\n\n\n\n\n\n\n\n\n\nSpecial
+    Ragdoll\n\n\nAdditional Art, Music, and \r\nOther Assets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpecial
     Thanks"
 --- !u!222 &1560808835
 CanvasRenderer:
@@ -1314,7 +1442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.7, y: -1172.7002}
+  m_AnchoredPosition: {x: -50.7, y: -1279}
   m_SizeDelta: {x: 296.82553, y: 45.083885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718271199
@@ -1392,8 +1520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.5, y: -387.8}
-  m_SizeDelta: {x: 263.20114, y: 1122.8287}
+  m_AnchoredPosition: {x: -67.5, y: -451.3}
+  m_SizeDelta: {x: 263.20114, y: 1249.7499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823544292
 MonoBehaviour:
@@ -1444,7 +1572,6 @@ MonoBehaviour:
 
 
 
-
     Brennan
     Couturier
 
@@ -1467,8 +1594,12 @@ MonoBehaviour:
 
 
 
+    Ali_6868
+
     Broken
     Vector
+
+    dalosanti
 
     Evgenia
 
@@ -1485,14 +1616,18 @@ MonoBehaviour:
 
     Seekpng.com
 
+    tbone1999
+
+    TFSui
+
     ThoseAwesomeGuys
 
 
 
-    Adrien Couturier
+    Adrien
+    Couturier
 
-    Alexander
-    Zotov
+    Alexander Zotov
 
     Brackeys
 
@@ -1500,11 +1635,14 @@ MonoBehaviour:
 
     Daniel Rea
 
-    Ditzel Games
+    Ditzel
+    Games
 
     FImpossibleCreations
 
     Imphenzia
+
+    Jason Weimann
 
     Jimmy
     Vegas

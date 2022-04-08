@@ -14,14 +14,20 @@ public class ObstacleController : MonoBehaviour
     private GameObject sheep;
     private SheepController sheep_controller;
     private RagdollController ragdoll_controller;
+    private SoundEffectPlayer sfx_player;
 
     // Start is called before the first frame update
     void Start()
     {
+        LoadComponents();
         moving = false;
+    }
 
+    private void LoadComponents()
+    {
         sheep = GameObject.Find("Sheep");
         sheep_controller = sheep.GetComponent<SheepController>();
+        sfx_player = sheep_controller.GetSoundEffectsPlayer();
     }
 
     // Update is called once per frame
@@ -73,6 +79,7 @@ public class ObstacleController : MonoBehaviour
         {
             sheep_controller.SetState(sheep_controller.GetRagdollState());
             sheep_controller.SetCollidedObstacle(gameObject);
+            sfx_player.PlayThudSound();
         }
     }
 }
