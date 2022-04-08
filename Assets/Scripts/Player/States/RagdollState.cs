@@ -4,7 +4,7 @@ public class RagdollState : MonoBehaviour, SheepState
 {
     [SerializeField] private GameObject sheep_ragdoll;
     [SerializeField] private GameObject farmer;
-
+    [SerializeField] private GameController gameController;
     public void StateUpdate()
     {
 
