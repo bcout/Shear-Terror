@@ -21,6 +21,7 @@
     public static Lane curr_lane { get; set; }
     public static Trick curr_trick { get; set; }
     public static bool on_ground { get; set; }
+    public static bool at_end { get; set; }
 
     static PlayerData()
     {

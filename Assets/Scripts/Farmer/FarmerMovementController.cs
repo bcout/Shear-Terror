@@ -12,6 +12,7 @@ public class FarmerMovementController : MonoBehaviour
 
     private float movement_speed;
     private float turn_start_angle;
+    private float t_mid;
 
     private bool move_coroutine_available;
 
@@ -31,6 +32,7 @@ public class FarmerMovementController : MonoBehaviour
     {
         move_coroutine_available = true;
         GameData.farmer_t_run = 0f;
+        t_mid = 0f;
     }
 
     public void UpdateMovementSpeed()
@@ -155,6 +157,23 @@ public class FarmerMovementController : MonoBehaviour
             farmer_controller.SetState(farmer_controller.GetEndState());
             move_coroutine_available = false;
         }
+    }
+
+    public IEnumerator MoveToMiddle()
+    {
+        List<GameObject> blocks_in_level = sheep_controller.GetBlocksInLevel();
+        Vector3 start_point = transform.position;
+        Vector3 end_point = blocks_in_level[blocks_in_level.Count - 1].transform.Find(Constants.BLOCK_CENTER_NAME).position;
+
+        while (t_mid < 1)
+        {
+            t_mid += Time.deltaTime * 4.5f * Constants.BASE_MOVEMENT_SPEED;
+            transform.position = Vector3.Lerp(start_point, end_point, t_mid);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t_mid = 0f;
     }
 
     public void SetMovementCoroutineAvailable(bool value)
