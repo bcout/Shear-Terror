@@ -11,6 +11,7 @@ public class StartState : MonoBehaviour, SheepState
         if (Input.anyKeyDown)
         {
             sheep_controller.SetState(sheep_controller.GetRunningState());
+            sheep_controller.GetMusicPlayer().StartMusic();
         }
     }
 
