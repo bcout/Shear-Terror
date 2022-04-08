@@ -80,7 +80,7 @@ public class RagdollController : MonoBehaviour
         sheep_collider = sheep.GetComponent<CapsuleCollider>();
         sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
         sheep_camera = sheep.GetComponentInChildren<Camera>();
-        sfx_player = sheep.GetComponent<SoundEffectPlayer>();
+        sfx_player = sheep_controller.GetSoundEffectsPlayer().GetComponent<SoundEffectPlayer>();
     }
 
     private void FindTransforms()

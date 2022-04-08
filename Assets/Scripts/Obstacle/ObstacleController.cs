@@ -27,7 +27,7 @@ public class ObstacleController : MonoBehaviour
     {
         sheep = GameObject.Find("Sheep");
         sheep_controller = sheep.GetComponent<SheepController>();
-        sfx_player = sheep.GetComponent<SoundEffectPlayer>();
+        sfx_player = sheep_controller.GetSoundEffectsPlayer();
     }
 
     // Update is called once per frame

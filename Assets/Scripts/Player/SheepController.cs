@@ -6,6 +6,8 @@ public class SheepController : MonoBehaviour
 {
     [SerializeField] private GameObject forward_camera;
     [SerializeField] private GameObject backwards_camera;
+    [SerializeField] private GameObject music_player_object;
+    [SerializeField] private GameObject sfx_player_object;
 
     private SheepState state;
     private RunningState running_state;
@@ -17,6 +19,8 @@ public class SheepController : MonoBehaviour
 
     private MovementController movement_controller;
     private Animator animator;
+    private SoundEffectPlayer sfx_player;
+    private MusicPlayer music_player;
 
     private List<GameObject> blocks_in_level;
     private List<GameObject> obstacles_in_level;
@@ -52,6 +56,8 @@ public class SheepController : MonoBehaviour
     {
         movement_controller = GetComponent<MovementController>();
         animator = GetComponent<Animator>();
+        sfx_player = sfx_player_object.GetComponent<SoundEffectPlayer>();
+        music_player = music_player_object.GetComponent<MusicPlayer>();
     }
 
     // Called by GameController once the level is generated
@@ -265,5 +271,20 @@ public class SheepController : MonoBehaviour
     {
         forward_camera.SetActive(true);
         backwards_camera.SetActive(false);
+    }
+
+    public SoundEffectPlayer GetSoundEffectsPlayer()
+    {
+        return sfx_player;
+    }
+
+    public MusicPlayer GetMusicPlayer()
+    {
+        return music_player;
+    }
+
+    private void PlayFootstepSound()
+    {
+        sfx_player.GetComponent<SoundEffectPlayer>().PlayFootstepSound();
     }
 }

@@ -16,7 +16,7 @@ public class SoundEffectPlayer : MonoBehaviour
         sound_enabled = true;
     }
 
-    private void PlayFootstepSound()
+    public void PlayFootstepSound()
     {
         if (sound_enabled)
         {
