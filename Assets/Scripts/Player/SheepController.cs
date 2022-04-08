@@ -6,6 +6,7 @@ public class SheepController : MonoBehaviour
 {
     [SerializeField] private GameObject forward_camera;
     [SerializeField] private GameObject backwards_camera;
+    [SerializeField] private GameObject level_end_field;
 
     private SheepState state;
     private RunningState running_state;
@@ -114,7 +115,6 @@ public class SheepController : MonoBehaviour
                 Destroy(obstacle_to_destroy);
             }
         }
-        
     }
 
     public void StopAnimation(string anim_name)
