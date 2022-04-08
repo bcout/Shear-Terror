@@ -44,10 +44,6 @@ public class SheepController : MonoBehaviour
     private void Update()
     {
         state.StateUpdate();
-        if(Input.GetKey(KeyCode.H))
-        {
-            SetCurrentBlockIndex(GetBlocksInLevel().Count-3);
-        }
     }
 
     private void LoadComponents()
