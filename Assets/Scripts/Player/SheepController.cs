@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SheepController : MonoBehaviour
 {
+    [SerializeField] private GameObject forward_camera;
+    [SerializeField] private GameObject backwards_camera;
+    [SerializeField] private GameObject level_end_field;
+
     private SheepState state;
     private RunningState running_state;
     private IdleState idle_state;
@@ -16,10 +20,13 @@ public class SheepController : MonoBehaviour
     private Animator animator;
 
     private List<GameObject> blocks_in_level;
+    private List<GameObject> obstacles_in_level;
     private GameObject current_block;
     private GameObject current_lane;
     private GameObject level_parent;
-    
+    private GameObject obstacle_parent;
+    private GameObject collided_obstacle;
+
     private int current_block_index;
 
     private float vertical_position;
@@ -30,20 +37,16 @@ public class SheepController : MonoBehaviour
         LoadComponents();
         SetDefaultState(idle_state);
 
+        collided_obstacle = null;
         vertical_position = 0f;
+
+        backwards_camera.SetActive(false);
+        forward_camera.SetActive(true);
     }
 
     private void Update()
     {
         state.StateUpdate();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (state != (SheepState)ragdoll_state)
-            {
-                SetState(ragdoll_state);
-            }
-        }
     }
 
     private void LoadComponents()
@@ -56,6 +59,7 @@ public class SheepController : MonoBehaviour
     public void StartLevel()
     {
         ReadLevelBlocks();
+        ReadLevelObstacles();
         StartFollowingLevel();
         SetState(start_state);
     }
@@ -73,12 +77,44 @@ public class SheepController : MonoBehaviour
         current_block_index = 0;
     }
 
+    private void ReadLevelObstacles()
+    {
+        obstacle_parent = GameObject.Find(Constants.OBSTACLE_PARENT_NAME);
+        obstacles_in_level = new List<GameObject>();
+
+        for (int i = 0; i < obstacle_parent.transform.childCount; i++)
+        {
+            obstacles_in_level.Add(obstacle_parent.transform.GetChild(i).gameObject);
+        }
+    }
+
     private void StartFollowingLevel()
     {
         current_block = blocks_in_level[current_block_index];
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
 
         movement_controller.StartFollowingLevel();
+    }
+
+    public void DestroyPreviousBlocks()
+    {
+        if (current_block_index - 2 >= 0)
+        {
+            GameObject block_to_delete = blocks_in_level[current_block_index - 2];
+            if (block_to_delete != null)
+            {
+                Destroy(block_to_delete);  
+            }
+        }
+        
+        if (current_block_index - 3 >= 0)
+        {
+            GameObject obstacle_to_destroy = obstacles_in_level[current_block_index - 3];
+            if (obstacle_to_destroy != null)
+            {
+                Destroy(obstacle_to_destroy);
+            }
+        }
     }
 
     public void StopAnimation(string anim_name)
@@ -208,5 +244,27 @@ public class SheepController : MonoBehaviour
         transform.Find(Constants.PIVOT).transform.localRotation = Quaternion.identity;
         SetState(running_state);
         movement_controller.SetCoroutineAvailability(true);
+    }
+
+    public GameObject GetCollidedObstacle()
+    {
+        return collided_obstacle;
+    }
+
+    public void SetCollidedObstacle(GameObject collided)
+    {
+        collided_obstacle = collided;
+    }
+
+    public void LookBack()
+    {
+        forward_camera.SetActive(false);
+        backwards_camera.SetActive(true);
+    }
+
+    public void LookForward()
+    {
+        forward_camera.SetActive(true);
+        backwards_camera.SetActive(false);
     }
 }

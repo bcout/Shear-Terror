@@ -10,7 +10,7 @@ public static class Constants
     public const float BASE_MOVEMENT_SPEED = 0.3f;
     public const float ROTATION_CHANGE_IN_TURNS = 90f;
 
-    public const float JUMP_HEIGHT = 25f;
+    public const float JUMP_HEIGHT = 10f;
     public const float JUMP_SPEED = 2.5f;
 
     public const float SPIN_SPEED = 2f;
@@ -41,6 +41,7 @@ public static class Constants
     public const string LONG_LEVEL_DATA_PATH = "/LevelData/long_levels.csv";
 
     public const string LEVEL_PARENT_NAME = "Level Parent";
+    public const string OBSTACLE_PARENT_NAME = "Obstacle Parent";
 
     public const string IDLE_ANIM = "Idle";
     public const string RUN_ANIM = "Run";

@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    public float x_min;
-    public float y_min;
-    public float z_min;
-    public float x_max;
-    public float y_max;
-    public float z_max;
+    public Vector3 move_min;
+    public Vector3 move_max;
+    public Vector3 rotation;
     public float speed;
 
     private float t;
-    private Vector3 min;
-    private Vector3 max;
     private bool moving;
+    private GameObject sheep;
     private SheepController sheep_controller;
+    private RagdollController ragdoll_controller;
 
     // Start is called before the first frame update
     void Start()
     {
         moving = false;
 
-        min = new Vector3(x_min, y_min, z_min);
-        max = new Vector3(x_max, y_max, z_max);
-
-        sheep_controller = GameObject.Find("Sheep").GetComponent<SheepController>();
+        sheep = GameObject.Find("Sheep");
+        sheep_controller = sheep.GetComponent<SheepController>();
     }
 
     // Update is called once per frame
@@ -34,33 +29,36 @@ public class ObstacleController : MonoBehaviour
     {
         if (!moving)
         {
-            StartCoroutine(MoveBackAndForth(new Vector3(0, 0, 0), min, max));
+            StartCoroutine(MoveBackAndForth(Vector3.zero, move_min, move_max, Vector3.zero, rotation));
         }
     }
 
-    private IEnumerator MoveBackAndForth(Vector3 origin, Vector3 min, Vector3 max)
+    private IEnumerator MoveBackAndForth(Vector3 move_origin, Vector3 move_min, Vector3 move_max, Vector3 rotation_origin, Vector3 rotation_max)
     {
-        if (origin != max)
+        if (move_origin != move_max)
         {
-            yield return MoveTo(origin, max);
-            yield return MoveTo(max, origin);
+            yield return MoveTo(move_origin, move_max, rotation_origin, rotation_max);
+            yield return MoveTo(move_max, move_origin, rotation_max, rotation_origin);
         }
-        if (origin != min)
+        if (move_origin != move_min)
         {
-            yield return MoveTo(origin, min);
-            yield return MoveTo(min, origin);
+            yield return MoveTo(move_origin, move_min, rotation_max, rotation_origin);
+            yield return MoveTo(move_min, move_origin, rotation_origin, rotation_max);
         }
     }
 
-    private IEnumerator MoveTo(Vector3 a, Vector3 b)
+    private IEnumerator MoveTo(Vector3 move_a, Vector3 move_b, Vector3 rotation_a, Vector3 rotation_b)
     {
         moving = true;
+        Quaternion initial = Quaternion.identity;
         
         while(t < 1)
         {
             t += Time.deltaTime * speed;
 
-            transform.localPosition = Vector3.Lerp(a, b, t);
+            transform.localPosition = Vector3.Lerp(move_a, move_b, t);
+            Vector3 current_rotation = Vector3.Lerp(rotation_a, rotation_b, t);
+            transform.localRotation = initial * Quaternion.Euler(current_rotation);
 
             yield return new WaitForEndOfFrame();
         }
@@ -69,11 +67,12 @@ public class ObstacleController : MonoBehaviour
         moving = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Sheep")
         {
             sheep_controller.SetState(sheep_controller.GetRagdollState());
+            sheep_controller.SetCollidedObstacle(gameObject);
         }
     }
 }

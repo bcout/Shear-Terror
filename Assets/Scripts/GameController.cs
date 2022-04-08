@@ -8,8 +8,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject sheep, farmer;
+    [SerializeField] private GameObject sheep, farmer;
 
     private GameObject heart1;
     private GameObject heart2;

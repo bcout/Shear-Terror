@@ -21,6 +21,7 @@ public static class GameData
 
     public static bool isGameOver { get; set; }
     
+    public static bool game_paused { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -42,5 +43,6 @@ public static class GameData
         sheepLivesRemaining = sheepLivesInitial;
 
         isGameOver = false;
+        game_paused = false;
     }
 }

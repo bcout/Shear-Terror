@@ -35,19 +35,38 @@ public class RagdollController : MonoBehaviour
 
     private void Update()
     {
-        if (initialized)
+        if (initialized && !GameData.game_paused && !GameData.isGameOver)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !GameData.isGameOver)
-            {
-                ResumeRunners();
-                Destroy(gameObject);
-            }
+            HandleInput();
         }
 
         //this needs to be done smoothly
         Vector3 lookDirection = ragdoll_position.position - sheep_camera.transform.position;
         lookDirection.Normalize();
         sheep_camera.transform.rotation = Quaternion.Slerp(sheep_camera.transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime);
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ResumeRunners();
+            Destroy(gameObject);
+            GameObject obstacle = sheep_controller.GetCollidedObstacle();
+            if (obstacle != null)
+            {
+                Destroy(obstacle);
+                sheep_controller.SetCollidedObstacle(null);
+            }
+        }
+        if (Input.GetKey(GameData.look_back_key))
+        {
+            sheep_controller.LookBack();
+        }
+        else
+        {
+            sheep_controller.LookForward();
+        }
     }
 
     private void LoadComponents()
@@ -85,6 +104,8 @@ public class RagdollController : MonoBehaviour
         sheep_renderer.enabled = false;
         sheep_movement_controller.StopAllCoroutines();
         farmer_movement_controller.StopAllCoroutines();
+        farmer_controller.StopAnimation(Constants.FARM_RUN_ANIM);
+        farmer_controller.StartAnimation(Constants.FARM_WAIT_ANIM);
     }
 
     private void ResumeRunners()
@@ -94,5 +115,7 @@ public class RagdollController : MonoBehaviour
         sheep_camera.transform.localRotation = Quaternion.Euler(Constants.CAMERA_X_ROTATION, 0f, 0f);
         sheep_controller.Respawn();
         farmer_controller.Respawn();
+        farmer_controller.StopAnimation(Constants.FARM_WAIT_ANIM);
+        farmer_controller.StartAnimation(Constants.FARM_RUN_ANIM);
     }
 }
