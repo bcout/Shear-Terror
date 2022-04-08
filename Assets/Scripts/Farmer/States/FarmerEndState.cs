@@ -5,6 +5,7 @@ using UnityEngine;
 public class FarmerEndState : MonoBehaviour, FarmerState
 {
     private FarmerController farmer_controller;
+    private FarmerMovementController farmer_movement_controller;
 
     public void StateUpdate()
     {
@@ -20,10 +21,13 @@ public class FarmerEndState : MonoBehaviour, FarmerState
     {
         LoadComponents();
         farmer_controller.StartAnimation(Constants.FARM_END_ANIM);
+        StartCoroutine(farmer_movement_controller.MoveToMiddle());
     }
 
     private void LoadComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
+        farmer_movement_controller = GetComponent<FarmerMovementController>();
     }
+
 }
