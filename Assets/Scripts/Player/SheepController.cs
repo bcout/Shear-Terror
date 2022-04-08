@@ -6,7 +6,6 @@ public class SheepController : MonoBehaviour
 {
     [SerializeField] private GameObject forward_camera;
     [SerializeField] private GameObject backwards_camera;
-    [SerializeField] private GameObject level_end_field;
 
     private SheepState state;
     private RunningState running_state;
