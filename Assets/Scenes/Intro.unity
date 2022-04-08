@@ -2838,6 +2838,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farm
       objectReference: {fileID: 0}
+    - target: {fileID: 3881344994607711049, guid: 901d70800f44fda43bca6b4d9bfc58ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3881344994788590672, guid: 901d70800f44fda43bca6b4d9bfc58ca,
         type: 3}
       propertyPath: m_PolyMesh.m_Mesh

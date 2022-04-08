@@ -6,6 +6,7 @@ public class SheepController : MonoBehaviour
 {
     [SerializeField] private GameObject forward_camera;
     [SerializeField] private GameObject backwards_camera;
+    [SerializeField] private GameObject level_end_field;
 
     private SheepState state;
     private RunningState running_state;
@@ -19,9 +20,11 @@ public class SheepController : MonoBehaviour
     private Animator animator;
 
     private List<GameObject> blocks_in_level;
+    private List<GameObject> obstacles_in_level;
     private GameObject current_block;
     private GameObject current_lane;
     private GameObject level_parent;
+    private GameObject obstacle_parent;
     private GameObject collided_obstacle;
 
     private int current_block_index;
@@ -43,7 +46,7 @@ public class SheepController : MonoBehaviour
 
     private void Update()
     {
-        state.StateUpdate();       
+        state.StateUpdate();
     }
 
     private void LoadComponents()
@@ -56,6 +59,7 @@ public class SheepController : MonoBehaviour
     public void StartLevel()
     {
         ReadLevelBlocks();
+        ReadLevelObstacles();
         StartFollowingLevel();
         SetState(start_state);
     }
@@ -73,12 +77,44 @@ public class SheepController : MonoBehaviour
         current_block_index = 0;
     }
 
+    private void ReadLevelObstacles()
+    {
+        obstacle_parent = GameObject.Find(Constants.OBSTACLE_PARENT_NAME);
+        obstacles_in_level = new List<GameObject>();
+
+        for (int i = 0; i < obstacle_parent.transform.childCount; i++)
+        {
+            obstacles_in_level.Add(obstacle_parent.transform.GetChild(i).gameObject);
+        }
+    }
+
     private void StartFollowingLevel()
     {
         current_block = blocks_in_level[current_block_index];
         current_lane = current_block.GetComponent<BlockData>().GetLane(PlayerData.curr_lane).gameObject;
 
         movement_controller.StartFollowingLevel();
+    }
+
+    public void DestroyPreviousBlocks()
+    {
+        if (current_block_index - 2 >= 0)
+        {
+            GameObject block_to_delete = blocks_in_level[current_block_index - 2];
+            if (block_to_delete != null)
+            {
+                Destroy(block_to_delete);  
+            }
+        }
+        
+        if (current_block_index - 3 >= 0)
+        {
+            GameObject obstacle_to_destroy = obstacles_in_level[current_block_index - 3];
+            if (obstacle_to_destroy != null)
+            {
+                Destroy(obstacle_to_destroy);
+            }
+        }
     }
 
     public void StopAnimation(string anim_name)

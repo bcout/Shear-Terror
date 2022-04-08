@@ -289,6 +289,8 @@ public class MovementController : MonoBehaviour
             sheep_controller.SetState(sheep_controller.GetEndState());
             move_coroutine_available = false;
         }
+
+        sheep_controller.DestroyPreviousBlocks();
     }
 
     public void SetCoroutineAvailability(bool value)

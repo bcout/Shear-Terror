@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject sheep, farmer;
+    [SerializeField] private GameObject sheep, farmer;
+
     private LevelSpawner level_spawner;
     private SheepController sheep_controller;
     private FarmerController farmer_controller;
