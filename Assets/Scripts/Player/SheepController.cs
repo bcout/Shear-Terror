@@ -34,12 +34,15 @@ public class SheepController : MonoBehaviour
 
     private float vertical_position;
 
-    private void Start()
+    private void Awake()
     {
         LoadStates();
         LoadComponents();
         SetDefaultState(idle_state);
+    }
 
+    private void Start()
+    {
         collided_obstacle = null;
         vertical_position = 0f;
 
