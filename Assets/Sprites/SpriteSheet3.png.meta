@@ -129,10 +129,10 @@ TextureImporter:
       name: SpriteSheet3_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 826
-        width: 170
-        height: 124
+        x: 0
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: SpriteSheet3_1
       rect:
         serializedVersion: 2
-        x: 290
-        y: 825
-        width: 186
-        height: 121
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: SpriteSheet3_2
       rect:
         serializedVersion: 2
-        x: 546
-        y: 826
-        width: 191
-        height: 128
+        x: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +192,10 @@ TextureImporter:
       name: SpriteSheet3_3
       rect:
         serializedVersion: 2
-        x: 803
-        y: 827
-        width: 197
-        height: 135
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,10 +213,10 @@ TextureImporter:
       name: SpriteSheet3_4
       rect:
         serializedVersion: 2
-        x: 37
-        y: 577
-        width: 204
-        height: 137
+        x: 0
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: SpriteSheet3_5
       rect:
         serializedVersion: 2
-        x: 294
-        y: 585
-        width: 209
-        height: 134
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +255,10 @@ TextureImporter:
       name: SpriteSheet3_6
       rect:
         serializedVersion: 2
-        x: 552
-        y: 591
-        width: 211
-        height: 132
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: SpriteSheet3_7
       rect:
         serializedVersion: 2
-        x: 807
-        y: 593
-        width: 203
-        height: 130
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,10 +297,10 @@ TextureImporter:
       name: SpriteSheet3_8
       rect:
         serializedVersion: 2
-        x: 38
-        y: 330
-        width: 189
-        height: 136
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,10 +318,10 @@ TextureImporter:
       name: SpriteSheet3_9
       rect:
         serializedVersion: 2
-        x: 294
-        y: 340
-        width: 167
-        height: 126
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +339,10 @@ TextureImporter:
       name: SpriteSheet3_10
       rect:
         serializedVersion: 2
-        x: 545
-        y: 337
-        width: 164
-        height: 130
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: SpriteSheet3_11
       rect:
         serializedVersion: 2
-        x: 795
-        y: 330
-        width: 167
-        height: 133
+        x: 768
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: SpriteSheet3_12
       rect:
         serializedVersion: 2
-        x: 35
-        y: 65
-        width: 159
-        height: 133
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
