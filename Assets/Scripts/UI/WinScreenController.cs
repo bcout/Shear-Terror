@@ -23,6 +23,11 @@ public class WinScreenController : MonoBehaviour
             GameData.won_level = false;
             panel.SetActive(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameData.won_level = true;
+        }
     }
 
     public void LoadNextLevel()
