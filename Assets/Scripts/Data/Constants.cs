@@ -8,6 +8,7 @@ public static class Constants
     public const float MIN_ROTATION_TO_LAND = 0.75f;
 
     public const float BASE_MOVEMENT_SPEED = 0.3f;
+    public static float END_MOVEMENT_SPEED = 100f;
     public const float ROTATION_CHANGE_IN_TURNS = 90f;
 
     public const float JUMP_HEIGHT = 10f;

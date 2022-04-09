@@ -52,13 +52,13 @@ public class RagdollController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && respawn_available)
-        {
-            Respawn();
-        }
         if (Input.GetKey(GameData.look_back_key))
         {
             sheep_controller.LookBack();
+        }
+        else if (Input.anyKeyDown && respawn_available)
+        {
+            Respawn();
         }
         else
         {
