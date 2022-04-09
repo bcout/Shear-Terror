@@ -138,8 +138,8 @@ public class TitleController : MonoBehaviour
         ColorUtility.TryParseHtmlString("#FF9697", out rightColor);
         ColorUtility.TryParseHtmlString("#86A0FF", out leftColor);
         ColorUtility.TryParseHtmlString("#FFD092", out lookBackColor);
-        ColorUtility.TryParseHtmlString("#FFD092", out frontFlipColor);
-        ColorUtility.TryParseHtmlString("#92FFA7", out backFlipColor);
+        ColorUtility.TryParseHtmlString("#FFD092", out backFlipColor);
+        ColorUtility.TryParseHtmlString("#92FFA7", out frontFlipColor);
         ColorUtility.TryParseHtmlString("#86A0FF", out rollLeftColor);
         ColorUtility.TryParseHtmlString("#FF9697", out rollRightColor);
         ColorUtility.TryParseHtmlString("#E892FF", out spinLeftColor);
@@ -159,12 +159,10 @@ public class TitleController : MonoBehaviour
     public void startGame()
     {
         StartCoroutine(LoadSceneAsync("Loading"));
-        Debug.Log("Start button pressed");
     }
 
     public void endGame()
     {
-        Debug.Log("Exit button pressed");
         Application.Quit();
     }
 
@@ -320,7 +318,6 @@ public class TitleController : MonoBehaviour
     void handleButtons(int buttonNo)
     {
         int tmp = buttonNo - 64;
-        Debug.Log("tmp" + tmp);
         if (tmp == 0 || tmp == 10)
         {
             goBack();
@@ -350,7 +347,6 @@ public class TitleController : MonoBehaviour
     void ButtonClicked(int buttonNo)
     {
         // If button is not from the onscreen keyboard.
-        Debug.Log(buttonNo);
         if (buttonNo > 63)
         {
             if (!waiting)
