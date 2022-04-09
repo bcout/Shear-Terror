@@ -39,7 +39,7 @@ public class RagdollController : MonoBehaviour
 
     private void Update()
     {
-        if (initialized && !GameData.game_paused)
+        if (initialized && !GameData.game_paused && !GameData.isGameOver)
         {
             HandleInput();
         }

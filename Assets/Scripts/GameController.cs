@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject sheep, farmer;
-
+    public LevelScreenController lvl_screen;
+    
     private LevelSpawner level_spawner;
     private SheepController sheep_controller;
     private FarmerController farmer_controller;
@@ -32,5 +36,12 @@ public class GameController : MonoBehaviour
     private void GenerateLevel()
     {
         level_spawner.GenerateLevel(GameData.level_pool_id);
+    }
+
+    // Call this whenever the sheep goes ragdoll.
+    public void decrementLife()
+    {
+        GameData.sheepLivesRemaining--;
+        lvl_screen.updateHearts();
     }
 }
