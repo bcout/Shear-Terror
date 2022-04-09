@@ -7,6 +7,7 @@ public class LevelScreenController : MonoBehaviour
 {
     public GameObject level_screen_buttons;
     public GameObject level_screen_sign;
+    public GameObject panel;
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
@@ -48,6 +49,8 @@ public class LevelScreenController : MonoBehaviour
             heart1.SetActive(false);
             // heartsCanvas.SetActive(false);
             // gameOverCanvas.SetActive(true);
+            level_screen_buttons.SetActive(false);
+            level_screen_sign.SetActive(false);
             level_screen_buttons.SetActive(true);
             level_screen_sign.SetActive(true);
             GameData.isGameOver = true;
@@ -66,6 +69,11 @@ public class LevelScreenController : MonoBehaviour
         GameData.isGameOver = false;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
+    }
+
+    public void hidePanel()
+    {
+        panel.SetActive(false);
     }
 
     // Update is called once per frame

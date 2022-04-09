@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,15 +35,17 @@ public class SheepController : MonoBehaviour
 
     private float vertical_position;
 
-    private void Start()
+    private void Awake()
     {
         LoadComponents();
         LoadStates();
         SetDefaultState(idle_state);
+    }
 
+    private void Start()
+    {
         collided_obstacle = null;
         vertical_position = 0f;
-
         backwards_camera.SetActive(false);
         forward_camera.SetActive(true);
     }

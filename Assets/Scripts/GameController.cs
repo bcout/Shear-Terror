@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject sheep, farmer;
-    public LevelScreenController screen;
+    public LevelScreenController lvl_screen;
+    public WinScreenController win_screen;
 
     // private GameObject heartsCanvas;
     // private GameObject gameOverCanvas;
@@ -47,6 +48,11 @@ public class GameController : MonoBehaviour
     public void decrementLife()
     {
         GameData.sheepLivesRemaining--;
-        screen.updateHearts();
+        lvl_screen.updateHearts();
+    }
+
+    public void showWinScreen()
+    {
+        win_screen.showMe();
     }
 }

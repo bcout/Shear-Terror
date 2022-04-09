@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] GameObject pause_menu;
+    // [SerializeField] GameObject frostedGlass;
 
     private void Start()
     {
+        // frostedGlass.SetActive(false);
         pause_menu.SetActive(false);
     }
 
@@ -29,6 +31,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
+        // frostedGlass.SetActive(false);
         pause_menu.SetActive(false);
         Time.timeScale = 1f;
         GameData.game_paused = false;
@@ -36,6 +39,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
+        // frostedGlass.SetActive(true);
         pause_menu.SetActive(true);
         Time.timeScale = 0f;
         GameData.game_paused = true;
