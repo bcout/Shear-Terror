@@ -28,6 +28,15 @@ public static class GameData
     public static bool game_paused { get; set; }
     public static bool currently_going_to_main_menu { get; set; }
     public static bool footstep_sound_enabled { get; set; }
+
+    public static int score { get; set; }
+    
+    public static int deaths { get; set; }
+    
+    public static PlayerData.Trick previousTrick { get; set; }
+    
+    public static bool firstTrick { get; set; }
+    public static int scoreBeforeLevelStart { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -56,5 +65,10 @@ public static class GameData
         won_level = false;
 
         footstep_sound_enabled = false;
+
+        firstTrick = true;
+        score = 0;
+        deaths = 0;
+        scoreBeforeLevelStart = 0;
     }
 }

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelScreenController : MonoBehaviour
 {
     public GameObject level_screen_buttons;
     public GameObject level_screen_sign;
+    public Text score;
+    public Text deaths;
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
@@ -22,6 +25,7 @@ public class LevelScreenController : MonoBehaviour
     // Update the lives indicator
     public void updateHearts()
     {
+        GameData.deaths++;
         if (GameData.sheepLivesRemaining == 4)
         {
             heart5.SetActive(false);
@@ -51,6 +55,7 @@ public class LevelScreenController : MonoBehaviour
     
     public void RestartBtn()
     {
+        GameData.score = GameData.scoreBeforeLevelStart;
         GameData.isGameOver = false;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene("Loading");
@@ -58,15 +63,18 @@ public class LevelScreenController : MonoBehaviour
     
     public void QuitToMainMenu()
     {
+        GameData.score = 0;
+        GameData.deaths = 0;
         GameData.current_level = 1;
-        GameData.isGameOver = false;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
+        GameData.isGameOver = false;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        score.text = "Score: " + GameData.score;
+        deaths.text = "Deaths: " + GameData.deaths;
     }
 }

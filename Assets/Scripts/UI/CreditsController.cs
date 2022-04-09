@@ -47,6 +47,11 @@ public class CreditsController : MonoBehaviour
         if (prompt_visible && Input.anyKeyDown)
         {
             music_source.Stop();
+            GameData.scoreBeforeLevelStart = 0;
+            GameData.score = 0;
+            GameData.deaths = 0;
+            GameData.current_level = 1;
+            GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
             SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
@@ -43,6 +44,7 @@ public class WinScreenController : MonoBehaviour
     // Load the next level from the win screen.
     public void LoadNextLevel()
     {
+        GameData.scoreBeforeLevelStart = GameData.score;
         GameData.current_level++;
         if (GameData.current_level < 3)
         {
@@ -68,6 +70,8 @@ public class WinScreenController : MonoBehaviour
     
     public void QuitToMainMenu()
     {
+        GameData.score = 0;
+        GameData.deaths = 0;
         GameData.current_level = 1;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);

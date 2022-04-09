@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         GenerateLevel();
         sheep_controller.StartLevel();
         farmer_controller.StartLevel();
+        GameData.firstTrick = true;
     }
 
     private void LoadComponents()
