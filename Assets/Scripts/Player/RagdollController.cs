@@ -20,6 +20,7 @@ public class RagdollController : MonoBehaviour
     private FarmerMovementController farmer_movement_controller;
 
     private bool initialized = false;
+    private bool respawn_available;
 
     public void Init(GameObject sheep_reference, GameObject farmer_reference)
     {
@@ -30,6 +31,9 @@ public class RagdollController : MonoBehaviour
         AddForce();
 
         initialized = true;
+        respawn_available = false;
+        StartCoroutine(DelayRespawnAbility());
+
         PauseRunners();
     }
 
@@ -48,16 +52,9 @@ public class RagdollController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && respawn_available)
         {
-            ResumeRunners();
-            Destroy(gameObject);
-            GameObject obstacle = sheep_controller.GetCollidedObstacle();
-            if (obstacle != null)
-            {
-                Destroy(obstacle);
-                sheep_controller.SetCollidedObstacle(null);
-            }
+            Respawn();
         }
         if (Input.GetKey(GameData.look_back_key))
         {
@@ -79,6 +76,18 @@ public class RagdollController : MonoBehaviour
         sheep_collider = sheep.GetComponent<CapsuleCollider>();
         sheep_renderer = sheep.GetComponentInChildren<SkinnedMeshRenderer>();
         sheep_camera = sheep.GetComponentInChildren<Camera>();
+    }
+
+    private void Respawn()
+    {
+        ResumeRunners();
+        Destroy(gameObject);
+        GameObject obstacle = sheep_controller.GetCollidedObstacle();
+        if (obstacle != null)
+        {
+            Destroy(obstacle);
+            sheep_controller.SetCollidedObstacle(null);
+        }
     }
 
     private void FindTransforms()
@@ -122,5 +131,11 @@ public class RagdollController : MonoBehaviour
         farmer_controller.Respawn();
         farmer_controller.StopAnimation(Constants.FARM_WAIT_ANIM);
         farmer_controller.StartAnimation(Constants.FARM_RUN_ANIM);
+    }
+
+    private IEnumerator DelayRespawnAbility()
+    {
+        yield return new WaitForSeconds(0.5f);
+        respawn_available = true;
     }
 }
