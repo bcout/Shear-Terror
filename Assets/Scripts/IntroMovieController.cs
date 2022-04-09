@@ -31,7 +31,7 @@ public class IntroMovieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.anyKeyDown)
         {
             UnloadScene(current_scene);
             current_scene++;
