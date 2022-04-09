@@ -142,11 +142,11 @@ public class MovementController : MonoBehaviour
                 break;
             case PlayerData.Trick.BARREL_ROLL_LEFT:
                 start_angle = body.localRotation.z;
-                end_angle = body.localRotation.z - Constants.SPIN_ROTATION;
+                end_angle = body.localRotation.z + Constants.SPIN_ROTATION;
                 break;
             case PlayerData.Trick.BARREL_ROLL_RIGHT:
                 start_angle = body.localRotation.z;
-                end_angle = body.localRotation.z + Constants.SPIN_ROTATION;
+                end_angle = body.localRotation.z - Constants.SPIN_ROTATION;
                 break;
         }
 
