@@ -140,6 +140,8 @@ public class TitleController : MonoBehaviour
         ColorUtility.TryParseHtmlString("#FF9697", out rollRightColor);
         ColorUtility.TryParseHtmlString("#E892FF", out spinLeftColor);
         ColorUtility.TryParseHtmlString("#92FFF3", out spinRightColor);
+
+        GameData.currently_going_to_main_menu = false;
     }
 
     public void startGame()

@@ -45,6 +45,7 @@ public class PauseMenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameData.game_paused = false;
+        GameData.currently_going_to_main_menu = true;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
     }
 }
