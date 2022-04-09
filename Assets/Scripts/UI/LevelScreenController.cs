@@ -53,7 +53,7 @@ public class LevelScreenController : MonoBehaviour
     {
         GameData.isGameOver = false;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Loading");
     }
     
     public void QuitToMainMenu()
