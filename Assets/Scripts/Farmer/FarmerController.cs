@@ -22,10 +22,14 @@ public class FarmerController : MonoBehaviour
 
     private int current_block_index;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     private void Start()
     {
         LoadStates();
-        LoadLocalComponents();
         LoadComponents();
         SetDefaultState(waiting_state);
     }

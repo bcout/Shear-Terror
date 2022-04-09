@@ -17,10 +17,14 @@ public class GameController : MonoBehaviour
 
     private bool game_paused;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        LoadLocalComponents();
         LoadComponents();
         GenerateLevel();
         sheep_controller.StartLevel();

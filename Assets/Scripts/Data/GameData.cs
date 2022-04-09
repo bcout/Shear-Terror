@@ -28,6 +28,7 @@ public static class GameData
     public static bool game_paused { get; set; }
     public static bool currently_going_to_main_menu { get; set; }
     public static bool footstep_sound_enabled { get; set; }
+    public static bool sheep_currently_ragdolling { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -40,8 +41,8 @@ public static class GameData
         flip_back_key = look_back_key;
         roll_left_key = move_left_key;
         roll_right_key = move_right_key;
-        spin_left_key = KeyCode.PageDown;
-        spin_right_key = KeyCode.PageUp;
+        spin_left_key = KeyCode.PageUp;
+        spin_right_key = KeyCode.PageDown;
 
         level_pool_id = Constants.SHORT_LEVEL_ID;
 
@@ -56,5 +57,7 @@ public static class GameData
         won_level = false;
 
         footstep_sound_enabled = false;
+
+        sheep_currently_ragdolling = false;
     }
 }

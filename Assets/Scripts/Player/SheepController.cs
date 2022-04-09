@@ -54,6 +54,7 @@ public class SheepController : MonoBehaviour
 
     private void Update()
     {
+        print(state);
         state.StateUpdate();
     }
 
