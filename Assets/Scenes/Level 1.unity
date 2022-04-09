@@ -488,6 +488,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3731530016778575151, guid: b944cd6c067cbd042b971783b608841c,
+        type: 3}
+      propertyPath: sheep
+      value: 
+      objectReference: {fileID: 2015223326}
+    - target: {fileID: 3731530016778575151, guid: b944cd6c067cbd042b971783b608841c,
+        type: 3}
+      propertyPath: sheep_controller
+      value: 
+      objectReference: {fileID: 2015223334}
     - target: {fileID: 3731530016841749405, guid: b944cd6c067cbd042b971783b608841c,
         type: 3}
       propertyPath: m_RootOrder
@@ -826,3 +836,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 804b1fc2c0de64dc58b006893c7245f0, type: 3}
+--- !u!114 &2015223334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8249060894972314746, guid: c8128f434dc2c004c9ff65f25c73386b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015223325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015223326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fdc63a0d773349a044b366374bdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

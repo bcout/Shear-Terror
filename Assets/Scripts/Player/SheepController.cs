@@ -9,6 +9,7 @@ public class SheepController : MonoBehaviour
     [SerializeField] private GameObject backwards_camera;
     [SerializeField] private GameObject music_player_object;
     [SerializeField] private GameObject sfx_player_object;
+    [SerializeField] private GameObject level_end_field;
 
     private SheepState state;
     private RunningState running_state;
@@ -44,6 +45,7 @@ public class SheepController : MonoBehaviour
 
     private void Start()
     {
+        LoadExternalComponents();
         collided_obstacle = null;
         vertical_position = 0f;
         backwards_camera.SetActive(false);
@@ -59,6 +61,10 @@ public class SheepController : MonoBehaviour
     {
         movement_controller = GetComponent<MovementController>();
         animator = GetComponent<Animator>();
+    }
+
+    private void LoadExternalComponents()
+    {
         sfx_player = sfx_player_object.GetComponent<SoundEffectPlayer>();
         music_player = music_player_object.GetComponent<MusicPlayer>();
     }
@@ -123,6 +129,12 @@ public class SheepController : MonoBehaviour
                 Destroy(obstacle_to_destroy);
             }
         }
+    }
+
+    public void SpawnLevelEndField()
+    {
+        Transform spawn_point = blocks_in_level[blocks_in_level.Count - 1].transform.Find("End");
+        Instantiate(level_end_field, spawn_point.position, spawn_point.rotation);
     }
 
     public void StopAnimation(string anim_name)

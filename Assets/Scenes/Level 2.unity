@@ -527,6 +527,11 @@ PrefabInstance:
       propertyPath: frostedGlass
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3731530016778575151, guid: b944cd6c067cbd042b971783b608841c,
+        type: 3}
+      propertyPath: sheep_controller
+      value: 
+      objectReference: {fileID: 1777326505}
     - target: {fileID: 3731530016841749405, guid: b944cd6c067cbd042b971783b608841c,
         type: 3}
       propertyPath: m_RootOrder
@@ -828,3 +833,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777326505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8249060894972314746, guid: c8128f434dc2c004c9ff65f25c73386b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777326503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777326504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fdc63a0d773349a044b366374bdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

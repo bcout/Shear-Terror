@@ -24,6 +24,7 @@ public static class GameData
     public static bool isGameOver { get; set; }
     
     public static bool game_paused { get; set; }
+    public static bool currently_going_to_main_menu { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -48,5 +49,6 @@ public static class GameData
         game_paused = false;
 
         current_level = 1;
+        currently_going_to_main_menu = false;
     }
 }

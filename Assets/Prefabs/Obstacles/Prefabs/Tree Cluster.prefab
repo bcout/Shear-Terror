@@ -48,12 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed10244c7ad6fb49a0050ce134dc4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x_min: 0
-  y_min: 0
-  z_min: 0
-  x_max: 0
-  y_max: 0
-  z_max: 0
+  move_min: {x: 0, y: 0, z: 0}
+  move_max: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
   speed: 0
 --- !u!65 &2057246708453575695
 BoxCollider:
@@ -66,8 +63,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.21959, y: 8.819426, z: 2.1785865}
-  m_Center: {x: 0.14562464, y: 2.7541494, z: -1.5632265}
+  m_Size: {x: 8.21959, y: 14.086259, z: 2.1785865}
+  m_Center: {x: 0.14562464, y: 5.387566, z: -1.5632265}
 --- !u!136 &9111833413590999644
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -79,9 +76,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.4462943
-  m_Height: 13.63546
+  m_Height: 13.493441
   m_Direction: 1
-  m_Center: {x: -0.07138395, y: 5.7251453, z: 1.7330384}
+  m_Center: {x: -0.07138395, y: 5.6541357, z: 1.7330384}
 --- !u!1001 &4732358355105637868
 PrefabInstance:
   m_ObjectHideFlags: 0

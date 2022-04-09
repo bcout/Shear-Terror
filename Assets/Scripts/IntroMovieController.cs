@@ -17,7 +17,6 @@ public class IntroMovieController : MonoBehaviour
     [SerializeField] private GameObject[] scene_7_objects;
 
     private GameObject[][] scenes;
-    private AsyncOperation async_operation;
 
     private int current_scene;
 
@@ -27,8 +26,6 @@ public class IntroMovieController : MonoBehaviour
         InitScenes();
         current_scene = 0;
         LoadScene(current_scene);
-
-        StartCoroutine(StartLoadingMainMenu());
     }
 
     // Update is called once per frame
@@ -41,7 +38,7 @@ public class IntroMovieController : MonoBehaviour
 
             if (current_scene >= NUM_SCENES)
             {
-                async_operation.allowSceneActivation = true; // This is what actually switches to the next scene 
+                SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
             }
             else
             {
@@ -87,19 +84,5 @@ public class IntroMovieController : MonoBehaviour
         {
             scenes[scene_num][i].SetActive(true);
         }
-    }
-
-    private IEnumerator StartLoadingMainMenu()
-    {
-        yield return null;
-
-        async_operation = SceneManager.LoadSceneAsync(Constants.MAIN_MENU_SCENE_NAME);
-        async_operation.allowSceneActivation = false;
-
-        while (!async_operation.isDone)
-        {
-            yield return null;
-        }
-
     }
 }

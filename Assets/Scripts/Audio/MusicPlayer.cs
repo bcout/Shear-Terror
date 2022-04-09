@@ -8,19 +8,22 @@ public class MusicPlayer : MonoBehaviour
     private AudioSource audio_source;
     private int music_clip_index;
 
+    private bool music_paused;
+
     private void Start()
     {
+        music_paused = false;
         music_clip_index = 0;
         LoadComponents();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (GameData.game_paused && !music_paused)
         {
             PauseMusic();
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        else if (!GameData.game_paused && music_paused && !GameData.currently_going_to_main_menu)
         {
             ResumeMusic();
         }
@@ -45,11 +48,13 @@ public class MusicPlayer : MonoBehaviour
     public void PauseMusic()
     {
         audio_source.Pause();
+        music_paused = true;
     }
 
     public void ResumeMusic()
     {
         audio_source.UnPause();
+        music_paused = false;
     }
 
     public void IncreaseTempo()
