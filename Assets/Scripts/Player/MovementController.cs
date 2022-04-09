@@ -97,6 +97,11 @@ public class MovementController : MonoBehaviour
          t_end = 0f;
     }
 
+    public void RunIntoDistance()
+    {
+        transform.position += transform.forward * Time.deltaTime * Constants.END_MOVEMENT_SPEED;
+    }
+
     public void ContinueJump()
     {
         if(jump_coroutine_available)
