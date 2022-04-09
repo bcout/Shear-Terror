@@ -50,9 +50,4 @@ public class GameController : MonoBehaviour
         GameData.sheepLivesRemaining--;
         lvl_screen.updateHearts();
     }
-
-    public void showWinScreen()
-    {
-        win_screen.showMe();
-    }
 }

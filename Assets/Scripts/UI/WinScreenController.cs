@@ -18,7 +18,11 @@ public class WinScreenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameData.won_level)
+        {
+            GameData.won_level = false;
+            panel.SetActive(true);
+        }
     }
 
     public void LoadNextLevel()
@@ -49,10 +53,5 @@ public class WinScreenController : MonoBehaviour
     {
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
-    }
-
-    public void showMe()
-    {
-        panel.SetActive(true);
     }
 }

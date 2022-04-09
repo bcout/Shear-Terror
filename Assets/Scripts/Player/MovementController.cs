@@ -315,6 +315,8 @@ public class MovementController : MonoBehaviour
         {
             sheep_controller.SetState(sheep_controller.GetEndState());
             move_coroutine_available = false;
+            StartCoroutine(waitAndEnableWinScreen(2.5f));
+
         }
 
         if (current_block_index == blocks_in_level.Count - 3)
@@ -323,6 +325,12 @@ public class MovementController : MonoBehaviour
         }
 
         sheep_controller.DestroyPreviousBlocks();
+    }
+    
+    IEnumerator waitAndEnableWinScreen(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        GameData.won_level = true;
     }
 
     public void SetCoroutineAvailability(bool value)
