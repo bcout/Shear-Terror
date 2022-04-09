@@ -122,18 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &323627860 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1621364194951223275, guid: 1a86c730727aa9043a679e9809b2e776,
-    type: 3}
-  m_PrefabInstance: {fileID: 575605734}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1a1ebb715eb0eecb944c6bfe466993, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &575605734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,6 +203,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4455843539706121457, guid: 804b1fc2c0de64dc58b006893c7245f0,
+        type: 3}
+      propertyPath: m_Name
+      value: FrostedFlass
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455843539706121457, guid: 804b1fc2c0de64dc58b006893c7245f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8850052454461939772, guid: 804b1fc2c0de64dc58b006893c7245f0,
         type: 3}
       propertyPath: m_IsActive
@@ -243,11 +241,16 @@ PrefabInstance:
     - target: {fileID: 8850052454461939774, guid: 804b1fc2c0de64dc58b006893c7245f0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8850052454623640669, guid: 804b1fc2c0de64dc58b006893c7245f0,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850052454623640671, guid: 804b1fc2c0de64dc58b006893c7245f0,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8850052454684750121, guid: 804b1fc2c0de64dc58b006893c7245f0,
@@ -668,7 +671,6 @@ MonoBehaviour:
   sheep: {fileID: 1777326504}
   farmer: {fileID: 883894543}
   lvl_screen: {fileID: 1019208813}
-  win_screen: {fileID: 323627860}
 --- !u!4 &1717418552
 Transform:
   m_ObjectHideFlags: 0

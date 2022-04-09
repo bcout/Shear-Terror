@@ -180,6 +180,7 @@ public class TitleController : MonoBehaviour
         refresh_KB_Highlights();
     }
     
+    // Open the tricks keybind assignment menu.
     public void launchOptionsTricks()
     {
         screenNum = 2;
@@ -210,7 +211,7 @@ public class TitleController : MonoBehaviour
         }
     }
     
-    // For inoutting inputs using the keyboard
+    // For inputting inputs using the keyboard
     void OnGUI()
     {
         if (screenNum == 1)
@@ -225,7 +226,6 @@ public class TitleController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("fuck me: " + bind);
                     if (bind == 7)
                     {
                         GameData.move_left_key = e.keyCode;
@@ -316,7 +316,7 @@ public class TitleController : MonoBehaviour
         waiting = true;
     }
 
-    // Figure out what this button is.
+    // Button is not from the on screen keyboard, figure out what this button is.
     void handleButtons(int buttonNo)
     {
         int tmp = buttonNo - 64;
@@ -325,7 +325,6 @@ public class TitleController : MonoBehaviour
         {
             goBack();
         }
-
         else if (1 <= tmp && tmp <= 6)
         {
             bind = tmp;
@@ -350,7 +349,6 @@ public class TitleController : MonoBehaviour
     // Handle all onscreen button inputs.
     void ButtonClicked(int buttonNo)
     {
-        // Debug.Log("Button clicked = " + buttonNo);
         // If button is not from the onscreen keyboard.
         Debug.Log(buttonNo);
         if (buttonNo > 63)
@@ -447,7 +445,7 @@ public class TitleController : MonoBehaviour
         }
     }
 
-// Refresh the highlighted keys on the keyboard.
+// Refresh the highlighted keys on the on screen keyboard.
     void refresh_KB_Highlights()
     {
         if (screenNum == 2)

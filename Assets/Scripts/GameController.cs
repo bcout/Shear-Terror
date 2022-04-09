@@ -10,10 +10,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject sheep, farmer;
     public LevelScreenController lvl_screen;
-    public WinScreenController win_screen;
-
-    // private GameObject heartsCanvas;
-    // private GameObject gameOverCanvas;
+    
     private LevelSpawner level_spawner;
     private SheepController sheep_controller;
     private FarmerController farmer_controller;
@@ -23,9 +20,6 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // heartsCanvas.SetActive(true);
-        // gameOverCanvas = GameObject.FindGameObjectWithTag("GameOverCanvas");
-        // gameOverCanvas.SetActive(false);
         LoadComponents();
         GenerateLevel();
         sheep_controller.StartLevel();

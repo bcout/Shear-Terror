@@ -24,12 +24,13 @@ public class WinScreenController : MonoBehaviour
             panel.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GameData.won_level = true;
-        }
+        // Used in testing to auto win levels.
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     GameData.won_level = true;
+        // }
     }
-
+    // Load the next level from the win screen.
     public void LoadNextLevel()
     {
         GameData.current_level++;
