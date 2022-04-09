@@ -41,6 +41,7 @@ public class WinScreenController : MonoBehaviour
         }
         else if (GameData.current_level == 3)
         {
+            GameData.current_level = 1;
             GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
             StartCoroutine(LoadSceneAsync("Outro"));
         }
@@ -57,6 +58,7 @@ public class WinScreenController : MonoBehaviour
     
     public void QuitToMainMenu()
     {
+        GameData.current_level = 1;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
     }
