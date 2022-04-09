@@ -57,13 +57,4 @@ public class LoadScreenController : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
-
-    IEnumerator LoadSceneAsync (string level)
-    {
-        op = SceneManager.LoadSceneAsync(level);
-        while (!op.isDone)
-        {
-            yield return null;
-        }
-    }
 }

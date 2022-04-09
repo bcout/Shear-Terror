@@ -1469,6 +1469,7 @@ MonoBehaviour:
   sheep_ragdoll: {fileID: 9060848178154657479, guid: b875edfd50c8988499c62af519c93c55,
     type: 3}
   farmer: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!114 &1333033471150282078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,9 +2077,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music_clips:
-  - {fileID: 8300000, guid: ea351a5eea00d2449b465758a5fdaab7, type: 3}
-  - {fileID: 8300000, guid: fbf048038e8aa764ea55c487950bf27b, type: 3}
-  - {fileID: 8300000, guid: 50cb6272c860a2349aa7651ea32be927, type: 3}
+  - {fileID: 8300000, guid: 39c7f84898c7dcf4d9ab8a28cfb19c44, type: 3}
+  - {fileID: 8300000, guid: f18dba57fdb6f6d46a0c065d89d91c62, type: 3}
+  - {fileID: 8300000, guid: 3e240dfdc5bb1b340935e80128103ba6, type: 3}
+  - {fileID: 8300000, guid: ec18379d7ccc979439417e6a8da5be39, type: 3}
+  - {fileID: 8300000, guid: 40cbdafcdb9a6c54ba0b86f89b2e22f9, type: 3}
 --- !u!1 &8936171901521622015
 GameObject:
   m_ObjectHideFlags: 0

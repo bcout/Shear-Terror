@@ -24,7 +24,7 @@ public static class GameData
     public static bool isGameOver { get; set; }
     
     public static bool won_level { get; set; }
-    
+
     public static bool game_paused { get; set; }
     public static bool currently_going_to_main_menu { get; set; }
     static GameData()

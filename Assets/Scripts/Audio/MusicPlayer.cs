@@ -60,7 +60,7 @@ public class MusicPlayer : MonoBehaviour
     public void IncreaseTempo()
     {
         music_clip_index++;
-        audio_source.clip = music_clips[music_clip_index % 3];
+        audio_source.clip = music_clips[music_clip_index % 5];
         audio_source.Play();
     }
 }

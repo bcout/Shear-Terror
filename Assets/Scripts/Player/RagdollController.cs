@@ -111,7 +111,6 @@ public class RagdollController : MonoBehaviour
     {
         sheep_collider.enabled = false;
         sheep_renderer.enabled = false;
-
         sheep_controller.GetSoundEffectsPlayer().EnableFootstepSounds(false);
         sheep_controller.GetMusicPlayer().StopMusic();
         sheep_movement_controller.StopAllCoroutines();
