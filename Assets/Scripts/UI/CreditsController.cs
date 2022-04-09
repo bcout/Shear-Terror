@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class CreditsController : MonoBehaviour
 {
     [SerializeField] GameObject prompt;
+    [SerializeField] GameObject names, headings, title;
+    [SerializeField] AudioSource music_source;
     [SerializeField] float end_y_value;
     [SerializeField] float start_y_value;
     [SerializeField] float default_speed;
@@ -31,6 +33,9 @@ public class CreditsController : MonoBehaviour
         }
         else
         {
+            names.SetActive(false);
+            headings.SetActive(false);
+            title.SetActive(false);
             StartCoroutine(DelayShowPrompt());
         }
 
@@ -41,6 +46,7 @@ public class CreditsController : MonoBehaviour
     {
         if (prompt_visible && Input.anyKeyDown)
         {
+            music_source.Stop();
             SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         }
     }
