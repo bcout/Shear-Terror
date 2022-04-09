@@ -962,7 +962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 1347}
+  m_AnchoredPosition: {x: 48, y: 1401}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011584623
@@ -982,7 +982,7 @@ MonoBehaviour:
   headings: {fileID: 1560808832}
   title: {fileID: 745563622}
   music_source: {fileID: 320173168}
-  end_y_value: 1347
+  end_y_value: 1401
   start_y_value: -530
   default_speed: 50
 --- !u!1001 &1063847204
@@ -1322,9 +1322,9 @@ MonoBehaviour:
   m_Text: "Created By\n\n\n\n\n3D Art and Animation\r\nCutscenes\r\nEnvironment Art\nIntro
     and Outro Scenes\r\nLevel Generation\nMusic\nObstacles\nSheep Ragdoll\r\nSheep
     and Farmer Movement\nSound Effects\n\n\nEnvironment Art\nLoading Screen\r\nMain
-    Menu\r\nMusic\nSettings Menu\n\n\nCamera Movement\r\nLevel-end Scripting\nObstacles\r\nSheep
+    Menu\r\nMusic\nSettings Menu\n\n\nCamera Movement\r\nObstacles\nScripting\r\nSheep
     Jumping\r\nSheep Parkour\r\nSheep Ragdoll\n\n\nAdditional Art, Music, and \r\nOther
-    Assets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpecial Thanks"
+    Assets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpecial Thanks"
 --- !u!222 &1560808835
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1447,7 +1447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.7, y: -1329}
+  m_AnchoredPosition: {x: -50.7, y: -1383}
   m_SizeDelta: {x: 296.82553, y: 45.083885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718271199
@@ -1525,8 +1525,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.5, y: -425.1}
-  m_SizeDelta: {x: 263.20114, y: 1378.7946}
+  m_AnchoredPosition: {x: -67.5, y: -455.9}
+  m_SizeDelta: {x: 263.20114, y: 1440.5182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823544292
 MonoBehaviour:
@@ -1630,6 +1630,8 @@ MonoBehaviour:
 
     ThoseAwesomeGuys
 
+    webstockreview
+
 
 
     Adrien
@@ -1637,25 +1639,31 @@ MonoBehaviour:
 
     Alexander Zotov
 
+    Andrey Sitnik
+
     Brackeys
 
     Code Monkey
 
-    Daniel Rea
+    Daniel
+    Rea
 
-    Ditzel
-    Games
+    Ditzel Games
 
     FImpossibleCreations
 
     Imphenzia
 
-    Jason Weimann
+    Ivan Solovev
 
-    Jimmy
-    Vegas
+    Jason
+    Weimann
 
-    Jorge Rodriguez'
+    Jimmy Vegas
+
+    Jorge Rodriguez
+
+    pedroahpolonio'
 --- !u!222 &1823544293
 CanvasRenderer:
   m_ObjectHideFlags: 0
