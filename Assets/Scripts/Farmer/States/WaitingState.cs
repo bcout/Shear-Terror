@@ -32,13 +32,18 @@ public class WaitingState : MonoBehaviour, FarmerState
 
     public void Enter()
     {
+        LoadLocalComponents();
         LoadComponents();
         farmer_controller.StartAnimation(Constants.FARM_WAIT_ANIM);
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
+    }
+
+    private void LoadComponents()
+    { 
         sheep_controller = sheep.GetComponent<SheepController>();
     }
 }

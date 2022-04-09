@@ -20,11 +20,11 @@ public class ChasingState : MonoBehaviour, FarmerState
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         farmer_controller.StartAnimation(Constants.FARM_RUN_ANIM);
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
         farmer_movement_controller = GetComponent<FarmerMovementController>();

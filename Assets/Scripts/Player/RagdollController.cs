@@ -56,7 +56,7 @@ public class RagdollController : MonoBehaviour
         {
             sheep_controller.LookBack();
         }
-        else if (Input.anyKeyDown && respawn_available)
+        else if (Input.anyKeyDown && respawn_available && !Input.GetKeyDown(KeyCode.Escape))
         {
             Respawn();
         }

@@ -20,15 +20,20 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadLocalComponents();
         LoadComponents();
         GenerateLevel();
         sheep_controller.StartLevel();
         farmer_controller.StartLevel();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         level_spawner = GetComponent<LevelSpawner>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_controller = sheep.GetComponent<SheepController>();
         farmer_controller = farmer.GetComponent<FarmerController>();
     }

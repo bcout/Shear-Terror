@@ -38,7 +38,7 @@ public class SheepController : MonoBehaviour
 
     private void Awake()
     {
-        LoadComponents();
+        LoadLocalComponents();
         LoadStates();
         SetDefaultState(idle_state);
     }
@@ -57,7 +57,7 @@ public class SheepController : MonoBehaviour
         state.StateUpdate();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         movement_controller = GetComponent<MovementController>();
         animator = GetComponent<Animator>();

@@ -10,11 +10,15 @@ public class MusicPlayer : MonoBehaviour
 
     private bool music_paused;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     private void Start()
     {
         music_paused = false;
         music_clip_index = 0;
-        LoadComponents();
     }
 
     private void Update()
@@ -29,7 +33,7 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         audio_source = GetComponent<AudioSource>();
     }

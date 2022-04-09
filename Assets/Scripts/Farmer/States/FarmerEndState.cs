@@ -19,12 +19,12 @@ public class FarmerEndState : MonoBehaviour, FarmerState
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         farmer_controller.StartAnimation(Constants.FARM_END_ANIM);
         StartCoroutine(farmer_movement_controller.MoveToMiddle());
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
         farmer_movement_controller = GetComponent<FarmerMovementController>();

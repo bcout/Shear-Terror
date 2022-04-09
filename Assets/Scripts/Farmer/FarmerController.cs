@@ -25,6 +25,7 @@ public class FarmerController : MonoBehaviour
     private void Start()
     {
         LoadStates();
+        LoadLocalComponents();
         LoadComponents();
         SetDefaultState(waiting_state);
     }
@@ -34,10 +35,14 @@ public class FarmerController : MonoBehaviour
         state.StateUpdate();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         animator = GetComponent<Animator>();
         farmer_movement_controller = GetComponent<FarmerMovementController>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_controller = sheep.GetComponent<SheepController>();
     }
 
