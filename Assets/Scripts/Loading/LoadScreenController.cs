@@ -47,16 +47,15 @@ public class LoadScreenController : MonoBehaviour
             {
                 TwoDSheepCtrl.anim.speed = 0f;
                 keepGoing = false;
-                
-                // Actually load the level.
-                StartCoroutine(LoadSceneAsync(levelName));
+
+                SceneManager.LoadScene(levelName);
             }
         }
     }
 
     public void loadScene(string name)
     {
-        StartCoroutine(LoadSceneAsync(name));
+        SceneManager.LoadScene(levelName);
     }
 
     IEnumerator LoadSceneAsync (string level)
