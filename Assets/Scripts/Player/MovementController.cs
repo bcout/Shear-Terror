@@ -317,6 +317,11 @@ public class MovementController : MonoBehaviour
             move_coroutine_available = false;
         }
 
+        if (current_block_index == blocks_in_level.Count - 3)
+        {
+            sheep_controller.SpawnLevelEndField();
+        }
+
         sheep_controller.DestroyPreviousBlocks();
     }
 

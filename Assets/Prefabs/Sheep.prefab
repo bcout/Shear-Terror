@@ -1390,6 +1390,8 @@ MonoBehaviour:
   backwards_camera: {fileID: 6903006888884625712}
   music_player_object: {fileID: 8820075909922432929}
   sfx_player_object: {fileID: 4942074518675862667}
+  level_end_field: {fileID: 8619252846592111010, guid: 655eb54e5eb22bc48a3057c1432326c0,
+    type: 3}
 --- !u!114 &7386345316332263028
 MonoBehaviour:
   m_ObjectHideFlags: 0
