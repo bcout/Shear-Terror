@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 7103905964354225489}
+  nextButtonText: {fileID: 7103905964606330381}
 --- !u!1 &7103905963900462770
 GameObject:
   m_ObjectHideFlags: 0

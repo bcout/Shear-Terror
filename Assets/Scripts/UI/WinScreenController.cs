@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class WinScreenController : MonoBehaviour
 {
     public GameObject panel;
+    public Text nextButtonText;
     private AsyncOperation op;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (GameData.current_level >= 2)
+        {
+            nextButtonText.text = "Continue";
+        }
+        else
+        {
+            nextButtonText.text = "Next Level";
+        }
         panel.SetActive(false);
     }
 
