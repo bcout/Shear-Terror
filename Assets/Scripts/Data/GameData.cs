@@ -35,12 +35,12 @@ public static class GameData
         move_right_key = KeyCode.RightArrow;
         look_back_key = KeyCode.DownArrow;
 
-        flip_front_key = KeyCode.W;
-        flip_back_key = KeyCode.S;
-        roll_left_key = KeyCode.A;
-        roll_right_key = KeyCode.D;
-        spin_left_key = KeyCode.Q;
-        spin_right_key = KeyCode.E;
+        flip_front_key = jump_key;
+        flip_back_key = look_back_key;
+        roll_left_key = move_left_key;
+        roll_right_key = move_right_key;
+        spin_left_key = KeyCode.PageDown;
+        spin_right_key = KeyCode.PageUp;
 
         level_pool_id = Constants.SHORT_LEVEL_ID;
 
