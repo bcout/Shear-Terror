@@ -27,6 +27,7 @@ public static class GameData
 
     public static bool game_paused { get; set; }
     public static bool currently_going_to_main_menu { get; set; }
+    public static bool footstep_sound_enabled { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -53,5 +54,7 @@ public static class GameData
         current_level = 1;
         currently_going_to_main_menu = false;
         won_level = false;
+
+        footstep_sound_enabled = false;
     }
 }

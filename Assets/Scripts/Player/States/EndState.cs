@@ -15,6 +15,7 @@ public class EndState : MonoBehaviour, SheepState
         if (at_end)
         {
             movement_controller.RunIntoDistance();
+            GameData.footstep_sound_enabled = false;
         }
     }
 

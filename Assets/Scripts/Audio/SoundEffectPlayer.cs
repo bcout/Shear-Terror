@@ -13,12 +13,12 @@ public class SoundEffectPlayer : MonoBehaviour
     private void Start()
     {
         audio_source = GetComponent<AudioSource>();
-        sound_enabled = true;
+        GameData.footstep_sound_enabled = true;
     }
 
     public void PlayFootstepSound()
     {
-        if (sound_enabled)
+        if (GameData.footstep_sound_enabled)
         {
             audio_source.PlayOneShot(GetRandomFootstepClip());
         }   
@@ -36,7 +36,7 @@ public class SoundEffectPlayer : MonoBehaviour
 
     public void EnableFootstepSounds(bool value)
     {
-        sound_enabled = value;
+        GameData.footstep_sound_enabled = value;
     }
 
     private AudioClip GetRandomFootstepClip()
