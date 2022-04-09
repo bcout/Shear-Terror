@@ -21,7 +21,7 @@ public class RunningState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         sheep_controller.StartAnimation(Constants.RUN_ANIM);
     }
 
@@ -31,7 +31,7 @@ public class RunningState : MonoBehaviour, SheepState
         sheep_controller.LookForward();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();

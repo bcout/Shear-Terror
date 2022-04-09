@@ -21,6 +21,7 @@ public class EndState : MonoBehaviour, SheepState
 
     public void Enter()
     {
+        LoadLocalComponents();
         LoadComponents();
         at_end = false;
         sheep_controller.GetMusicPlayer().StopMusic();
@@ -41,10 +42,14 @@ public class EndState : MonoBehaviour, SheepState
         at_end = false;
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_camera = sheep_controller.GetComponentInChildren<Camera>().gameObject;
     }
 

@@ -6,12 +6,12 @@ public class IdleState : MonoBehaviour, SheepState
 
     public void StateUpdate()
     {
-        LoadComponents();
+
     }
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         sheep_controller.StartAnimation(Constants.IDLE_ANIM);
     }
 
@@ -20,7 +20,7 @@ public class IdleState : MonoBehaviour, SheepState
         sheep_controller.StopAnimation(Constants.IDLE_ANIM);
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
     }

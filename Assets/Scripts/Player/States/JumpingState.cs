@@ -22,7 +22,7 @@ public class JumpingState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         sheep_controller.StartAnimation(Constants.JUMP_UP_ANIM);
         PlayerData.curr_trick = PlayerData.Trick.NONE;
     }
@@ -65,7 +65,7 @@ public class JumpingState : MonoBehaviour, SheepState
         PlayerData.curr_trick = new_trick;
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
         movement_controller = GetComponent<MovementController>();

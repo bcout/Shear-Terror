@@ -17,6 +17,11 @@ public class GameController : MonoBehaviour
 
     private bool game_paused;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +31,13 @@ public class GameController : MonoBehaviour
         farmer_controller.StartLevel();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         level_spawner = GetComponent<LevelSpawner>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_controller = sheep.GetComponent<SheepController>();
         farmer_controller = farmer.GetComponent<FarmerController>();
     }

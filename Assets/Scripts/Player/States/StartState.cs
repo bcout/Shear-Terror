@@ -17,7 +17,7 @@ public class StartState : MonoBehaviour, SheepState
 
     public void Enter()
     {
-        LoadComponents();
+        LoadLocalComponents();
         sheep_controller.StartAnimation(Constants.IDLE_ANIM);
 
         transform.position = sheep_controller.GetCurrentBlock().transform.Find(Constants.BLOCK_CENTER_NAME).position;
@@ -29,7 +29,7 @@ public class StartState : MonoBehaviour, SheepState
         sheep_controller.StopAnimation(Constants.IDLE_ANIM);
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
     }
