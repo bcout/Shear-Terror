@@ -345,6 +345,7 @@ public class MovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(secs);
         GameData.won_level = true;
+        GameData.won_level_for_movement = true;
     }
 
     public void SetCoroutineAvailability(bool value)

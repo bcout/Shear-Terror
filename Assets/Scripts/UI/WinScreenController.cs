@@ -11,6 +11,8 @@ public class WinScreenController : MonoBehaviour
     public GameObject panel;
     public Text nextButtonText;
     private AsyncOperation op;
+    
+    public Text score;
 
     // Start is called before the first frame update
     void Start()
@@ -31,20 +33,24 @@ public class WinScreenController : MonoBehaviour
     {
         if (GameData.won_level)
         {
-            GameData.won_level = false;
             panel.SetActive(true);
+            score.text = "Score: " + GameData.score;
+            GameData.won_level = false;
         }
 
-        // Used in testing to auto win levels.
-        // if (Input.GetKeyDown(KeyCode.K))
-        // {
-        //     GameData.won_level = true;
-        // }
+        //Used in testing to auto win levels.
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameData.won_level_for_movement = true;
+            GameData.won_level = true;
+        }
     }
     // Load the next level from the win screen.
     public void LoadNextLevel()
     {
-        GameData.scoreBeforeLevelStart = GameData.score;
+        GameData.won_level_for_movement = false;
+        GameData.score = 0;
+        GameData.firstTrick = true;
         GameData.current_level++;
         if (GameData.current_level < 3)
         {
@@ -71,7 +77,7 @@ public class WinScreenController : MonoBehaviour
     public void QuitToMainMenu()
     {
         GameData.score = 0;
-        GameData.deaths = 0;
+        GameData.firstTrick = true;
         GameData.current_level = 1;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);

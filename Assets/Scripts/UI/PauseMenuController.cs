@@ -44,7 +44,7 @@ public class PauseMenuController : MonoBehaviour
     public void QuitToMainMenu()
     {
         GameData.score = 0;
-        GameData.deaths = 0;
+        GameData.firstTrick = true;
         GameData.current_level = 1;
         GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         Time.timeScale = 1f;

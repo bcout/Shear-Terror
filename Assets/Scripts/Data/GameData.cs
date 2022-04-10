@@ -24,6 +24,7 @@ public static class GameData
     public static bool isGameOver { get; set; }
     
     public static bool won_level { get; set; }
+    public static bool won_level_for_movement { get; set; }
 
     public static bool game_paused { get; set; }
     public static bool currently_going_to_main_menu { get; set; }
@@ -31,12 +32,9 @@ public static class GameData
 
     public static int score { get; set; }
     
-    public static int deaths { get; set; }
-    
     public static PlayerData.Trick previousTrick { get; set; }
     
     public static bool firstTrick { get; set; }
-    public static int scoreBeforeLevelStart { get; set; }
     public static bool sheep_currently_ragdolling { get; set; }
     static GameData()
     {
@@ -64,13 +62,11 @@ public static class GameData
         current_level = 1;
         currently_going_to_main_menu = false;
         won_level = false;
-
+        won_level_for_movement = false;
         footstep_sound_enabled = false;
 
         firstTrick = true;
         score = 0;
-        deaths = 0;
-        scoreBeforeLevelStart = 0;
         sheep_currently_ragdolling = false;
     }
 }
