@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CreditsController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CreditsController : MonoBehaviour
     [SerializeField] float end_y_value;
     [SerializeField] float start_y_value;
     [SerializeField] float default_speed;
+    
+    public Text score;
+    public Text deaths;
 
     private float speed;
 
@@ -21,6 +25,9 @@ public class CreditsController : MonoBehaviour
         speed = default_speed;
         prompt.SetActive(false);
         prompt_visible = false;
+
+        score.text = "Score: " + GameData.score;
+        deaths.text = "Deaths: " + GameData.deaths;
 
         transform.localPosition = new Vector3(transform.localPosition.x, start_y_value, transform.localPosition.z);
     }
