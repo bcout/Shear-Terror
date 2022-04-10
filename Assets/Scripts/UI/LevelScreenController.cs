@@ -82,7 +82,7 @@ public class LevelScreenController : MonoBehaviour
         }
         else
         {
-            score.text = "Score: " + GameData.score;
+            score.text = GameData.score.ToString();
         }
     }
 }
