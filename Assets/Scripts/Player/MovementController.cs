@@ -327,8 +327,6 @@ public class MovementController : MonoBehaviour
         }
         else
         {
-            PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
-            sheep_controller.UpdateLane();
             sheep_controller.SetState(sheep_controller.GetEndState());
             move_coroutine_available = false;
             StartCoroutine(waitAndEnableWinScreen(2.5f));
