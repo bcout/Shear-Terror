@@ -29,7 +29,7 @@ public class EndState : MonoBehaviour, SheepState
         end_camera.transform.position = sheep_camera.transform.position;
         end_camera.transform.rotation = sheep_camera.transform.rotation;
         sheep_camera.SetActive(false);
-
+        PlayerData.curr_lane = PlayerData.Lane.MIDDLE;
         sheep_controller.StartAnimation(Constants.RUN_ANIM);
         StartCoroutine(End());
     }

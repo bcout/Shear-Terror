@@ -86,7 +86,14 @@ public class RagdollController : MonoBehaviour
         GameObject obstacle = sheep_controller.GetCollidedObstacle();
         if (obstacle != null)
         {
-            Destroy(obstacle);
+            if (obstacle.transform.parent.name == "Trees and Rocks Cluster")
+            {
+                Destroy(obstacle.transform.parent.gameObject);
+            }
+            else
+            {
+                Destroy(obstacle);
+            }
             sheep_controller.SetCollidedObstacle(null);
         }
     }

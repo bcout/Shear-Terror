@@ -962,7 +962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 1401}
+  m_AnchoredPosition: {x: 48, y: 1436}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011584623
@@ -982,7 +982,7 @@ MonoBehaviour:
   headings: {fileID: 1560808832}
   title: {fileID: 745563622}
   music_source: {fileID: 320173168}
-  end_y_value: 1401
+  end_y_value: 1436
   start_y_value: -530
   default_speed: 50
 --- !u!1001 &1063847204
@@ -1284,8 +1284,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.6, y: -311.2}
-  m_SizeDelta: {x: 348.37045, y: 1151.1156}
+  m_AnchoredPosition: {x: 36.6, y: -516.01}
+  m_SizeDelta: {x: 348.37045, y: 1560.7316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1560808834
 MonoBehaviour:
@@ -1447,7 +1447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.7, y: -1383}
+  m_AnchoredPosition: {x: -50.7, y: -1418}
   m_SizeDelta: {x: 296.82553, y: 45.083885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718271199
@@ -1525,8 +1525,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.5, y: -455.9}
-  m_SizeDelta: {x: 263.20114, y: 1440.5182}
+  m_AnchoredPosition: {x: -67.5, y: -516}
+  m_SizeDelta: {x: 263.20114, y: 1560.7565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823544292
 MonoBehaviour:
