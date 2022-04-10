@@ -17,15 +17,24 @@ public class MovementController : MonoBehaviour
     private bool jump_coroutine_available;
     private bool trick_coroutine_available;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     private void Start()
     {
         LoadComponents();
         turn_start_angle = 0f;
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         sheep_controller = GetComponent<SheepController>();
+    }
+
+    private void LoadComponents()
+    {
         body = transform.Find(Constants.PIVOT);
     }
 

@@ -56,9 +56,9 @@ public class RagdollController : MonoBehaviour
         {
             sheep_controller.LookBack();
         }
-        else if (Input.anyKeyDown && respawn_available)
+        else if (Input.anyKeyDown && respawn_available && !Input.GetKeyDown(KeyCode.Escape))
         {
-            Respawn();
+            StartCoroutine(Respawn());
         }
         else
         {
@@ -78,8 +78,9 @@ public class RagdollController : MonoBehaviour
         sheep_camera = sheep.GetComponentInChildren<Camera>();
     }
 
-    private void Respawn()
+    private IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(0.001f);
         ResumeRunners();
         Destroy(gameObject);
         GameObject obstacle = sheep_controller.GetCollidedObstacle();
@@ -109,6 +110,7 @@ public class RagdollController : MonoBehaviour
 
     private void PauseRunners()
     {
+        GameData.sheep_currently_ragdolling = true;
         sheep_collider.enabled = false;
         sheep_renderer.enabled = false;
         sheep_controller.GetSoundEffectsPlayer().EnableFootstepSounds(false);
@@ -121,6 +123,7 @@ public class RagdollController : MonoBehaviour
 
     private void ResumeRunners()
     {
+        GameData.sheep_currently_ragdolling = false;
         sheep_collider.enabled = true;
         sheep_renderer.enabled = true;
         sheep_controller.GetSoundEffectsPlayer().EnableFootstepSounds(true);

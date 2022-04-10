@@ -37,6 +37,7 @@ public static class GameData
     
     public static bool firstTrick { get; set; }
     public static int scoreBeforeLevelStart { get; set; }
+    public static bool sheep_currently_ragdolling { get; set; }
     static GameData()
     {
         // jump_key = KeyCode.UpArrow;
@@ -49,8 +50,8 @@ public static class GameData
         flip_back_key = look_back_key;
         roll_left_key = move_left_key;
         roll_right_key = move_right_key;
-        spin_left_key = KeyCode.PageDown;
-        spin_right_key = KeyCode.PageUp;
+        spin_left_key = KeyCode.PageUp;
+        spin_right_key = KeyCode.PageDown;
 
         level_pool_id = Constants.SHORT_LEVEL_ID;
 
@@ -70,5 +71,6 @@ public static class GameData
         score = 0;
         deaths = 0;
         scoreBeforeLevelStart = 0;
+        sheep_currently_ragdolling = false;
     }
 }

@@ -16,15 +16,24 @@ public class FarmerMovementController : MonoBehaviour
 
     private bool move_coroutine_available;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     private void Start()
     {
         LoadComponents();
         turn_start_angle = 0f;
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         farmer_controller = GetComponent<FarmerController>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_controller = sheep.GetComponent<SheepController>();
     }
 

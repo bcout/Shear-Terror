@@ -13,7 +13,7 @@ public class RagdollToggle : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        LoadComponents();
+        LoadLocalComponents();
         LoadChildComponents();
     }
 
@@ -42,7 +42,7 @@ public class RagdollToggle : MonoBehaviour
         sheep_controller.enabled = !active;
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         //animator = GetComponent<Animator>();
         rigid_body = GetComponent<Rigidbody>();

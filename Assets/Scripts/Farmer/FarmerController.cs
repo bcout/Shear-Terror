@@ -22,6 +22,11 @@ public class FarmerController : MonoBehaviour
 
     private int current_block_index;
 
+    private void Awake()
+    {
+        LoadLocalComponents();
+    }
+
     private void Start()
     {
         LoadStates();
@@ -34,10 +39,14 @@ public class FarmerController : MonoBehaviour
         state.StateUpdate();
     }
 
-    private void LoadComponents()
+    private void LoadLocalComponents()
     {
         animator = GetComponent<Animator>();
         farmer_movement_controller = GetComponent<FarmerMovementController>();
+    }
+
+    private void LoadComponents()
+    {
         sheep_controller = sheep.GetComponent<SheepController>();
     }
 
