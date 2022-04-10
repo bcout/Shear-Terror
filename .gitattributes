@@ -1,0 +1,2 @@
+Shear-Terror_Demo_720.m4v filter=lfs diff=lfs merge=lfs -text
+BUILD_WIN/Shear-Terror/Shear-Terror_Data/sharedassets0.assets.resS filter=lfs diff=lfs merge=lfs -text
