@@ -63,6 +63,21 @@ public class JumpingState : MonoBehaviour, SheepState
     private void SetTrick(PlayerData.Trick new_trick)
     {
         PlayerData.curr_trick = new_trick;
+        if (GameData.firstTrick)
+        {
+            GameData.firstTrick = false;
+            GameData.previousTrick = new_trick;
+            GameData.score += 250;
+        }
+        else if (new_trick == GameData.previousTrick)
+        {
+            GameData.score += 100;
+        }
+        else
+        {
+            GameData.previousTrick = new_trick;
+            GameData.score += 250;
+        }
     }
 
     private void LoadLocalComponents()

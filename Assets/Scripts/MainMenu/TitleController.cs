@@ -280,11 +280,11 @@ public class TitleController : MonoBehaviour
                     }
                     else if (bind == 5)
                     {
-                        GameData.roll_left_key = e.keyCode;
+                        GameData.spin_left_key = e.keyCode;
                     }
                     else if (bind == 6)
                     {
-                        GameData.spin_left_key = e.keyCode;
+                        GameData.roll_left_key = e.keyCode;
                     }
                     refresh_KB_Highlights();
                     waiting = false;

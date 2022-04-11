@@ -22,6 +22,8 @@ public class CreditsController : MonoBehaviour
         prompt.SetActive(false);
         prompt_visible = false;
 
+        
+
         transform.localPosition = new Vector3(transform.localPosition.x, start_y_value, transform.localPosition.z);
     }
 
@@ -47,6 +49,10 @@ public class CreditsController : MonoBehaviour
         if (prompt_visible && Input.anyKeyDown)
         {
             music_source.Stop();
+            GameData.score = 0;
+            GameData.firstTrick = true;
+            GameData.current_level = 1;
+            GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
             SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         }
     }

@@ -43,6 +43,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        GameData.score = 0;
+        GameData.firstTrick = true;
+        GameData.current_level = 1;
+        GameData.sheepLivesRemaining = GameData.sheepLivesInitial;
         Time.timeScale = 1f;
         GameData.game_paused = false;
         GameData.currently_going_to_main_menu = true;
