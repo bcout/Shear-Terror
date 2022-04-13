@@ -1,4 +1,5 @@
 # Shear-Terror
+Copyright: Brennan Couturier, Cole Lightfoot, James Israelson
 
 Shear Terror is 3D third person runner about a sheep fleeing from a farmer trying to shear it. Fortunately, the sheep knows parkour and easily escapes the den. Play as the sheep and flee from the farmer through multiple levels, protecting the only valuable thing you have – the fleece on your back!
 
