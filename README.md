@@ -8,6 +8,8 @@ Flail around as a ragdoll if you hit an obstacle or fail a trick
 
 Made in a few months as a game programming project, so enjoy it, but don't take it too seriously!
 
+Download and play from the Itch.io page: https://bcout.itch.io/shear-terror
+
 Want to modify the game and make it your own? Feel free! Modify the code, change the art, (fix the bugs), all you want.
 - Note: This game is licensed under GPL v3.0, so make sure you follow that.
 
